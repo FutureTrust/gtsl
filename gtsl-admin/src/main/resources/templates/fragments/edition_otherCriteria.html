@@ -1,0 +1,66 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="otherCriteria(fieldName, label, field)">
+
+<!-- Extended key usage list -->
+  <div th:id="${'heading-' + fieldName + '-extendedKeyUsageList'}">
+    <h6 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-extendedKeyUsageList'}"
+         th:href="${'#collapse-' + fieldName + '-extendedKeyUsageList'}">
+        <span>Extended key usage list</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h6>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-extendedKeyUsageList'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-extendedKeyUsageList'}">
+    <div class="panel-body">
+
+      <th:block
+          th:insert="fragments/edition_policyBitList :: policyBitList (fieldName=${fieldName + '-extendedKeyUsageList'}, label='Extended key usage', field=${field + '.extendedKeyUsageList'})">
+        &nbsp;
+      </th:block>
+
+    </div>
+  </div>
+
+<!-- Cert DNa list -->
+  <div th:id="${'heading-' + fieldName + '-certDnaList'}">
+    <h6 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-certDnaList'}"
+         th:href="${'#collapse-' + fieldName + '-certDnaList'}">
+        <span>CertDNA list</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h6>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-certDnaList'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-certDnaList'}">
+    <div class="panel-body">
+
+      <th:block
+          th:insert="fragments/edition_policyBitList :: policyBitList (fieldName=${fieldName + '-certDnaList'}, label='Cert Subject DN Attribute', field=${field + '.certDnaList'})">
+        &nbsp;
+      </th:block>
+
+    </div>
+  </div>
+
+</div>

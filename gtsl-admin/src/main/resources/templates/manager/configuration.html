@@ -1,0 +1,225 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head(title='GTSL - Manager')">&nbsp;</div>
+
+<body>
+
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div th:replace="fragments/menu :: menu">&nbsp;
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-12">
+        <div class="row">
+          <div>
+            <ul class="breadcrumb">
+              <li><a class="a-link-custom" href="https://ec.europa.eu/commission/index_en"
+                     target="_blank">European Commission</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/CEF+Digital+Home"
+                     target="_blank">CEF Digital</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eSignature"
+                     target="_blank">eSignature</a>
+              </li>
+              <li>
+                <a class="a-link-custom" href="">Trusted List Manager</a>
+              </li>
+              <li class="active">Configuration</li>
+            </ul>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+              <div th:replace="fragments/nav_bar :: nav(configuration=true)">&nbsp;</div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+              <div class="row well">
+
+                <div th:if="${successMessage != null && !#strings.isEmpty(successMessage)}" class="row">
+                  <div class="alert alert-success text-center" role="alert">
+                    <strong th:text="${successMessage}"></strong>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h3 style="text-decoration: underline">
+                      <span>Information</span>
+                    </h3>
+                  </div>
+                  <div class="col-sm-12">
+                    <div th:if="${address != null && !#strings.isEmpty(address)}">
+                      <label>Public key :</label>
+                      <input type="text" disabled class="form-control" th:value="${{address}}"/>
+                    </div>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h3 style="text-decoration: underline">
+                      <span>Notifications</span>
+                    </h3>
+                  </div>
+                  <div class="col-sm-12">
+                    <form method="POST" class="form-horizontal form-default"
+                          action="#"
+                          th:object="${cronNotifications}"
+                          th:action="@{/configuration/notifications}">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" th:field="*{enabled}"
+                                 th:value="${cronNotifications.enabled}" id="enableNotifications">
+                          <span>Enable notifications</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>Cron :</label>
+                        <input type="text" th:field="*{value}" id="cronNotifications"
+                                th:value="${cronNotifications.value}" class="form-control"/>
+                      </div>
+                      <div class="btn-float-group clearfix">
+                        <button type="submit" class="btn btn-primary btn-md">
+                          Update notifications job
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h3 style="text-decoration: underline">
+                      <span>Pinning current version</span>
+                    </h3>
+                  </div>
+                  <div class="col-sm-12">
+                    <form method="POST" class="form-horizontal form-default"
+                          action="#"
+                          th:object="${cronPinCurrent}"
+                          th:action="@{/configuration/pin/current}">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" th:field="*{enabled}"
+                                 th:value="${cronPinCurrent.enabled}" id="enablePinCurrent">
+                          <span>Enable pinning current version of Trusted Lists</span>
+                        </label>
+                      </div>
+                      <div>
+                      </div>
+                      <div>
+                        <label>Cron :</label>
+                        <input type="text" th:field="*{value}" id="cronPinCurrent"
+                           th:value="${cronPinCurrent.value}"
+                           class="form-control"/>
+                      </div>
+                      <div class="btn-float-group clearfix">
+                        <button type="submit" class="btn btn-primary btn-md">
+                          Update pin current version job
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h3 style="text-decoration: underline">
+                      <span>Pinning all versions</span>
+                    </h3>
+                  </div>
+                  <div class="col-sm-12">
+                    <form method="POST" class="form-horizontal form-default"
+                          action="#"
+                          th:object="${cronPinAll}"
+                          th:action="@{/configuration/pin/all}">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" th:field="*{enabled}"
+                                 th:value="${cronPinAll.enabled}" id="enablePinAll">
+                          <span>Enable pinning all versions of Trusted Lists</span>
+                        </label>
+                      </div>
+                      <div>
+                        <label>Cron :</label>
+                        <input type="text" th:field="*{value}" id="cronPinAll"
+                           th:value="${cronPinAll.value}"
+                           class="form-control"/>
+                      </div>
+                      <div class="btn-float-group clearfix">
+                        <button type="submit" class="btn btn-primary btn-md">
+                          Update pin all versions job
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<div th:replace="fragments/assets :: assets">&nbsp;</div>
+
+<script>
+  $(document).ready(function() {
+    document.getElementById('cronNotifications').disabled = !document.getElementById('enableNotifications').checked;
+    document.getElementById('enableNotifications').onchange = function() {
+      document.getElementById('cronNotifications').disabled = !this.checked;
+    };
+  });
+
+  $(document).ready(function() {
+    document.getElementById('cronPinCurrent').disabled = !document.getElementById('enablePinCurrent').checked;
+    document.getElementById('enablePinCurrent').onchange = function() {
+      document.getElementById('cronPinCurrent').disabled = !this.checked;
+    };
+  });
+
+  $(document).ready(function() {
+    document.getElementById('cronPinAll').disabled = !document.getElementById('enablePinAll').checked;
+    document.getElementById('enablePinAll').onchange = function() {
+      document.getElementById('cronPinAll').disabled = !this.checked;
+    };
+  });
+</script>
+
+</body>
+</html>

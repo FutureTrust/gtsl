@@ -1,0 +1,122 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head">&nbsp;</div>
+
+<body>
+
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div th:replace="fragments/menu :: menu">&nbsp;
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-12">
+        <div class="row">
+          <div>
+            <ul class="breadcrumb">
+              <li><a class="a-link-custom" href="https://ec.europa.eu/commission/index_en"
+                     target="_blank">European Commission</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/CEF+Digital+Home"
+                     target="_blank">CEF Digital</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eSignature"
+                     target="_blank">eSignature</a>
+              </li>
+              <li class="active">Trusted List Manager</li>
+            </ul>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+              <div th:replace="fragments/nav_bar :: nav(homePage=true)">&nbsp;</div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+              <div class="row well">
+                <h2>
+                  You are authorized to operate the following trusted list :
+                </h2>
+                <h3>
+                  <span th:include="fragments/flag :: flag"
+                        th:with="territoryCode=${territoryCode},alternative=${countryName},addClass='svg-flag-icon-OV'"></span>
+                  <span th:text="${countryName}"></span>
+                </h3>
+
+                <div th:if="${tsl == null}">
+                  <div class="alert alert-warning text-center">
+                    <h3>There is no current version of the trusted list, create the first version
+                      now !</h3>
+                    <a class="btn btn-primary btn-lg" href="/drafts">Create a new Trusted List
+                    </a>
+                  </div>
+                </div>
+
+                <div th:if="${tsl != null}" class="flag-list-item">
+                  <div class="inner">
+                    <div class="icon">
+                    <span th:include="fragments/flag :: flag"
+                          th:with="territoryCode=${tsl.territoryCode},alternative=${tsl.countryName}"></span>
+                    </div>
+                    <div class="content">
+                      <h2 class="title" th:text="${tsl.countryName}"></h2>
+                      <p>Issue date
+                        <strong th:text="${{tsl.issueDate}}"></strong>
+                      </p>
+                      <p>Sequence number
+                        <strong th:text="${{tsl.sequenceNumber}}"></strong>
+                      </p>
+                    </div>
+                    <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" type="button"
+                              data-toggle="dropdown">
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu custom-dropdown-menu">
+                        <li>
+                          <a class="a-link-custom" th:href="${tsl.urls.export}">
+                            <span class="glyphicon glyphicon-download-alt"></span>
+                            <span>&ensp;Download XML</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<div th:replace="fragments/assets :: assets">&nbsp;</div>
+
+</body>
+</html>

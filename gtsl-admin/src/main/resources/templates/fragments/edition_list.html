@@ -1,0 +1,49 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<th:block th:fragment="list(fieldName, label, field)">
+  <div class="list form-group">
+    <h4 th:text="${label}"></h4>
+    <th:block th:each="value,stat : *{__${field}__}">
+      <div th:classappend="${'data-'+fieldName}"
+           th:attr="data-index=${stat.index}">
+        <div class="row">
+          <span class="col-xs-9 col-sm-10 col-md-10 col-lg-10">
+            <input class="form-control"
+                   th:field="*{__${field}__[__${stat.index}__].value}"/>
+          </span>
+          <span class="col-xs-3 col-sm-2 col-md-2 col-lg-2">
+          <button type="button" class="btn btn-default btn-xs"
+                  th:name="${'remove-' + fieldName}"
+                  th:value="${stat.index}">
+            <span class="glyphicon glyphicon-minus"></span>
+            <span th:text="${'&ensp;' + label}"></span>
+          </button>
+        </span>
+        </div>
+      </div>
+    </th:block>
+
+    <button type="button" class="btn btn-primary btn-xs"
+            th:name="${'add-' + fieldName}">
+      <span class="glyphicon glyphicon-plus"></span>
+      <span th:text="${'&ensp;' + label}"></span>
+    </button>
+  </div>
+
+  <hr/>
+</th:block>

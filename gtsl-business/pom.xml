@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>gtsl-commons</artifactId>
+    <groupId>eu.futuretrust.gtsl</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>jar</packaging>
+
+  <artifactId>gtsl-business</artifactId>
+  <dependencies>
+    <!-- gTSL dependencies -->
+    <dependency>
+      <groupId>eu.futuretrust.gtsl</groupId>
+      <artifactId>gtsl-ledger</artifactId>
+      <version>${gtsl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.futuretrust.gtsl</groupId>
+      <artifactId>gtsl-jaxb</artifactId>
+      <version>${gtsl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.futuretrust.gtsl</groupId>
+      <artifactId>gtsl-model</artifactId>
+      <version>${gtsl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.futuretrust.gtsl</groupId>
+      <artifactId>gtsl-persistence</artifactId>
+      <version>${gtsl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.futuretrust.gtsl</groupId>
+      <artifactId>gtsl-properties</artifactId>
+      <version>${gtsl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.futuretrust.gtsl</groupId>
+      <artifactId>gtsl-storage</artifactId>
+      <version>${gtsl.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.futuretrust.gtsl</groupId>
+      <artifactId>gtsl-vat-checker</artifactId>
+      <version>${gtsl.version}</version>
+    </dependency>
+
+    <!-- Spring dependencies -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-oxm</artifactId>
+      <version>${spring-oxm.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring-beans.version}</version>
+    </dependency>
+
+    <!-- Spring Boot dependencies -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <version>${spring-boot.version}</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <version>${spring-boot.version}</version>
+    </dependency>
+
+    <!-- Validation dependencies -->
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>${validation-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernate-validator.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.el</artifactId>
+      <version>${javax-el.version}</version>
+    </dependency>
+
+    <!-- Mailing dependencies -->
+    <dependency>
+      <groupId>com.mailjet</groupId>
+      <artifactId>mailjet-client</artifactId>
+      <version>${mailjet.version}</version>
+    </dependency>
+
+    <!-- MongoDB dependencies -->
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongo-java-driver</artifactId>
+      <version>${mongo-java-driver.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-mongodb</artifactId>
+      <version>${spring-data.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>${hibernate-validator.version}</version>
+    </dependency>
+
+    <!-- DSS dependencies -->
+    <dependency>
+      <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+      <artifactId>dss-utils-google-guava</artifactId>
+      <version>${sd-dss.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+      <artifactId>dss-tsl-validation</artifactId>
+      <version>${sd-dss.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+      <artifactId>dss-xades</artifactId>
+      <version>${sd-dss.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+      <artifactId>dss-service</artifactId>
+      <version>${sd-dss.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>eu.europa.ec.joinup.sd-dss</groupId>
+      <artifactId>dss-model</artifactId>
+      <version>${sd-dss.version}</version>
+    </dependency>
+
+    <!-- Other dependencies -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons-io.version}</version>
+    </dependency>
+  </dependencies>
+
+
+</project>

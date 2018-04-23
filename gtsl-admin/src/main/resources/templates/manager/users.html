@@ -1,0 +1,239 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head(title='GTSL - Manager')">&nbsp;</div>
+
+<body>
+
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div th:replace="fragments/menu :: menu">&nbsp;
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-12">
+        <div class="row">
+          <div>
+            <ul class="breadcrumb">
+              <li><a class="a-link-custom" href="https://ec.europa.eu/commission/index_en"
+                     target="_blank">European Commission</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/CEF+Digital+Home"
+                     target="_blank">CEF Digital</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eSignature"
+                     target="_blank">eSignature</a>
+              </li>
+              <li>
+                <a class="a-link-custom" href="">Trusted List Manager</a>
+              </li>
+              <li class="active">Members</li>
+            </ul>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+              <div th:replace="fragments/nav_bar :: nav(users=true)">&nbsp;</div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">
+              <div class="row well">
+                <h2>Members</h2>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="btn-float-group clearfix">
+                      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                              data-target="#modalAddMember">
+                        Add a new member
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Modal Add Member -->
+                  <div class="modal fade" id="modalAddMember" role="dialog">
+                    <div class="modal-dialog">
+
+                      <!-- Modal content-->
+                      <div class="modal-content epm-shadow-1">
+                        <div class="modal-header">
+                          <button type="button" class="close" aria-label="Close"
+                                  data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h1 class="title">Add member</h1>
+                        </div>
+                        <div class="modal-body">
+                          <p>You will start a vote in order to add a new member.</p>
+                          <p>If you are sure that you want to add a new member, please fill in the
+                            form
+                            below.</p>
+                          <form id="formAddMember" class="form-default" method="POST"
+                                action="/users/add">
+                            <div class="form-group">
+                              <label>Address (Ethereum public key) :</label>
+                              <input type="text" name="memberAddress" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                              <label>Country Code :</label>
+                              <input type="text" name="tslIdentifier" class="form-control"/>
+                            </div>
+                            <div class="form-group">
+                              <label>Duration (in hours) :</label>
+                              <input type="number" min="1" class="form-control"
+                                     name="duration"/>
+                            </div>
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="btn-float-group clearfix">
+                                  <button type="submit"
+                                          class="btn btn-primary btn-lg pull-right">
+                                    Create the proposal
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <div class="pull-right">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="table-responsive">
+                  <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                      <th class="text-center align-middle">Flag</th>
+                      <th class="text-center align-middle">Country Code</th>
+                      <th class="text-center align-middle">Address</th>
+                      <th class="text-center align-middle">Remove</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="member : ${members}">
+                      <td class="text-center align-middle">
+                        <div class="icon">
+                        <span th:include="fragments/flag :: flag"
+                              th:with="territoryCode=${member.tslIdentifier},alternative=${member.tslIdentifier},addClass='center-block'"></span>
+                        </div>
+                      </td>
+                      <td class="text-center align-middle" th:text="${member.tslIdentifier}"></td>
+                      <td class="text-center align-middle" th:text="${member.address}"></td>
+                      <td class="text-center align-middle">
+                      <span data-placement="top" data-toggle="tooltip" title=""
+                            data-original-title="Remove">
+                        <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
+                                th:attr="data-target=${'#modalRemoveMember-' + member.index}">
+                          <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                      </span>
+                      </td>
+
+                      <!-- Modal Remove Member -->
+                      <div class="modal fade" th:id="${'modalRemoveMember-' + member.index}"
+                           role="dialog">
+                        <div class="modal-dialog">
+
+                          <!-- Modal content-->
+                          <div class="modal-content epm-shadow-1">
+                            <div class="modal-header">
+                              <button type="button" class="close" aria-label="Close"
+                                      data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                              <!-- FLAG HEADER -->
+                              <div class="flag-header">
+                                <div class="icon">
+                                <span th:include="fragments/flag :: flag"
+                                      th:with="territoryCode=${member.tslIdentifier},alternative=${member.tslIdentifier}"></span>
+                                </div>
+                                <div class="content">
+                                  <h1 class="title">Remove member</h1>
+                                  <div th:text="${member.address}"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-body">
+                              <p>You will start a vote in order to remove the member <strong
+                                  th:text="${member.address}"></strong>.</p>
+                              <p>If you are sure that you want to remove this member, please enter a
+                                duration (in hours) for the vote.</p>
+                              <form th:id="${'formRemoveMember-' + member.index}"
+                                    class="form-default"
+                                    method="POST" action="/users/remove">
+                                <input type="hidden" name="memberAddress"
+                                       th:value="${member.address}"/>
+                                <input type="hidden" name="tslIdentifier"
+                                       th:value="${member.tslIdentifier}"/>
+                                <div class="form-group">
+                                  <label>Duration (in hours) :</label>
+                                  <input type="number" min="1" class="form-control"
+                                         name="duration"/>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-12">
+                                    <div class="btn-float-group clearfix">
+                                      <button type="submit"
+                                              class="btn btn-primary btn-lg pull-right">
+                                        Create the proposal
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <div class="pull-right">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                  Close
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<div th:replace="fragments/assets :: assets">&nbsp;</div>
+
+</body>
+</html>

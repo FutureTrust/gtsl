@@ -1,0 +1,86 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="proposal"
+     th:if="${proposal != null}"
+     th:remove="tag">
+  <td class="text-center align-middle">
+    <div class="icon">
+      <span th:include="fragments/flag :: flag"
+            th:with="territoryCode=${proposal.tslIdentifier},alternative=${proposal.tslIdentifier},addClass='center-block'"></span>
+    </div>
+  </td>
+  <td class="text-center align-middle" th:text="${proposal.tslIdentifier}"></td>
+  <td class="text-center align-middle" th:text="${proposal.member}"></td>
+
+  <td class="text-center align-middle">
+    <button th:if="${proposal.action == T(eu.futuretrust.gtsl.ledger.enums.Action).ADD}" type="button" class="btn btn-default label granted-status">
+      <span  th:text="${#strings.capitalize(proposal.action)}"></span>
+    </button>
+      <button th:if="${proposal.action == T(eu.futuretrust.gtsl.ledger.enums.Action).REMOVE}" type="button" class="btn btn-default label failed-status">
+        <span  th:text="${#strings.capitalize(proposal.action)}"></span>
+      </button>
+  </td>
+
+  <td th:if="${#bools.isFalse(proposal.executed)}" class="text-center align-middle">
+    <span data-placement="top" data-toggle="tooltip" title="" data-original-title="Vote for">
+      <button type="button" class="btn btn-success btn-xs" data-toggle="modal"
+              th:attr="data-target=${'#modalVoteFor-' + proposal.index}">
+        <span class="glyphicon glyphicon-ok"></span>
+      </button>
+    </span>
+    <span data-placement="top" data-toggle="tooltip" title="" data-original-title="Vote against">
+      <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
+              th:attr="data-target=${'#modalVoteAgainst-' + proposal.index}">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+    </span>
+  </td>
+  <td th:if="${#bools.isFalse(proposal.executed)}" class="text-center align-middle">
+    <span data-placement="top" data-toggle="tooltip" title="" data-original-title="Execute">
+      <button type="button" class="btn btn-success btn-xs" data-toggle="modal"
+              th:attr="data-target=${'#modalExecute-' + proposal.index}">
+        <span class="glyphicon glyphicon-play-circle"></span>
+      </button>
+    </span>
+  </td>
+
+  <td th:if="${#bools.isTrue(proposal.executed)}" class="text-center align-middle">
+    <span th:if="${#bools.isTrue(proposal.result)}"
+          data-original-title="Success"
+          data-placement="top" data-toggle="tooltip" title="">
+      <button type="button" class="btn btn-default label granted-status">
+        <span class="glyphicon glyphicon-ok"></span>
+      </button>
+    </span>
+    <span th:if="${#bools.isFalse(proposal.result)}"
+          data-original-title="Failed"
+          data-placement="top" data-toggle="tooltip" title="">
+      <button type="button" class="btn btn-default label failed-status">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+    </span>
+  </td>
+
+  <div th:include="modals/modal_vote_for :: modal"
+       th:with="proposal=${proposal},modalName=${'modalVoteFor-' + proposal.index}"></div>
+  <div th:include="modals/modal_vote_against :: modal"
+       th:with="proposal=${proposal},modalName=${'modalVoteAgainst-' + proposal.index}"></div>
+  <div th:include="modals/modal_execute :: modal"
+       th:with="proposal=${proposal},modalName=${'modalExecute-' + proposal.index}"></div>
+
+</div>

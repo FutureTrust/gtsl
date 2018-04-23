@@ -1,0 +1,68 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<!-- Modal Subscribe -->
+<div th:fragment="modal">
+  <div class="modal fade" th:id="${modalName}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content epm-shadow-1">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <!-- FLAG HEADER -->
+          <div class="flag-header">
+            <div class="icon">
+              <span th:include="fragments/flag :: flag"
+                    th:with="territoryCode=${draft.tsl.territoryCode},alternative=${draft.tsl.countryName}"></span>
+            </div>
+            <div class="content">
+              <h1 class="title">Push draft into production</h1>
+              <div>Draft: <span th:text="${draft.dbId}"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-warning">
+          <p><span class="glyphicon glyphicon-warning-sign"></span>&ensp;The draft will be validated in order to verify compliance with ETSI 119 612 before pushing into production.</p>
+          </div>
+          <h3>Are you sure that you want to push this draft into production ?</h3>
+
+          <div class="btn-float-group clearfix ">
+            <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">
+              No
+            </button>
+            <form method="POST" th:action="${draft.tsl.urls.push}">
+              <button type="submit" class="btn btn-primary btn-lg pull-right">
+                Yes
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="pull-right">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

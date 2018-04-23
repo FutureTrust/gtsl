@@ -1,0 +1,72 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+<th:block th:fragment="policyOrLegalNotice(fieldName, label, policyOrLegalNotice)">
+
+  <div class="form-group">
+
+    <h4 th:text="${label}"></h4>
+
+    <div th:classappend="${'data-'+fieldName}">
+
+    <th:block
+        th:if="${(policyOrLegalNotice.legalNotice.values == null || policyOrLegalNotice.legalNotice.values.isEmpty()) && (policyOrLegalNotice.policy.values == null || policyOrLegalNotice.policy.values.isEmpty())}">
+      <select th:id="${'select-' + fieldName}" class="form-control">
+        <option value="legalNotice" selected="selected">Legal notice</option>
+        <option value="policy">Policy</option>
+      </select>
+      <div th:id="${'target-' + fieldName}" class="target">
+        <th:block
+            th:insert="fragments/edition_multilang :: multiLang ('legalNotice', 'Legal notice', 'schemeInformation.policyOrLegalNotice.legalNotice.values')"
+            th:with="hideTitle=true">
+          &nbsp;
+        </th:block>
+      </div>
+    </th:block>
+
+    <th:block
+        th:if="${(policyOrLegalNotice.legalNotice.values != null && !policyOrLegalNotice.legalNotice.values.isEmpty()) || (policyOrLegalNotice.policy.values != null && !policyOrLegalNotice.policy.values.isEmpty())}">
+      <select th:id="${'select-' + fieldName}" class="form-control">
+        <option value="legalNotice"
+                th:selected="${policyOrLegalNotice.legalNotice.values != null && !policyOrLegalNotice.legalNotice.values.isEmpty() }">
+          Legal notice
+        </option>
+        <option value="policy"
+                th:selected="${policyOrLegalNotice.policy.values != null && !policyOrLegalNotice.policy.values.isEmpty() }">
+          Policy
+        </option>
+      </select>
+      <div th:id="${'target-' + fieldName}" class="target">
+        <th:block
+            th:if="${policyOrLegalNotice != null && policyOrLegalNotice.legalNotice != null && policyOrLegalNotice.legalNotice.values != null && !policyOrLegalNotice.legalNotice.values.isEmpty()}"
+            th:insert="fragments/edition_multilang :: multiLang ('legalNotice', 'Legal notice', 'schemeInformation.policyOrLegalNotice.legalNotice.values')"
+            th:with="hideTitle=true">
+          &nbsp;
+        </th:block>
+        <th:block
+            th:if="${policyOrLegalNotice != null && policyOrLegalNotice.policy != null && policyOrLegalNotice.policy.values != null && !policyOrLegalNotice.policy.values.isEmpty()}"
+            th:insert="fragments/edition_multilang :: multiLang ('policy', 'Policy', 'schemeInformation.policyOrLegalNotice.policy.values')"
+            th:with="hideTitle=true">
+          &nbsp;
+        </th:block>
+      </div>
+    </th:block>
+
+    </div>
+  </div>
+
+</th:block>
+

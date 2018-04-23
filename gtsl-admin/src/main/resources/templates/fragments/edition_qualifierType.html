@@ -1,0 +1,11 @@
+<div th:fragment="qualifierType(label, field)">
+
+  <label th:if="${#bools.isFalse(hideTitle)}" th:text="${label}"></label>
+  <select th:field="*{__${field}__}" class="form-control">
+    <option value=""></option>
+    <option value="OIDAsURN">OIDAsURN</option>
+    <option value="OIDAsURI">OIDAsURI</option>
+  </select>
+  <hr th:if="${#bools.isFalse(hideTitle)}"/>
+
+</div>

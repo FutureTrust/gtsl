@@ -1,0 +1,65 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="serviceHistoryInstance(fieldName, label, field)">
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Service type identifier', 'text', ${field + '.serviceTypeIdentifier.value'})">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Service status', 'text', ${field + '.serviceStatus.value'})">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_date :: date ('Starting date & time', ${field + '.statusStartingTime'})">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_multilang :: multiLang (fieldName=${fieldName + '-serviceName'}, label='Service name', field=${field + '.serviceName.values'})">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_digitalId :: digitalId (${fieldName + '-digitalId'}, 'Digital Identity', ${field + '.serviceDigitalIdentity.values'})">
+    &nbsp;
+  </th:block>
+
+  <div th:id="${'heading-' + fieldName + '-extensions'}">
+    <h5 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-extensions'}"
+         th:href="${'#collapse-' + fieldName + '-extensions'}">
+        <span>Service extensions</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h5>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-extensions'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-extensions'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_serviceExtensions :: serviceExtensions (fieldName=${fieldName + '-extensions'}, label='Service extension', field=${field + '.serviceInformationExtensions.values'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+</div>

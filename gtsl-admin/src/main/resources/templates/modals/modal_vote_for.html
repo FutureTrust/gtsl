@@ -1,0 +1,76 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<!-- Modal Subscribe -->
+<div th:fragment="modal">
+  <div class="modal fade" th:id="${modalName}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content epm-shadow-1">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <!-- FLAG HEADER -->
+          <div class="flag-header">
+            <div class="icon">
+              <span th:include="fragments/flag :: flag"
+                    th:with="territoryCode=${proposal.tslIdentifier},alternative=${proposal.tslIdentifier}"></span>
+            </div>
+            <div class="content">
+              <h1 class="title">Vote for the proposal n°<span
+                  th:text="${proposal.index}"></span></h1>
+              <div>Member: <span th:text="${proposal.member}"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>You will vote <strong>FOR</strong> the proposal n°<strong
+              th:text="${proposal.index}"></strong> in
+            order to <strong th:text="${proposal.action}"></strong> the member <strong
+                th:text="${proposal.member}"></strong>.</p>
+          <p>If the voting deadline is exceeded, the vote will not be taken into account.</p>
+          <h3>Are you sure that you want to vote for the proposal ?</h3>
+
+
+          <div class="btn-float-group clearfix ">
+            <button type="button" class="btn btn-default btn-lg pull-right" data-dismiss="modal">
+              No
+            </button>
+            <form method="POST" action="/proposals/vote">
+              <input type="hidden" name="proposalId" th:value="${proposal.index}">
+              <input type="hidden" name="inSupport" value="true">
+              <div class="btn-float-group clearfix">
+                <button type="submit" class="btn btn-primary btn-lg pull-right">
+                  Yes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="pull-right">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
