@@ -1,0 +1,11 @@
+keystore/*
+properties/contract.properties
+properties/ethereum.properties
+properties/ipfs.properties
+properties/mongo.properties
+properties/mail.properties
+
+!format_messages_en.properties
+!rules_messages_en.properties
+!application.yml
+!.gitignore

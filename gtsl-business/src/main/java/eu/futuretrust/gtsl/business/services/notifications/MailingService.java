@@ -17,13 +17,10 @@
 
 package eu.futuretrust.gtsl.business.services.notifications;
 
-import com.mailjet.client.errors.MailjetException;
-import com.mailjet.client.errors.MailjetSocketTimeoutException;
 import java.util.Set;
 
 public interface MailingService {
 
-  void send(String territoryCode, Set<String> recipients)
-      throws MailjetException, MailjetSocketTimeoutException;
+  void send(String territoryCode, Set<String> recipients);
 
 }

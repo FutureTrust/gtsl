@@ -59,5 +59,4 @@ public class ApiPointersToOtherTSLController {
         .map(tsl -> tsl.getSchemeInformation().getPointersToOtherTSL().getValues()));
   }
 
-
 }

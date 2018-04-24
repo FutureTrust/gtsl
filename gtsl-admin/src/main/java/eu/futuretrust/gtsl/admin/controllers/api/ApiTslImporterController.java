@@ -17,12 +17,14 @@
 
 package eu.futuretrust.gtsl.admin.controllers.api;
 
-import eu.futuretrust.gtsl.admin.controllers.api.helpers.ExportUtils;
+import eu.futuretrust.gtsl.business.utils.ExportUtils;
 import eu.futuretrust.gtsl.business.dto.helper.ResultDTO;
 import eu.futuretrust.gtsl.business.dto.report.ReportDTO;
 import eu.futuretrust.gtsl.business.services.api.ApiService;
 import eu.futuretrust.gtsl.business.services.xml.TslImporter;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -37,6 +39,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/tsl/xml")
 public class ApiTslImporterController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ApiTslImporterController.class);
 
   private final ApiService apiAuthorizedService;
   private final TslImporter tslImporter;
@@ -78,6 +82,9 @@ public class ApiTslImporterController {
           .map(data -> ExportUtils.create(data, "TL_" + territoryCode + ".xml"))
           .orElse(ResponseEntity.notFound().build());
     } catch (Exception e) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error("Unable to export TSL {}: {}", territoryCode, e.getMessage());
+      }
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }

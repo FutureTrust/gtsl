@@ -15,7 +15,7 @@
  * Licence.
  */
 
-package eu.futuretrust.gtsl.admin;
+package eu.futuretrust.gtsl.web;
 
 import eu.futuretrust.gtsl.business.properties.ContractProperties;
 import eu.futuretrust.gtsl.business.properties.EthereumProperties;
@@ -44,7 +44,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@ComponentScan(basePackages = {"eu.futuretrust.gtsl.admin", "eu.futuretrust.gtsl.business"})
+@ComponentScan(basePackages = {"eu.futuretrust.gtsl.web", "eu.futuretrust.gtsl.business"})
 public class GtslWebApplication {
 
   public static void main(String[] args) {

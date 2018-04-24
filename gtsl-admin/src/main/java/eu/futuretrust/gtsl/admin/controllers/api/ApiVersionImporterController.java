@@ -17,9 +17,11 @@
 
 package eu.futuretrust.gtsl.admin.controllers.api;
 
-import eu.futuretrust.gtsl.admin.controllers.api.helpers.ExportUtils;
+import eu.futuretrust.gtsl.business.utils.ExportUtils;
 import eu.futuretrust.gtsl.business.services.xml.TslImporter;
 import java.math.BigInteger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/tsl/version/xml")
 public class ApiVersionImporterController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ApiVersionImporterController.class);
 
   private final TslImporter tslImporter;
 
@@ -55,6 +59,10 @@ public class ApiVersionImporterController {
               .create(data, "TL_" + territoryCode + "_" + versionNumber + ".xml"))
           .orElse(ResponseEntity.notFound().build());
     } catch (Exception e) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error("Unable to export version {} of TSL {}: {}", versionNumber, territoryCode,
+            e.getMessage());
+      }
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
   }

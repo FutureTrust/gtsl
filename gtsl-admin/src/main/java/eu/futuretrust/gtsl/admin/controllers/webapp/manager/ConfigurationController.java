@@ -92,7 +92,7 @@ public class ConfigurationController {
   public String submitCronNotifications(@ModelAttribute("cronNotifications") Cron cronInput,
       RedirectAttributes redirectAttributes) {
     return updateCron(cron -> {
-      notificationScheduler.reSchedule(mailProperties.getCron());
+      notificationScheduler.reSchedule(cron);
       mailProperties.getCron().updateProperly(cron);
     }, cronInput, redirectAttributes, "notifications");
   }
@@ -101,7 +101,7 @@ public class ConfigurationController {
   public String submitCronPinCurrent(@ModelAttribute("cronPinCurrent") Cron cronInput,
       RedirectAttributes redirectAttributes) {
     return updateCron(cron -> {
-      pinCurrentScheduler.reSchedule(ipfsProperties.getCronCurrent());
+      pinCurrentScheduler.reSchedule(cron);
       ipfsProperties.getCronCurrent().updateProperly(cron);
     }, cronInput, redirectAttributes, "pinning current");
   }
@@ -110,7 +110,7 @@ public class ConfigurationController {
   public String submitCronPinAll(@ModelAttribute("cronPinAll") Cron cronInput,
       RedirectAttributes redirectAttributes) {
     return updateCron(cron -> {
-      pinAllScheduler.reSchedule(ipfsProperties.getCronAll());
+      pinAllScheduler.reSchedule(cron);
       ipfsProperties.getCronAll().updateProperly(cron);
     }, cronInput, redirectAttributes, "pinning all versions");
   }

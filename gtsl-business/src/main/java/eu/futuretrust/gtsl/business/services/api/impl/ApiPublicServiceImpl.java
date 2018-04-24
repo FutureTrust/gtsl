@@ -41,7 +41,6 @@ public class ApiPublicServiceImpl implements ApiService {
     } catch (Exception e) {
       if (LOGGER.isErrorEnabled()) {
         LOGGER.error(e.getMessage());
-        e.printStackTrace();
       }
       ResultDTO<T> result = new ResultDTO<>();
       result.setErrorMessage("An error occurred on the server: " + e.getMessage());

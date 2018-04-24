@@ -19,7 +19,7 @@ package eu.futuretrust.gtsl.admin.controllers.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eu.futuretrust.gtsl.admin.controllers.api.helpers.ExportUtils;
+import eu.futuretrust.gtsl.business.utils.ExportUtils;
 import eu.futuretrust.gtsl.business.dto.helper.ResultDTO;
 import eu.futuretrust.gtsl.business.services.api.ApiService;
 import eu.futuretrust.gtsl.business.services.rules.RulesPropertiesService;

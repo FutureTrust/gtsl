@@ -62,7 +62,6 @@ public class OtherCriteriaType {
               Object object = jaxbContext.createUnmarshaller().unmarshal(element);
               filterTypeV5(object, extended, certDna);
             } catch (Exception e) {
-              e.printStackTrace();
               LOGGER.warn("Cannot read object AnyTypeJAXB(OtherCriteriaType) : " + e.getMessage());
             }
           }

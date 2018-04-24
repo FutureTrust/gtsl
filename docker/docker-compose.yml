@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+  ipfs:
+    image: ipfs/go-ipfs:v0.4.13
+    restart: always
+    container_name: ipfs-node
+    volumes:
+      - .//ipfs/data:/data:rw
+    ports:
+      - "8080:8080"
+      - "4001:4001"
+      - "5001:5001"
+    networks:
+      - back-network
+
+  eth:
+    build: ethereum
+    restart: always
+    container_name: ethereum-node
+    entrypoint: /opt/start_geth.sh
+    volumes:
+      - .//ethereum/data/keystore:/root/.ethereum/keystore:rw
+    ports:
+      - "30303:30303"
+      - "30303:30303/udp"
+      - "8545:8545"
+    networks:
+      - back-network
+    environment:
+      - NET_ID=794613 # unique identifier of the network
+      - ACCOUNT_NEW=true # try to generate a new account if not existing
+    command: --rpc --rpcaddr=0.0.0.0 --rpcapi=db,eth,net,web3,personal --rpccorsdomain "*"
+
+  mongo:
+    image: mongo:3.4
+    restart: always
+    container_name: mongo-node
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db:rw
+    networks:
+      - back-network
+
+networks:
+  back-network:
+    driver: bridge
+
+volumes:
+    mongodata:
+        external: true

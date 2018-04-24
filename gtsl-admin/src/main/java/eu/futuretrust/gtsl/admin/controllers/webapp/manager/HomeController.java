@@ -65,13 +65,13 @@ public class HomeController {
 
       tslService.read(countryCode)
           .ifPresent(tsl -> model.addAttribute("tsl",
-              createTslDTO(model, redirectAttributes, countryName, tsl)));
+              convertToDTO(model, redirectAttributes, countryName, tsl)));
 
       return "manager/home";
     }, redirectAttributes);
   }
 
-  private TslDTO createTslDTO(Model model, RedirectAttributes redirectAttributes,
+  private TslDTO convertToDTO(Model model, RedirectAttributes redirectAttributes,
       String countryName, TrustStatusListType tsl) {
     Map<String, String> urls = createMapUrls(model, redirectAttributes, tsl);
     return new TslDTO(

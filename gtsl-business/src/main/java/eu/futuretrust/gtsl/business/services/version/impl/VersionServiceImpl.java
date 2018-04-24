@@ -74,7 +74,7 @@ public class VersionServiceImpl implements VersionService {
       throw new InvalidParameterException("Tsl identifier is invalid: empty or null");
     } else if (versionNumber == null) {
       throw new InvalidParameterException("Version number is invalid: null");
-    } else if (versionNumber.signum() > 0) {
+    } else if (versionNumber.signum() < 1) {
       throw new InvalidParameterException("Version number is invalid: must be greater than 0");
     }
 
@@ -98,20 +98,12 @@ public class VersionServiceImpl implements VersionService {
         return Optional.empty();
       }
 
-      // check if the versionNumber of the commit is equal to the versionNumber in parameter
-      if (commit.get().getVersionNumber().compareTo(versionNumber) != 0) {
-        // version not found, try to retrive the next version
-        if (commit.get().getParent() != null) {
-          // access next version
-          nextVersionAddress = commit.get().getParent();
-        } else {
-          // not found
-          return Optional.empty();
-        }
-      } else {
+      if (commit.get().getVersionNumber().compareTo(versionNumber) == 0) {
         // version found, retrieve the data in IPFS
         return storageService.get(commit.get().getDataAddress());
       }
+
+      nextVersionAddress = commit.get().getParent();
     }
 
     return Optional.empty();
@@ -162,29 +154,34 @@ public class VersionServiceImpl implements VersionService {
       Optional<Commit> commit = storageService.getCommit(nextVersionAddress);
       if (!commit.isPresent()) {
         if (LOGGER.isErrorEnabled()) {
-          LOGGER.error("Commit \"" + nextVersionAddress + "\" cannot be retrieved from IPFS");
+          LOGGER.error("Commit at address {} cannot be retrieved from IPFS", nextVersionAddress);
         }
         return list;
       }
 
       // retrieve the data in IPFS
       Optional<byte[]> data = storageService.get(commit.get().getDataAddress());
-      if (data.isPresent()) {
-        // transform the (bytes) data into Java object
-        TrustStatusListTypeJAXB tslJAXB = jaxbService.unmarshallTsl(data.get());
-        TrustStatusListType tsl = new TrustStatusListType(tslJAXB);
-        rulesPropertiesOptional.ifPresent(rulesProperties -> tslAdditionalInformationService
-            .appendAdditionalInformation(rulesProperties, tsl));
-        list.add(tsl);
+      if (!data.isPresent()) {
+        if (LOGGER.isErrorEnabled()) {
+          LOGGER.error("Data at address {} cannot be retrieved from IPFS",
+              commit.get().getDataAddress());
+        }
+        return list;
       }
 
-      // version not found, try to retrive the next version
-      if (commit.get().getParent() != null) {
-        // access next version
-        nextVersionAddress = commit.get().getParent();
-      }
+      // transform the (bytes) data into Java object
+      TrustStatusListTypeJAXB tslJAXB = jaxbService.unmarshallTsl(data.get());
+      TrustStatusListType tsl = new TrustStatusListType(tslJAXB);
+      rulesPropertiesOptional.ifPresent(rulesProperties -> tslAdditionalInformationService
+          .appendAdditionalInformation(rulesProperties, tsl));
+      list.add(tsl);
+
+      nextVersionAddress = commit.get().getParent();
     }
 
+    if (LOGGER.isInfoEnabled()) {
+      LOGGER.info("{} versions have been retrieved for TSL {}", list.size(), tlIdentifier);
+    }
     return list;
   }
 }

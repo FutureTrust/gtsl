@@ -51,33 +51,32 @@ public class MailingServiceImpl implements MailingService {
     sender = mailProperties.getSender();
   }
 
-  public void send(String territoryCode, Set<String> recipients)
-      throws MailjetException, MailjetSocketTimeoutException {
+  public void send(String territoryCode, Set<String> recipients) {
     if (CollectionUtils.isNotEmpty(recipients)) {
-      JSONArray recipientsJson = new JSONArray();
-      recipients.forEach(mail -> {
-        try {
-          recipientsJson.put(
-              new JSONObject().put(Contact.EMAIL, mail));
-        } catch (JSONException ignored) {
+      try {
+        JSONArray recipientsJson = new JSONArray();
+        for (String mail : recipients) {
+          recipientsJson.put(new JSONObject().put(Contact.EMAIL, mail));
         }
-      });
 
-      MailjetRequest request = new MailjetRequest(Email.resource)
-          .property(Email.FROMEMAIL, sender.getMail())
-          .property(Email.FROMNAME, sender.getName())
-          .property(Email.SUBJECT, "Update on TSL : " + territoryCode)
-          .property(Email.TEXTPART, "Trusted List " + territoryCode
-              + " had been updated !\n Take a look on https://webgate.ec.europa.eu/tl-browser/#/tl/"
-              + territoryCode)
-          .property(Email.HTMLPART, "Trusted List " + territoryCode
-              + " had been updated !\n Take a look on https://webgate.ec.europa.eu/tl-browser/#/tl/"
-              + territoryCode)
-          .property(Email.RECIPIENTS, recipientsJson);
-      MailjetResponse response = client.post(request);
-      LOGGER.info(response.getData().toString());
+        MailjetRequest request = new MailjetRequest(Email.resource)
+            .property(Email.FROMEMAIL, sender.getMail())
+            .property(Email.FROMNAME, sender.getName())
+            .property(Email.SUBJECT, "Update on TSL : " + territoryCode)
+            .property(Email.TEXTPART, "Trusted List " + territoryCode
+                + " had been updated !\n Take a look on https://webgate.ec.europa.eu/tl-browser/#/tl/"
+                + territoryCode)
+            .property(Email.HTMLPART, "Trusted List " + territoryCode
+                + " had been updated !\n Take a look on https://webgate.ec.europa.eu/tl-browser/#/tl/"
+                + territoryCode)
+            .property(Email.RECIPIENTS, recipientsJson);
+        MailjetResponse response = client.post(request);
+        LOGGER.info(response.getData().toString());
+      } catch (MailjetException | MailjetSocketTimeoutException | JSONException e) {
+        LOGGER.error("Unable to send email (check mail.properties) : " + e.getMessage());
+      }
     }
-    LOGGER.info(recipients.size()+" subscriber(s) has/have been notified");
+    LOGGER.info(recipients.size() + " subscriber(s) has/have been notified");
   }
 
 }

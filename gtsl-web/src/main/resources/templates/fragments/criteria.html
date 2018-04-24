@@ -1,0 +1,187 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<!-- Criteria -->
+<div th:fragment="criteria" th:if="${criteria != null}">
+  <div>
+    <label>Criteria</label>
+  </div>
+
+  <div class=" m-left-20">
+
+    <!-- Asserts -->
+    <div
+        th:if="${criteria.asserts != null && !#strings.isEmpty(criteria.asserts)}">
+      <label>Asserts:</label> <span
+        th:text="${criteria.asserts}"></span>
+    </div>
+
+    <!-- Description -->
+    <div
+        th:if="${criteria.description != null && !#strings.isEmpty(criteria.description)}">
+      <div>
+        <label>Description</label>
+      </div>
+      <div th:text="${criteria.description}"></div>
+    </div>
+
+    <!-- Key Usage -->
+    <div
+        th:if="${criteria.keyUsage != null && !criteria.keyUsage.isEmpty()}">
+      <div th:each="keyUsage : ${criteria.keyUsage}">
+        <div
+            th:if="${keyUsage != null && keyUsage.keyUsageBitList != null && !keyUsage.keyUsageBitList.isEmpty()}"
+            th:each="keyUsageBit : ${keyUsage.keyUsageBitList}">
+          <div
+              th:if="${keyUsageBit.name != null && !#strings.isEmpty(keyUsageBit.name)}">
+            <label>Key usage:</label> <span th:text="${keyUsageBit.name}"></span>=<span
+              th:text="${keyUsageBit.value}"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Policy Set -->
+    <div
+        th:if="${criteria.policyList != null && !criteria.policyList.isEmpty()}">
+      <div th:each="policy : ${criteria.policyList}">
+        <div
+            th:if="${policy != null && policy.policyBitList != null && !policy.policyBitList.isEmpty()}"
+            th:each="policyBit : ${policy.policyBitList}">
+          <div>
+            <label>Policy</label>
+          </div>
+          <div class="m-left-20">
+            <div
+                th:if="${policyBit.identifierValue != null && !#strings.isEmpty(policyBit.identifierValue)}">
+              Identifier : <span
+                th:text="${policyBit.identifierValue}"></span>
+            </div>
+            <div
+                th:if="${policyBit.identifierType != null && !#strings.isEmpty(policyBit.identifierType)}">
+              Type : <span
+                th:text="${policyBit.identifierType}"></span>
+            </div>
+            <div
+                th:if="${policyBit.description != null && !#strings.isEmpty(policyBit.description)}">
+              Description : <span
+                th:text="${policyBit.description}"></span>
+            </div>
+            <div
+                th:if="${policyBit.documentationReferences != null && !policyBit.documentationReferences.isEmpty()}">
+              References :
+              <div
+                  th:each="reference : ${policyBit.documentationReferences}"
+                  class="m-left-20">
+                <span th:text="${reference}"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other list -->
+    <div
+        th:if="${criteria.otherList != null}">
+      <div>
+        <label>Other criteria</label>
+      </div>
+      <div class="m-left-20">
+        <!-- Extended Key Usage -->
+        <div
+            th:if="${criteria.otherList.extendedKeyUsageList != null && !criteria.otherList.extendedKeyUsageList.isEmpty()}"
+            th:each="extKeyUsage : ${criteria.otherList.extendedKeyUsageList}">
+          <div>
+            <label>Extended key usage</label>
+          </div>
+          <div class="m-left-20">
+            <div
+                th:if="${extKeyUsage.identifierValue != null && !#strings.isEmpty(extKeyUsage.identifierValue)}">
+              Identifier : <span
+                th:text="${extKeyUsage.identifierValue}"></span>
+            </div>
+            <div
+                th:if="${extKeyUsage.identifierType != null && !#strings.isEmpty(extKeyUsage.identifierType)}">
+              Type : <span
+                th:text="${extKeyUsage.identifierType}"></span>
+            </div>
+            <div
+                th:if="${extKeyUsage.description != null && !#strings.isEmpty(extKeyUsage.description)}">
+              Description : <span
+                th:text="${extKeyUsage.description}"></span>
+            </div>
+            <div
+                th:if="${extKeyUsage.documentationReferences != null && !extKeyUsage.documentationReferences.isEmpty()}">
+              References :
+              <div
+                  th:each="reference : ${extKeyUsage.documentationReferences}"
+                  class="m-left-20">
+                <span th:text="${reference}"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cert DNA -->
+        <div
+            th:if="${criteria.otherList.certDnaList != null && !criteria.otherList.certDnaList.isEmpty()}"
+            th:each="certDna : ${criteria.otherList.certDnaList}">
+          <div>
+            <label>Certificate DN</label>
+        </div>
+          <div class="m-left-20">
+            <div
+                th:if="${certDna.identifierValue != null && !#strings.isEmpty(certDna.identifierValue)}">
+              Identifier : <span
+                th:text="${certDna.identifierValue}"></span>
+            </div>
+            <div
+                th:if="${certDna.identifierType != null && !#strings.isEmpty(certDna.identifierType)}">
+              Type : <span th:text="${certDna.identifierType}"></span>
+            </div>
+            <div
+                th:if="${certDna.description != null && !#strings.isEmpty(certDna.description)}">
+              Description : <span
+                th:text="${certDna.description}"></span>
+            </div>
+            <div
+                th:if="${certDna.documentationReferences != null && !certDna.documentationReferences.isEmpty()}">
+              References :
+              <div
+                  th:each="reference : ${certDna.documentationReferences}"
+                  class="m-left-20">
+                <span th:text="${reference}"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Criteria List -->
+    <div
+        th:if="${criteria.criteriaList != null && !criteria.criteriaList.isEmpty()}">
+      <div th:each="crit : ${criteria.criteriaList}">
+        <div th:if="${crit != null}">
+          <div th:include="fragments/criteria :: criteria" th:with="criteria=${crit}"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

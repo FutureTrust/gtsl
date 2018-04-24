@@ -1,0 +1,350 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="tslInformation"
+     th:if="${tsl != null && tsl.schemeInformation != null}">
+
+  <!-- TSL Tag -->
+  <p th:if="${tsl.tslTag != null && tsl.tslTag.value != null}">
+    <strong>TSL tag</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${tsl.tslTag.value}"
+       th:text="${tsl.tslTag.value}"></a>
+  </p>
+
+  <!-- Version Identifier -->
+  <p th:if="${tsl.schemeInformation.tslVersionIdentifier != null}">
+    <strong>Version identifier</strong>
+    <br>
+    <span th:text="${tsl.schemeInformation.tslVersionIdentifier}"></span>
+  </p>
+
+  <!-- Territory -->
+  <p th:if="${tsl.schemeInformation.schemeTerritory != null && tsl.schemeInformation.schemeTerritory.value != null}">
+    <strong>Territory</strong>
+    <br>
+    <span th:text="${tsl.schemeInformation.schemeTerritory.value}"></span>
+  </p>
+
+  <!-- TSL Issuer -->
+  <p th:if="${country != null}">
+    <strong>TSL issuer</strong>
+    <br>
+    <span th:text="${country}"></span>
+  </p>
+
+  <!-- Sequence Number -->
+  <p th:if="${tsl.schemeInformation.tslSequenceNumber != null}">
+    <strong>Sequence number</strong>
+    <br>
+    <span th:text="${tsl.schemeInformation.tslSequenceNumber}"></span>
+  </p>
+
+  <!-- TSL Type -->
+  <p th:if="${tsl.schemeInformation.tslType != null && tsl.schemeInformation.tslType.value != null}">
+    <strong>TSL type</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${tsl.schemeInformation.tslType.value}"
+       th:text="${tsl.schemeInformation.tslType.value}"></a>
+  </p>
+
+  <!-- Scheme Operator Name -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.schemeOperatorName != null && tsl.schemeInformation.schemeOperatorName.values != null}">
+    <p class="sub-title">
+      <strong>Operator name</strong>
+    </p>
+    <div th:if="${!tsl.schemeInformation.schemeOperatorName.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="operatorName, stat : ${tsl.schemeInformation.schemeOperatorName.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.schemeOperatorName.values)} + ',' + ${stat.index} + ', \'operatorLang\', \'operatorValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'operatorLang' + ${stat.index}"
+                                  th:text="${operatorName.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'operatorValue' + ${stat.index}"
+           th:each="operatorName, stat : ${tsl.schemeInformation.schemeOperatorName.values}">
+        <span th:text="${operatorName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Electronic Address -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.schemeOperatorAddress != null && tsl.schemeInformation.schemeOperatorAddress.electronicAddress != null && tsl.schemeInformation.schemeOperatorAddress.electronicAddress.values != null}">
+    <p class="sub-title">
+      <strong>Electronic address</strong>
+    </p>
+    <div
+        th:if="${!tsl.schemeInformation.schemeOperatorAddress.electronicAddress.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="electronicAddress, stat : ${tsl.schemeInformation.schemeOperatorAddress.electronicAddress.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.schemeOperatorAddress.electronicAddress.values)} + ',' + ${stat.index} + ', \'electronicAddressLang\', \'electronicAddressValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'electronicAddressLang' + ${stat.index}"
+                                  th:text="${electronicAddress.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'electronicAddressValue' + ${stat.index}"
+           th:each="electronicAddress, stat : ${tsl.schemeInformation.schemeOperatorAddress.electronicAddress.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${electronicAddress.value}"
+           th:text="${electronicAddress.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Postal Address -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.schemeOperatorAddress != null && tsl.schemeInformation.schemeOperatorAddress.postalAddresses != null && tsl.schemeInformation.schemeOperatorAddress.postalAddresses.values != null}">
+    <p class="sub-title">
+      <strong>Postal address</strong>
+    </p>
+    <div
+        th:if="${!tsl.schemeInformation.schemeOperatorAddress.postalAddresses.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="postalAddress, stat : ${tsl.schemeInformation.schemeOperatorAddress.postalAddresses.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.schemeOperatorAddress.postalAddresses.values)} + ',' + ${stat.index} + ', \'postalAddressLang\', \'postalAddressValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'postalAddressLang' + ${stat.index}"
+                                  th:text="${postalAddress.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'postalAddressValue' + ${stat.index}"
+           th:each="postalAddress, stat : ${tsl.schemeInformation.schemeOperatorAddress.postalAddresses.values}">
+        <span th:text="${postalAddress.streetAddress.value}"></span>
+        <br>
+        <span
+            th:if="${postalAddress.postalCode != null && postalAddress.postalCode.value != null}"
+            th:text="${postalAddress.postalCode.value + ' - '}"></span>
+        <span th:text="${postalAddress.locality.value}"></span>
+        <span
+            th:if="${postalAddress.stateOrProvince != null && postalAddress.stateOrProvince.value != null}">
+                              <br>
+                              <span th:text="${postalAddress.stateOrProvince.value}"></span>
+                            </span>
+        <br>
+        <span th:text="${postalAddress.countryName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scheme Name -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.schemeName != null && tsl.schemeInformation.schemeName.values != null}">
+    <p class="sub-title">
+      <strong>Scheme name</strong>
+    </p>
+    <div
+        th:if="${!tsl.schemeInformation.schemeName.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="schemeName, stat : ${tsl.schemeInformation.schemeName.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.schemeName.values)} + ',' + ${stat.index} + ', \'schemeNameLang\', \'schemeNameValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'schemeNameLang' + ${stat.index}"
+                                  th:text="${schemeName.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'schemeNameValue' + ${stat.index}"
+           th:each="schemeName, stat : ${tsl.schemeInformation.schemeName.values}">
+        <span th:text="${schemeName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Information URI -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.schemeInformationURI != null && tsl.schemeInformation.schemeInformationURI.values != null}">
+    <p class="sub-title">
+      <strong>Information URI</strong>
+    </p>
+    <div
+        th:if="${!tsl.schemeInformation.schemeInformationURI.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="schemeInformationURI, stat : ${tsl.schemeInformation.schemeInformationURI.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.schemeInformationURI.values)} + ',' + ${stat.index} + ', \'schemeInformationURILang\', \'schemeInformationURIValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'schemeInformationURILang' + ${stat.index}"
+                                  th:text="${schemeInformationURI.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'schemeInformationURIValue' + ${stat.index}"
+           th:each="schemeInformationURI, stat : ${tsl.schemeInformation.schemeInformationURI.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${schemeInformationURI.value}"
+           th:text="${schemeInformationURI.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Status Determination Approach -->
+  <p class="margin-top-1em"
+     th:if="${tsl.schemeInformation.statusDeterminationApproach != null && tsl.schemeInformation.statusDeterminationApproach.value != null}">
+    <strong>Status determination approach</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${tsl.schemeInformation.statusDeterminationApproach.value}"
+       th:text="${tsl.schemeInformation.statusDeterminationApproach.value}"></a>
+  </p>
+
+  <!-- Community Rules -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.schemeTypeCommunityRules != null && tsl.schemeInformation.schemeTypeCommunityRules.values != null}">
+    <p class="sub-title">
+      <strong>Community rules</strong>
+    </p>
+    <div
+        th:if="${!tsl.schemeInformation.schemeTypeCommunityRules.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="communityRules, stat : ${tsl.schemeInformation.schemeTypeCommunityRules.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.schemeTypeCommunityRules.values)} + ',' + ${stat.index} + ', \'communityRulesLang\', \'communityRulesValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'communityRulesLang' + ${stat.index}"
+                                  th:text="${communityRules.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'communityRulesValue' + ${stat.index}"
+           th:each="communityRules, stat : ${tsl.schemeInformation.schemeTypeCommunityRules.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${communityRules.value}"
+           th:text="${communityRules.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Policy / Legal Notice -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.policyOrLegalNotice != null && tsl.schemeInformation.policyOrLegalNotice.policy != null && tsl.schemeInformation.policyOrLegalNotice.policy.values != null}">
+    <p class="sub-title">
+      <strong>Policy</strong>
+    </p>
+    <div
+        th:if="${!tsl.schemeInformation.policyOrLegalNotice.policy.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="policyOrLegalNotice, stat : ${tsl.schemeInformation.policyOrLegalNotice.policy.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.policyOrLegalNotice.policy.values)} + ',' + ${stat.index} + ', \'policyOrLegalNoticeLang\', \'policyOrLegalNoticeValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'policyOrLegalNoticeLang' + ${stat.index}"
+                                  th:text="${policyOrLegalNotice.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'policyOrLegalNoticeValue' + ${stat.index}"
+           th:each="policyOrLegalNotice, stat : ${tsl.schemeInformation.policyOrLegalNotice.policy.values}">
+                            <span th:if="${!#strings.startsWith(policyOrLegalNotice.value, 'http')}"
+                                  th:text="${policyOrLegalNotice.value}"></span>
+        <a class="a-link-custom" target="_blank"
+           th:if="${#strings.startsWith(policyOrLegalNotice.value, 'http')}"
+           th:href="${policyOrLegalNotice.value}"
+           th:text="${policyOrLegalNotice.value}"></a>
+      </div>
+    </div>
+  </div>
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.policyOrLegalNotice != null && tsl.schemeInformation.policyOrLegalNotice.legalNotice != null && tsl.schemeInformation.policyOrLegalNotice.legalNotice.values != null}">
+    <p class="sub-title">
+      <strong>Legal notice</strong>
+    </p>
+    <div
+        th:if="${!tsl.schemeInformation.policyOrLegalNotice.legalNotice.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="policyOrLegalNotice, stat : ${tsl.schemeInformation.policyOrLegalNotice.legalNotice.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tsl.schemeInformation.policyOrLegalNotice.legalNotice.values)} + ',' + ${stat.index} + ', \'policyOrLegalNoticeLang\', \'policyOrLegalNoticeValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'policyOrLegalNoticeLang' + ${stat.index}"
+                                  th:text="${policyOrLegalNotice.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'policyOrLegalNoticeValue' + ${stat.index}"
+           th:each="policyOrLegalNotice, stat : ${tsl.schemeInformation.policyOrLegalNotice.legalNotice.values}">
+                            <span th:if="${!#strings.startsWith(policyOrLegalNotice.value, 'http')}"
+                                  th:text="${policyOrLegalNotice.value}"></span>
+        <a class="a-link-custom" target="_blank"
+           th:if="${#strings.startsWith(policyOrLegalNotice.value, 'http')}"
+           th:href="${policyOrLegalNotice.value}"
+           th:text="${policyOrLegalNotice.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Issue Date -->
+  <p class="margin-top-1em"
+     th:if="${tsl.schemeInformation.listIssueDateTime != null}">
+    <strong>Issue date</strong>
+    <br>
+    <span th:text="${tsl.schemeInformation.listIssueDateTime}"></span>
+  </p>
+
+  <!-- Next Update -->
+  <p class="margin-top-1em"
+     th:if="${tsl.schemeInformation.nextUpdate != null}">
+    <strong>Next update</strong>
+    <br>
+    <span th:text="${tsl.schemeInformation.nextUpdate}"></span>
+  </p>
+
+  <!-- TSL ID -->
+  <p class="margin-top-1em"
+     th:if="${tsl.id != null && tsl.id.value != null && !#strings.isEmpty(tsl.id.value)}">
+    <strong>TSL identifier</strong>
+    <br>
+    <span th:text="${tsl.id.value}"></span>
+  </p>
+
+  <!-- Distribution Points -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tsl.schemeInformation.distributionPoints != null && tsl.schemeInformation.distributionPoints.values != null}">
+    <p class="sub-title">
+      <strong>Distribution points</strong>
+    </p>
+    <div th:if="${!tsl.schemeInformation.distributionPoints.values.isEmpty()}">
+      <div
+          th:each="point, stat : ${tsl.schemeInformation.distributionPoints.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${point.value}"
+           th:text="${point.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historical Period -->
+  <p class="margin-top-1em"
+     th:if="${tsl.schemeInformation.historicalInformationPeriod != null}">
+    <strong>Historical period</strong>
+    <br>
+    <span th:text="${tsl.schemeInformation.historicalInformationPeriod}"></span>
+  </p>
+
+</div>

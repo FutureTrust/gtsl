@@ -135,15 +135,14 @@ public class Storage {
     return this.update(commitAddress, data, null);
   }
 
-  private BigInteger determineNewVersion(BigInteger currentVersion, BigInteger newVersion)
-      throws StorageException {
+  private BigInteger determineNewVersion(BigInteger currentVersion, BigInteger newVersion) {
     BigInteger version;
     if (newVersion == null) {
       // if no version has been set by user add 1 to the current version
       version = currentVersion.add(BigInteger.ONE);
-    } else if (currentVersion.compareTo(newVersion) < 0) {
-      throw new StorageException(
-          "The new version number cannot be lower than the previous version number");
+    } else if (currentVersion.compareTo(newVersion) >= 0) {
+      throw new InvalidParameterException(
+          "The new version number cannot be lower than or equals to the previous version number");
     } else {
       version = newVersion;
     }

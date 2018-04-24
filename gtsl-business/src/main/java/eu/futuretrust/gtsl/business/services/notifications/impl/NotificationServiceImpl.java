@@ -32,6 +32,7 @@ import eu.futuretrust.gtsl.persistence.entities.TslEntity;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,7 +81,8 @@ public class NotificationServiceImpl implements NotificationService {
       TerritoryEntity territory = territoryRepository.findByCode(territoryCode);
       if (territory == null) {
         if (LOGGER.isWarnEnabled()) {
-          LOGGER.warn("Tsl {} has not been found in local database when the user {} tried to subscribe",
+          LOGGER.warn(
+              "Tsl {} has not been found in local database when the user {} tried to subscribe",
               territoryCode, trimmedEmail);
         }
         territory = territoryRepository.save(new TerritoryEntity(territoryCode));
@@ -129,7 +131,8 @@ public class NotificationServiceImpl implements NotificationService {
       if (territory == null) {
         if (LOGGER.isWarnEnabled()) {
           LOGGER
-              .warn("Tsl {} has not been found in local database when the user {} tried to unsubscribe",
+              .warn(
+                  "Tsl {} has not been found in local database when the user {} tried to unsubscribe",
                   territoryCode, trimmedEmail);
         }
         return;
@@ -212,12 +215,8 @@ public class NotificationServiceImpl implements NotificationService {
         Criteria.where("territories").in(territory)
     );
     List<SubscriberEntity> subscribers = mongoTemplate.find(query, SubscriberEntity.class);
-    try {
-      mailingService.send(territoryCode,
-          subscribers.stream().map(SubscriberEntity::getEmail).collect(Collectors.toSet()));
-    } catch (MailjetException | MailjetSocketTimeoutException e) {
-      LOGGER.error("Unable to send email : " + e.getMessage());
-    }
+    mailingService.send(territoryCode,
+        subscribers.stream().map(SubscriberEntity::getEmail).collect(Collectors.toSet()));
   }
 
 }

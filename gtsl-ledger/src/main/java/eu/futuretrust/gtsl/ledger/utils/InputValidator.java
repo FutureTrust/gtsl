@@ -64,7 +64,7 @@ public final class InputValidator {
   public static void validateTslId(BigInteger tslId, BigInteger length) {
     if (tslId == null) {
       throw new InvalidParameterException("TSL index is invalid: null");
-    } else if (tslId.signum() <= 0) {
+    } else if (tslId.signum() < 1) {
       throw new InvalidParameterException("TSL index is invalid: must be greater than 0");
     } else {
       if (tslId.compareTo(length) > 0) {

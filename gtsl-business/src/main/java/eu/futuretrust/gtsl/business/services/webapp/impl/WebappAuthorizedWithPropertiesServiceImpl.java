@@ -41,8 +41,6 @@ public class WebappAuthorizedWithPropertiesServiceImpl implements WebappWithProp
           if (LOGGER.isErrorEnabled()) {
             LOGGER.error("Unable to retrieve the rules properties");
           }
-          redirectAttributes
-              .addFlashAttribute("errorMessage", "Unable to retrieve the rules properties.");
           return "redirect:/error/properties";
         }
       } else {
@@ -65,7 +63,6 @@ public class WebappAuthorizedWithPropertiesServiceImpl implements WebappWithProp
     } catch (Exception e) {
       if (LOGGER.isErrorEnabled()) {
         LOGGER.error(e.getMessage());
-        e.printStackTrace();
       }
       redirectAttributes.addFlashAttribute("errorMessage", "An error occurred on the server.");
       redirectAttributes.addFlashAttribute("message", e.getMessage());

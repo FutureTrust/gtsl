@@ -91,7 +91,7 @@ public class DraftsController {
     return webAppService.execute((properties) -> {
       String countryCode = consortiumService.authorizedTsl();
       String countryName = PropertiesUtils.extractCountry(countryCode, properties).getName();
-      List<DraftDTO> draftsDTO = createTslDTO(model, redirectAttributes, countryName,
+      List<DraftDTO> draftsDTO = convertToDTO(model, redirectAttributes, countryName,
           draftService.readAll(countryCode));
 
       return fillDrafts(model, draftsDTO);
@@ -223,7 +223,7 @@ public class DraftsController {
     return "manager/report";
   }
 
-  private List<DraftDTO> createTslDTO(Model model, RedirectAttributes redirectAttributes,
+  private List<DraftDTO> convertToDTO(Model model, RedirectAttributes redirectAttributes,
       String countryName, List<DraftVO> drafts) {
     return drafts.stream().map(draftVO -> {
       Map<String, String> urls = createMapUrls(model, redirectAttributes, draftVO);

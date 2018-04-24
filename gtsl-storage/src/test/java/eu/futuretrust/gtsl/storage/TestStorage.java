@@ -50,7 +50,7 @@ public class TestStorage {
   @Test
   public void createTest() throws Exception {
     byte[] sToBytes = VALID_DATA.getBytes();
-    String commitAddress = storage.create(sToBytes, BigInteger.ONE);
+    String commitAddress = storage.create(sToBytes);
 
     Optional<String> dataAddress = storage.resolve(commitAddress);
     Assert.assertTrue(dataAddress.isPresent());
@@ -70,7 +70,7 @@ public class TestStorage {
   public void updateTest() throws Exception {
     // data 1
     byte[] str1ToBytes = VALID_DATA.getBytes();
-    String commitAddress1 = storage.create(str1ToBytes, BigInteger.ONE);
+    String commitAddress1 = storage.create(str1ToBytes);
 
     Optional<Commit> commit1 = storage.getCommit(commitAddress1);
     Assert.assertTrue(commit1.isPresent());
@@ -83,7 +83,7 @@ public class TestStorage {
 
     // data 2
     byte[] str2ToBytes = VALID_DATA2.getBytes();
-    String commitAddress2 = storage.update(commitAddress1, str2ToBytes, BigInteger.ONE);
+    String commitAddress2 = storage.update(commitAddress1, str2ToBytes);
 
     Optional<Commit> commit2 = storage.getCommit(commitAddress2);
     Assert.assertTrue(commit2.isPresent());
@@ -96,7 +96,7 @@ public class TestStorage {
 
     // data 3
     byte[] str3ToBytes = VALID_DATA3.getBytes();
-    String commitAddress3 = storage.update(commitAddress2, str3ToBytes, BigInteger.ONE);
+    String commitAddress3 = storage.update(commitAddress2, str3ToBytes);
 
     Optional<Commit> commit3 = storage.getCommit(commitAddress3);
     Assert.assertTrue(commit3.isPresent());
@@ -143,12 +143,12 @@ public class TestStorage {
 
   @Test
   public void updateSameValueTest() throws Exception {
-    String commitAddress = storage.create(VALID_DATA.getBytes(), BigInteger.ONE);
+    String commitAddress = storage.create(VALID_DATA.getBytes());
 
     Optional<Commit> commit1 = storage.getCommit(commitAddress);
     Assert.assertTrue(commit1.isPresent());
 
-    String commitAddress2 = storage.update(commitAddress, VALID_DATA.getBytes(), BigInteger.ONE);
+    String commitAddress2 = storage.update(commitAddress, VALID_DATA.getBytes());
 
     Optional<Commit> commit2 = storage.getCommit(commitAddress2);
     Assert.assertTrue(commit2.isPresent());
@@ -159,45 +159,45 @@ public class TestStorage {
   @Test
   public void createDataNullTest() throws Exception {
     thrown.expect(InvalidParameterException.class);
-    storage.create(null, BigInteger.ONE);
+    storage.create(null);
   }
 
   @Test
   public void createDataEmptyTest() throws Exception {
     thrown.expect(InvalidParameterException.class);
-    storage.create(EMPTY_STRING.getBytes(), BigInteger.ONE);
+    storage.create(EMPTY_STRING.getBytes());
   }
 
   @Test
   public void updateAddressNotExist() throws Exception {
     thrown.expect(StorageException.class);
-    storage.update(VALID_NOT_USED_ADDRESS, VALID_DATA.getBytes(), BigInteger.ONE);
+    storage.update(VALID_NOT_USED_ADDRESS, VALID_DATA.getBytes());
   }
 
   @Test
   public void updateAddressNullTest() throws Exception {
     thrown.expect(InvalidParameterException.class);
-    storage.update(null, VALID_DATA.getBytes(), BigInteger.ONE);
+    storage.update(null, VALID_DATA.getBytes());
   }
 
   @Test
   public void updateAddressEmptyTest() throws Exception {
     thrown.expect(InvalidParameterException.class);
-    storage.update(EMPTY_STRING, VALID_DATA.getBytes(), BigInteger.ONE);
+    storage.update(EMPTY_STRING, VALID_DATA.getBytes());
   }
 
   @Test
   public void updateDataNullTest() throws Exception {
     thrown.expect(InvalidParameterException.class);
-    String commitAddress = storage.create(VALID_DATA.getBytes(), BigInteger.ONE);
-    storage.update(commitAddress, null, BigInteger.ONE);
+    String commitAddress = storage.create(VALID_DATA.getBytes());
+    storage.update(commitAddress, null);
   }
 
   @Test
   public void updateDataEmptyTest() throws Exception {
     thrown.expect(InvalidParameterException.class);
-    String commitAddress = storage.create(VALID_DATA.getBytes(), BigInteger.ONE);
-    storage.update(commitAddress, EMPTY_STRING.getBytes(), BigInteger.ONE);
+    String commitAddress = storage.create(VALID_DATA.getBytes());
+    storage.update(commitAddress, EMPTY_STRING.getBytes());
   }
 
   @Test

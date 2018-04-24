@@ -252,7 +252,7 @@ public class TslLedger extends AbstractContract {
 
     // index starts at 1 because of the (mandatory) empty value at index 0 in the smart contract
     Stream<BigInteger> stream = Stream.iterate(BigInteger.ONE, i -> i.add(BigInteger.ONE))
-        .limit(length.longValue() + 1);
+        .limit(length.longValue());
 
     List<Tsl> tslList = stream.parallel()
         .map(i -> {
@@ -260,7 +260,7 @@ public class TslLedger extends AbstractContract {
             return this.findById(i);
           } catch (Exception e) {
             if (LOGGER.isErrorEnabled()) {
-              LOGGER.error("Unable to find member at index {} from Ethereum: {}", i,
+              LOGGER.error("Unable to find TSL at index {} from Ethereum: {}", i,
                   e.getMessage());
             }
             return Optional.<Tsl>empty();

@@ -33,7 +33,6 @@ public class WebappPublicServiceImpl implements WebappService {
     } catch (Exception e) {
       if (LOGGER.isErrorEnabled()) {
         LOGGER.error(e.getMessage());
-        e.printStackTrace();
       }
       redirectAttributes.addFlashAttribute("errorMessage", "An error occurred on the server.");
       redirectAttributes.addFlashAttribute("message", e.getMessage());

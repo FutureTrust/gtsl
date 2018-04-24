@@ -205,7 +205,7 @@ public class DraftServiceImpl implements DraftService {
     DraftVO draftVO = new DraftVO(dbId, new TrustStatusListType(tslJAXB));
 
     if (LOGGER.isInfoEnabled()) {
-      LOGGER.info("Tsl {} draft  with id {} has been retrieved from the local database",
+      LOGGER.info("Tsl {} draft with id {} has been retrieved from the local database",
           draftVO.getTsl().getSchemeInformation().getSchemeTerritory().getValue(), dbId);
     }
     return Optional.of(draftVO);
