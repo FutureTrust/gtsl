@@ -18,17 +18,16 @@
 package eu.futuretrust.gtsl.model.data.ts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import eu.futuretrust.gtsl.model.utils.ModelUtils;
 import eu.europa.esig.dss.DSSUtils;
 import eu.europa.esig.dss.tsl.KeyUsageBit;
 import eu.europa.esig.dss.x509.CertificateToken;
+import eu.futuretrust.gtsl.model.utils.ModelUtils;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.xml.bind.DatatypeConverter;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.ArrayUtils;
 import org.bouncycastle.asn1.ASN1InputStream;

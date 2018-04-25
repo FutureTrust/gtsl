@@ -25,7 +25,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import eu.futuretrust.gtsl.model.constraints.enums.CaseMode;
 import eu.futuretrust.gtsl.model.constraints.validator.CaseValidator;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

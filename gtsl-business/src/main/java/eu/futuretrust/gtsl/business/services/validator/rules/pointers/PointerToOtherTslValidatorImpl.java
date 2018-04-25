@@ -18,12 +18,14 @@
 package eu.futuretrust.gtsl.business.services.validator.rules.pointers;
 
 import eu.futuretrust.gtsl.business.services.validator.rules.RulesValidator;
-import eu.futuretrust.gtsl.business.services.validator.rules.common.CertificateValidator;
 import eu.futuretrust.gtsl.business.services.validator.rules.common.CommonAttributesValidator;
 import eu.futuretrust.gtsl.business.services.validator.rules.common.CountriesValidator;
 import eu.futuretrust.gtsl.business.services.validator.rules.common.DigitalIdentitiesValidator;
+import eu.futuretrust.gtsl.business.services.validator.rules.signature.CertificateValidator;
+import eu.futuretrust.gtsl.business.services.validator.rules.signature.X500NameValidator;
 import eu.futuretrust.gtsl.business.validator.ViolationConstant;
 import eu.futuretrust.gtsl.business.vo.validator.ValidationContext;
+import eu.futuretrust.gtsl.business.vo.validator.Violation;
 import eu.futuretrust.gtsl.model.data.common.CountryCode;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIListType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyURIType;
@@ -33,9 +35,11 @@ import eu.futuretrust.gtsl.model.data.digitalidentity.ServiceDigitalIdentityType
 import eu.futuretrust.gtsl.model.data.enums.MimeType;
 import eu.futuretrust.gtsl.model.data.ts.CertificateType;
 import eu.futuretrust.gtsl.model.data.tsl.OtherTSLPointerType;
-import org.apache.commons.collections.CollectionUtils;
+import java.io.IOException;
+import java.security.cert.X509Certificate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.security.x509.X500Name;
 
 @Service
 public class PointerToOtherTslValidatorImpl implements RulesValidator<OtherTSLPointerType> {
@@ -44,21 +48,25 @@ public class PointerToOtherTslValidatorImpl implements RulesValidator<OtherTSLPo
   private final CountriesValidator countriesValidator;
   private final CommonAttributesValidator commonAttributesValidator;
   private final CertificateValidator certificateValidator;
+  private final X500NameValidator x500NameValidator;
 
   @Autowired
   public PointerToOtherTslValidatorImpl(
       DigitalIdentitiesValidator digitalIdentitiesValidator,
       CountriesValidator countriesValidator,
       CommonAttributesValidator commonAttributesValidator,
-      CertificateValidator certificateValidator) {
+      CertificateValidator certificateValidator,
+      X500NameValidator x500NameValidator) {
     this.digitalIdentitiesValidator = digitalIdentitiesValidator;
     this.countriesValidator = countriesValidator;
     this.commonAttributesValidator = commonAttributesValidator;
     this.certificateValidator = certificateValidator;
+    this.x500NameValidator = x500NameValidator;
   }
 
   @Override
   public void validate(ValidationContext validationContext, OtherTSLPointerType pointer) {
+
     isServiceDigitalIdentitiesValid(validationContext, pointer.getServiceDigitalIdentities());
 
     isTslTypeCorrectValue(validationContext, pointer.getTslType());
@@ -137,46 +145,67 @@ public class PointerToOtherTslValidatorImpl implements RulesValidator<OtherTSLPo
     if (!pointer.getSchemeTerritory().getValue()
         .equals(validationContext.getProperties().getConstant().getLotlTerritory()) &&
         pointer.getMimeType() != null && MimeType.XML.equals(pointer.getMimeType())) {
-      if (pointer.getServiceDigitalIdentities() != null
-          && CollectionUtils.isNotEmpty(pointer.getServiceDigitalIdentities().getValues())) {
-        for (ServiceDigitalIdentityType serviceDigitalIdentity : pointer
-            .getServiceDigitalIdentities()
-            .getValues()) {
-          if (CollectionUtils.isNotEmpty(serviceDigitalIdentity.getValues())) {
-            for (DigitalIdentityType digitalIdentification : serviceDigitalIdentity.getValues()) {
-              if (CollectionUtils.isNotEmpty(digitalIdentification.getCertificateList())) {
-                for (CertificateType cert : digitalIdentification.getCertificateList()) {
-                  if (cert.getToken() == null) {
-                    cert.setTokenFromEncoded();
-                  }
-                  certificateValidator.isX509CertificateContainsCorrectKeyUsages(validationContext,
-                      ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_CORRECT_KEY_USAGES,
-                      cert);
-                  certificateValidator
-                      .isX509CertificateContainsBasicConstraintCaFalse(validationContext,
-                          ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_BASIC_CONSTRAINT_CA_FALSE,
-                          cert);
-                  certificateValidator
-                      .isX509CertificateContainsTslSigningExtKeyUsage(validationContext,
-                          ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_TSLSIGNING_EXT_KEY_USAGE,
-                          cert);
-                  certificateValidator
-                      .isX509CertificateContainsSubjectKeyIdentifier(validationContext,
-                          ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_SUBJECT_KEY_IDENTIFIER,
-                          cert);
-                  certificateValidator.isX509CertificateCountryCodeMatch(validationContext,
-                      ViolationConstant.IS_POINTER_X509CERTIFICATE_COUNTRY_CODE_MATCH, cert,
-                      pointer.getSchemeTerritory());
-                  certificateValidator.isX509CertificateOrganizationMatch(validationContext,
-                      ViolationConstant.IS_POINTER_X509CERTIFICATE_ORGANIZATION_MATCH, cert,
-                      pointer.getSchemeOperatorName());
-                }
+      for (ServiceDigitalIdentityType serviceDigitalIdentity : pointer.getServiceDigitalIdentities()
+          .getValues()) {
+        for (DigitalIdentityType digitalIdentification : serviceDigitalIdentity.getValues())
+        {
+          if (digitalIdentification.getCertificateList() == null)
+          {
+            if (digitalIdentification.getSubjectName() != null && !digitalIdentification.getSubjectName().isEmpty())
+            {
+              try
+              {
+                X500Name x500Name = new X500Name(digitalIdentification.getSubjectName());
+                checkX509SubjectName(validationContext, x500Name, pointer);
+              } catch (final IOException e)
+              {
+                validationContext.addViolation(new Violation(ViolationConstant.IS_POINTER_X509CERTIFICATE_COUNTRY_CODE_MATCH));
+                validationContext.addViolation(new Violation(ViolationConstant.IS_POINTER_X509CERTIFICATE_ORGANIZATION_MATCH));
               }
+            }
+          } else
+          {
+            for (CertificateType cert : digitalIdentification.getCertificateList())
+            {
+              if (cert.getToken() == null)
+              {
+                cert.setTokenFromEncoded();
+              }
+
+              X509Certificate certificate = cert.getToken().getCertificate();
+              certificateValidator.isSigningCertificateKeyUsageConsistent(validationContext,
+                      ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_CORRECT_KEY_USAGES, certificate);
+              certificateValidator.isSigningCertificateBasicConstraintsExtensionValid(validationContext,
+                      ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_BASIC_CONSTRAINT_CA_FALSE,
+                      certificate);
+              certificateValidator
+                      .hasSigningCertificateExtendedKeyUsageTslSigning(validationContext,
+                              ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_TSLSIGNING_EXT_KEY_USAGE,
+                              certificate);
+              certificateValidator
+                      .isSigningCertificateSKIExtensionPresent(validationContext,
+                              ViolationConstant.IS_POINTER_X509CERTIFICATE_CONTAINS_SUBJECT_KEY_IDENTIFIER,
+                              certificate);
+              certificateValidator.isSigningCertificateCountryCodeValid(validationContext,
+                      ViolationConstant.IS_POINTER_X509CERTIFICATE_COUNTRY_CODE_MATCH, certificate,
+                      pointer.getSchemeTerritory().getValue());
+              certificateValidator.isSigningCertificateOrganizationValid(validationContext,
+                      ViolationConstant.IS_POINTER_X509CERTIFICATE_ORGANIZATION_MATCH, certificate,
+                      pointer.getSchemeOperatorName().getValues());
             }
           }
         }
       }
     }
+  }
+
+  private void checkX509SubjectName(ValidationContext validationContext, final X500Name subjectName, final OtherTSLPointerType pointer) {
+
+    x500NameValidator.isX500NameCountryCodeValid(validationContext, ViolationConstant.IS_POINTER_X509CERTIFICATE_COUNTRY_CODE_MATCH,
+            subjectName, pointer.getSchemeTerritory().getValue());
+    x500NameValidator.isX500NameOrganizationValid(validationContext, ViolationConstant.IS_POINTER_X509CERTIFICATE_ORGANIZATION_MATCH,
+            subjectName, pointer.getSchemeOperatorName().getValues());
+
   }
 
 }

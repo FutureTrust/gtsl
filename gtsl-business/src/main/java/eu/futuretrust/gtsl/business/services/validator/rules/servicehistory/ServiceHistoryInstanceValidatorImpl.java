@@ -56,6 +56,7 @@ public class ServiceHistoryInstanceValidatorImpl implements
   @Override
   public void validate(ValidationContext validationContext,
       ServiceHistoryInstanceType historyInstance) {
+
     isServiceTypeIdentifierRegistered(validationContext,
         historyInstance.getServiceTypeIdentifier());
 

@@ -17,6 +17,11 @@
 
 package eu.futuretrust.gtsl.business.properties;
 
+import eu.futuretrust.gtsl.business.properties.exceptions.PropertiesException;
+import javax.annotation.PostConstruct;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -26,12 +31,35 @@ import org.springframework.context.annotation.PropertySource;
 @ConfigurationProperties(prefix = "lotl")
 public class LotlProperties {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(LotlProperties.class);
+
+  @PostConstruct
+  public void init() throws Exception {
+    if (!this.isValid()) {
+      String errorMessage = "Lotl properties must be configured";
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(errorMessage);
+      }
+      throw new PropertiesException(errorMessage);
+    }
+  }
+
   private String keystorePassword;
   private String keystorePath;
   private String keystoreType;
   private String xmlUrl;
   private Long cacheValidityWindow;
   private String fileCachePath;
+
+  public boolean isValid() {
+    return StringUtils.isNotBlank(keystorePassword)
+        && StringUtils.isNotBlank(keystorePath)
+        && StringUtils.isNotBlank(keystorePassword)
+        && StringUtils.isNotBlank(keystoreType)
+        && StringUtils.isNotBlank(xmlUrl)
+        && cacheValidityWindow != null
+        && cacheValidityWindow.compareTo(0L) > 0;
+  }
 
   public String getKeystorePassword() {
     return keystorePassword;
@@ -80,4 +108,5 @@ public class LotlProperties {
   public void setFileCachePath(String fileCachePath) {
     this.fileCachePath = fileCachePath;
   }
+
 }

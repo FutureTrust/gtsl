@@ -100,9 +100,13 @@ public class GtslAdminApplication {
   @Qualifier(value = "tslMarshaller")
   public Jaxb2Marshaller tslJaxb2MarshallerV5() {
     Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+
     marshaller.setAdapters(new JaxbGregorianCalendarZulu());
     Map<String, Object> map = new HashMap<>();
-    map.put(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
+    map.put(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, false);
+    map.put(javax.xml.bind.Marshaller.JAXB_FRAGMENT, true);
+    map.put("com.sun.xml.bind.xmlHeaders",
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
     marshaller.setMarshallerProperties(map);
     marshaller.setClassesToBeBound(eu.futuretrust.gtsl.jaxb.tsl.ObjectFactory.class,
         ObjectFactory.class,

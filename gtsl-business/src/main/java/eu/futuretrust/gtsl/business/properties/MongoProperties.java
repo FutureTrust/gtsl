@@ -17,6 +17,11 @@
 
 package eu.futuretrust.gtsl.business.properties;
 
+import eu.futuretrust.gtsl.business.properties.exceptions.PropertiesException;
+import javax.annotation.PostConstruct;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -25,6 +30,24 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:properties/mongo.properties")
 @ConfigurationProperties(prefix = "mongo")
 public class MongoProperties {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MongoProperties.class);
+
+  @PostConstruct
+  public void init() throws Exception {
+    if (!this.isValid()) {
+      String errorMessage = "Mongo properties must be configured";
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(errorMessage);
+      }
+      throw new PropertiesException(errorMessage);
+    }
+  }
+
+  public boolean isValid() {
+    return StringUtils.isNotBlank(ip)
+        && port > 0;
+  }
 
   /**
    * IP to connect to the database

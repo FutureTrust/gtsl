@@ -19,10 +19,9 @@ package eu.futuretrust.gtsl.model.data.abstracts;
 
 
 import eu.futuretrust.gtsl.model.constraints.NoNullElements;
-
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.Valid;
 
 public abstract class ListModel<T> {
 

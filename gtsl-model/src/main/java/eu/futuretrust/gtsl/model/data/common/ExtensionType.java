@@ -21,9 +21,8 @@ package eu.futuretrust.gtsl.model.data.common;
 import eu.futuretrust.gtsl.jaxb.tsl.ExtensionTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-import org.apache.commons.collections.CollectionUtils;
-
 import javax.validation.constraints.NotNull;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Specified in TS 119 612 v2.1.1 clause 5.3.17 Scheme extensions

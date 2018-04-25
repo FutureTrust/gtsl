@@ -17,8 +17,6 @@
 
 package eu.futuretrust.gtsl.business.services.notifications.impl;
 
-import com.mailjet.client.errors.MailjetException;
-import com.mailjet.client.errors.MailjetSocketTimeoutException;
 import eu.futuretrust.gtsl.business.repositories.SubscriberRepository;
 import eu.futuretrust.gtsl.business.repositories.TerritoryRepository;
 import eu.futuretrust.gtsl.business.repositories.TslRepository;
@@ -32,7 +30,6 @@ import eu.futuretrust.gtsl.persistence.entities.TslEntity;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
-import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

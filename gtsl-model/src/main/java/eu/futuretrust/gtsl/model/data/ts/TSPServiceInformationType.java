@@ -22,7 +22,6 @@ import eu.futuretrust.gtsl.jaxb.tsl.TSPServiceInformationTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
 import eu.futuretrust.gtsl.model.data.common.InternationalNamesType;
-import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIListType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIOptionalListType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyURIType;
 import eu.futuretrust.gtsl.model.data.digitalidentity.ServiceDigitalIdentityType;
@@ -30,7 +29,6 @@ import eu.futuretrust.gtsl.model.data.extension.ServiceInformationExtensionListT
 import eu.futuretrust.gtsl.model.utils.DateUtils;
 import eu.futuretrust.gtsl.model.utils.ModelUtils;
 import eu.futuretrust.gtsl.model.utils.XmlGregorianCalendarUtils;
-
 import java.time.LocalDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

@@ -18,7 +18,6 @@
 package eu.futuretrust.gtsl.model.data.signature;
 
 import eu.futuretrust.gtsl.jaxb.xmldsig.CanonicalizationMethodTypeJAXB;
-
 import java.util.ArrayList;
 import java.util.List;
 

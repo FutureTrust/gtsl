@@ -1,10 +1,9 @@
 package eu.futuretrust.gtsl.persistence.entities;
 
 import eu.futuretrust.gtsl.persistence.enums.SignatureStatus;
+import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
 
 @Document(collection = "signatures")
 public class SignatureEntity {

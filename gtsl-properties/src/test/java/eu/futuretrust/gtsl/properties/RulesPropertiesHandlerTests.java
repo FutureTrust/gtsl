@@ -30,7 +30,6 @@ import eu.futuretrust.gtsl.properties.helper.ResourcesUtils;
 import eu.futuretrust.gtsl.properties.helper.RulesPropertiesConstants;
 import eu.futuretrust.gtsl.properties.rules.Country;
 import eu.futuretrust.gtsl.storage.Storage;
-
 import java.math.BigInteger;
 import java.security.InvalidParameterException;
 import java.util.Arrays;

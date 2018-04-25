@@ -25,7 +25,6 @@ import eu.futuretrust.gtsl.jaxb.tsl.ExtensionTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
 import eu.futuretrust.gtsl.model.utils.DateUtils;
-import eu.futuretrust.gtsl.model.utils.JaxbGregorianCalendarZulu;
 import eu.futuretrust.gtsl.model.utils.ModelUtils;
 import eu.futuretrust.gtsl.model.utils.XmlGregorianCalendarUtils;
 import java.time.LocalDateTime;
@@ -37,7 +36,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.namespace.QName;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;

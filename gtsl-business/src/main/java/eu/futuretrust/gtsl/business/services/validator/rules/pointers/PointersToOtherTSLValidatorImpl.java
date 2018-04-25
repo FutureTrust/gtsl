@@ -41,6 +41,7 @@ public class PointersToOtherTSLValidatorImpl implements RulesValidator<OtherTSLP
   @Override
   public void validate(ValidationContext validationContext,
       OtherTSLPointersType pointersToOtherTSL) {
+
     if (validationContext.isEuTsl() || validationContext.isLotl()) {
       isPointersToOtherTslPresent(validationContext, pointersToOtherTSL);
       hasPointerToLOTL(validationContext, pointersToOtherTSL);
@@ -48,6 +49,7 @@ public class PointersToOtherTSLValidatorImpl implements RulesValidator<OtherTSLP
 
     if (pointersToOtherTSL != null) {
       int i = 0;
+
       for (OtherTSLPointerType pointer : pointersToOtherTSL.getValues()) {
         validationContext.setArgs(new ArrayList<>(Collections.singletonList(i)));
         pointerValidator.validate(validationContext, pointer);

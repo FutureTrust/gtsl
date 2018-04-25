@@ -24,7 +24,15 @@ import eu.futuretrust.gtsl.business.services.validator.rules.common.CountriesVal
 import eu.futuretrust.gtsl.business.validator.ViolationConstant;
 import eu.futuretrust.gtsl.business.vo.validator.ValidationContext;
 import eu.futuretrust.gtsl.business.vo.validator.Violation;
-import eu.futuretrust.gtsl.model.data.common.*;
+import eu.futuretrust.gtsl.model.data.common.AddressType;
+import eu.futuretrust.gtsl.model.data.common.CountryCode;
+import eu.futuretrust.gtsl.model.data.common.ExtensionsListType;
+import eu.futuretrust.gtsl.model.data.common.InternationalNamesType;
+import eu.futuretrust.gtsl.model.data.common.MultiLangNormStringType;
+import eu.futuretrust.gtsl.model.data.common.MultiLangStringType;
+import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIListType;
+import eu.futuretrust.gtsl.model.data.common.NonEmptyNormalizedString;
+import eu.futuretrust.gtsl.model.data.common.NonEmptyURIType;
 import eu.futuretrust.gtsl.model.data.tsl.OtherTSLPointersType;
 import eu.futuretrust.gtsl.model.data.tsl.PolicyOrLegalnoticeType;
 import eu.futuretrust.gtsl.model.data.tsl.TSLSchemeInformationType;

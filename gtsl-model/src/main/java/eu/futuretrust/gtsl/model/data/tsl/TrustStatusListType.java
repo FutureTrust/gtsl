@@ -17,13 +17,12 @@
 
 package eu.futuretrust.gtsl.model.data.tsl;
 
+import eu.futuretrust.gtsl.jaxb.tsl.TrustStatusListTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-import eu.futuretrust.gtsl.jaxb.tsl.TrustStatusListTypeJAXB;
 import eu.futuretrust.gtsl.model.data.common.AnyURI;
 import eu.futuretrust.gtsl.model.data.common.StringType;
 import eu.futuretrust.gtsl.model.data.signature.SignatureType;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.apache.commons.collections.CollectionUtils;

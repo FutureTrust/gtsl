@@ -39,6 +39,7 @@ public class ServiceHistoryValidatorImpl implements RulesValidator<ServiceHistor
 
   @Override
   public void validate(ValidationContext validationContext, ServiceHistoryType serviceHistory) {
+
     if (serviceHistory != null) {
       int i = 0;
       List<Object> currentArgs = validationContext.getArgs();

@@ -17,8 +17,13 @@
 
 package eu.futuretrust.gtsl.business.properties;
 
+import eu.futuretrust.gtsl.business.properties.exceptions.PropertiesException;
 import eu.futuretrust.gtsl.business.properties.helper.Cron;
 import eu.futuretrust.gtsl.business.properties.helper.Sender;
+import javax.annotation.PostConstruct;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -27,6 +32,24 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:properties/mail.properties")
 @ConfigurationProperties(prefix = "mail")
 public class MailProperties {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(MailProperties.class);
+
+  @PostConstruct
+  public void init() throws Exception {
+    if (!this.isValid()) {
+      String errorMessage = "Mail properties must be configured";
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(errorMessage);
+      }
+      throw new PropertiesException(errorMessage);
+    }
+  }
+
+  public boolean isValid() {
+    return cron != null
+        && StringUtils.isNotBlank(cron.getValue());
+  }
 
   private String publicKey;
   private String secretKey;

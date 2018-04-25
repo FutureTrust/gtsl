@@ -19,7 +19,6 @@ package eu.futuretrust.gtsl.model.constraints.validator;
 
 import eu.futuretrust.gtsl.model.constraints.Case;
 import eu.futuretrust.gtsl.model.constraints.enums.CaseMode;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

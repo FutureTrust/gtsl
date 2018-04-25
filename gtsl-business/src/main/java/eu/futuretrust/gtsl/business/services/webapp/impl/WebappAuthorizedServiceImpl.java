@@ -41,14 +41,14 @@ public class WebappAuthorizedServiceImpl implements WebappService {
       return "redirect:/error";
     } catch (InvalidParameterException e) {
       if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
+        LOGGER.error("{}: {}", e.getClass(), e.getMessage());
       }
       redirectAttributes.addFlashAttribute("errorMessage", "The provided input is invalid.");
       redirectAttributes.addFlashAttribute("message", e.getMessage());
       return "redirect:/error";
     } catch (Exception e) {
       if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
+        LOGGER.error("{}: {}", e.getClass(), e.getMessage());
       }
       redirectAttributes.addFlashAttribute("errorMessage", "An error occurred on the server.");
       redirectAttributes.addFlashAttribute("message", e.getMessage());

@@ -27,25 +27,28 @@
         <jxb:typeName suffix="JAXB"/>
       </jxb:nameXmlTransform>
     </jxb:schemaBindings>
-    <jxb:bindings schemaLocation="http://uri.etsi.org/01903/v1.3.2/XAdES.xsd" node="/xs:schema">
-      <jxb:schemaBindings>
-        <jxb:package name="eu.futuretrust.gtsl.jaxb.xades"/>
-        <jxb:nameXmlTransform>
-          <jxb:typeName suffix="JAXB"/>
-        </jxb:nameXmlTransform>
-      </jxb:schemaBindings>
-      <jxb:bindings
-        schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"
-        node="/xs:schema">
-        <jxb:schemaBindings>
-          <jxb:package name="eu.futuretrust.gtsl.jaxb.xmldsig"/>
-          <jxb:nameXmlTransform>
-            <jxb:typeName suffix="JAXB"/>
-          </jxb:nameXmlTransform>
-        </jxb:schemaBindings>
-      </jxb:bindings>
-    </jxb:bindings>
   </jxb:bindings>
+
+  <jxb:bindings schemaLocation="XAdES.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="eu.futuretrust.gtsl.jaxb.xades"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="xades" />
+                <jxb:typeName suffix="JAXB"/>
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+  </jxb:bindings>
+
+  <jxb:bindings schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"
+                node="/xs:schema">
+    <jxb:schemaBindings>
+        <jxb:package name="eu.futuretrust.gtsl.jaxb.xmldsig"/>
+        <jxb:nameXmlTransform>
+            <jxb:elementName prefix="ds"/>
+            <jxb:typeName suffix="JAXB"/>
+        </jxb:nameXmlTransform>
+    </jxb:schemaBindings>
+    </jxb:bindings>
 
   <jxb:bindings schemaLocation="ts_119612v020101_additionaltypes_xsd.xsd" node="/xs:schema">
     <jxb:schemaBindings>

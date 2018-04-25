@@ -17,15 +17,14 @@
 
 package eu.futuretrust.gtsl.model.data.tsl;
 
+import eu.futuretrust.gtsl.jaxb.tsl.OtherTSLPointersTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-import eu.futuretrust.gtsl.jaxb.tsl.OtherTSLPointersTypeJAXB;
 import eu.futuretrust.gtsl.model.data.abstracts.ListModel;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotEmpty;
-
 import org.apache.commons.collections.CollectionUtils;
 
 /**

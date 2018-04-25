@@ -23,7 +23,11 @@ import eu.futuretrust.gtsl.business.services.validator.rules.common.CountriesVal
 import eu.futuretrust.gtsl.business.validator.ViolationConstant;
 import eu.futuretrust.gtsl.business.vo.validator.ValidationContext;
 import eu.futuretrust.gtsl.business.vo.validator.Violation;
-import eu.futuretrust.gtsl.model.data.common.*;
+import eu.futuretrust.gtsl.model.data.common.AddressType;
+import eu.futuretrust.gtsl.model.data.common.ExtensionType;
+import eu.futuretrust.gtsl.model.data.common.ExtensionsListType;
+import eu.futuretrust.gtsl.model.data.common.InternationalNamesType;
+import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIListType;
 import eu.futuretrust.gtsl.model.data.tsp.TSPInformationType;
 import eu.futuretrust.gtsl.model.utils.ModelUtils;
 import java.util.stream.Collectors;
@@ -51,6 +55,7 @@ public class TspInformationValidatorImpl implements RulesValidator<TSPInformatio
 
   @Override
   public void validate(ValidationContext validationContext, TSPInformationType tspInformation) {
+
     isTspNameContainLangEn(validationContext, tspInformation.getTspName());
     isTspNameLangAllowed(validationContext, tspInformation.getTspName());
 

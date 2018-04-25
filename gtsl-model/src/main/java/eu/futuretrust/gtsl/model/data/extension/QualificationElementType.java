@@ -22,7 +22,6 @@ import eu.futuretrust.gtsl.jaxb.sie.QualificationElementTypeJAXB;
 import eu.futuretrust.gtsl.jaxb.sie.QualifierTypeJAXB;
 import eu.futuretrust.gtsl.jaxb.sie.QualifiersTypeJAXB;
 import eu.futuretrust.gtsl.model.data.extension.qualification.CriteriaType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

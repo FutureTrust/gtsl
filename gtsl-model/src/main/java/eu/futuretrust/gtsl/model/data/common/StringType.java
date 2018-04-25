@@ -19,7 +19,6 @@ package eu.futuretrust.gtsl.model.data.common;
 
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-
 import javax.validation.constraints.NotNull;
 
 /**

@@ -17,8 +17,8 @@
 
 package eu.futuretrust.gtsl.business.services.draft;
 
-import eu.futuretrust.gtsl.business.vo.draft.DraftVO;
 import eu.futuretrust.gtsl.business.dto.report.ReportDTO;
+import eu.futuretrust.gtsl.business.vo.draft.DraftVO;
 import eu.futuretrust.gtsl.model.data.tsl.TrustStatusListType;
 import java.util.List;
 import java.util.Optional;

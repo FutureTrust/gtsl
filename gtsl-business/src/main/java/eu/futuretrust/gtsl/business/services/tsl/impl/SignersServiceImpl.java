@@ -22,8 +22,6 @@ import eu.europa.esig.dss.x509.KeyStoreCertificateSource;
 import eu.futuretrust.gtsl.business.properties.LotlProperties;
 import eu.futuretrust.gtsl.business.services.storage.LotlCacheService;
 import eu.futuretrust.gtsl.business.services.tsl.SignersService;
-import eu.futuretrust.gtsl.business.services.xml.JaxbService;
-import eu.futuretrust.gtsl.model.data.digitalidentity.DigitalIdentityType;
 import eu.futuretrust.gtsl.model.data.digitalidentity.ServiceDigitalIdentityType;
 import eu.futuretrust.gtsl.model.data.ts.CertificateType;
 import eu.futuretrust.gtsl.model.data.tsl.OtherTSLPointerType;
@@ -35,7 +33,6 @@ import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,38 +87,43 @@ public class SignersServiceImpl implements SignersService {
     return tokens;
   }
 
-  private List<CertificateToken> getDigitalIdentities(final OtherTSLPointerType otherTSLPointer) {
+  /**
+   * Retrieves the list of certificates mapped to DigitalIdentities in the TSL, for a given OtherTSLPointer element
+   * @param otherTSLPointer the element in which the certificates must be retrieved
+   * @return the list of {@link CertificateToken} extracted from the OtherTSLPointer element
+   */
+  private List<CertificateToken> getDigitalIdentities (final OtherTSLPointerType otherTSLPointer) {
 
-    List<CertificateToken> certificateTokens = new ArrayList<>();
-    List<List<DigitalIdentityType>> digitalIdentityTypes = otherTSLPointer
-        .getServiceDigitalIdentities().getValues()
-        .stream()
-        .map(ServiceDigitalIdentityType::getValues)
-        .collect(Collectors.toList());
-
-    for (final List<DigitalIdentityType> digitalIdentityType : digitalIdentityTypes) {
-
-      certificateTokens.addAll(
-          digitalIdentityType.stream()
-              .map(DigitalIdentityType::getCertificateList)
-              .map(this::getCertificateTokens)
-              .flatMap(l -> l.stream())
-              .collect(Collectors.toList()));
-    }
-
-    return certificateTokens;
+    return otherTSLPointer.getServiceDigitalIdentities().getValues()
+            .stream()
+            .map(ServiceDigitalIdentityType::getValues)
+            .flatMap(o -> o.stream())
+            .map(o -> o.getCertificateList())
+            .map(this::getCertificateTokens)
+            .flatMap(l -> l.stream())
+            .collect(Collectors.toList());
   }
 
-  private List<CertificateToken> getCertificateTokens(final List<CertificateType> certificateList) {
+  /**
+   * Retrieves the list of certificates from a provided list of Certificate elements
+   * @param certificateList the list of Certificate elements (JAXB models) from which certificates must be extracted
+   * @return the list of {@link CertificateToken} extracted from the Certificate elements
+   */
+  private List<CertificateToken> getCertificateTokens (final List<CertificateType> certificateList) {
 
-    return
-        certificateList.stream()
+      return certificateList.stream()
             .map(CertificateType::getCertEncoded)
             .map(this::getCertificateTokenFromBytes)
             .collect(Collectors.toList());
   }
 
-  private CertificateToken getCertificateTokenFromBytes(final byte[] bytes) {
+  /**
+   * Builds a {@link CertificateToken} from a provided byte array
+   * @param bytes the byte array to use for building a {@link CertificateToken} object
+   * @return the {@link CertificateToken} object built from the byte array
+   * @throws RuntimeException if there is an issue when building the certificate
+   */
+  private CertificateToken getCertificateTokenFromBytes (final byte[] bytes) {
 
     try {
       X509Certificate certificate = (X509Certificate) certificateFactory.generateCertificate(new

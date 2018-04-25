@@ -20,11 +20,10 @@ package eu.futuretrust.gtsl.model.data.tsl;
 import eu.futuretrust.gtsl.jaxb.tsl.MultiLangStringTypeJAXB;
 import eu.futuretrust.gtsl.model.data.abstracts.ListModel;
 import eu.futuretrust.gtsl.model.data.common.MultiLangStringType;
-import org.apache.commons.collections.CollectionUtils;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Used in the multi-type list in

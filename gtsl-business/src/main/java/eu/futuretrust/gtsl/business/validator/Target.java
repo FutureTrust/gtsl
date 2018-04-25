@@ -97,8 +97,13 @@ public enum Target {
   HISTORY_SERVICE_DIGITAL_IDENTITY(HISTORY_INSTANCE.text + ".serviceDigitalIdentity"),
   HISTORY_PREVIOUS_STATUS(HISTORY_INSTANCE.text + ".serviceStatus"),
   HISTORY_STARTING_DATE_AND_TIME(HISTORY_INSTANCE.text + ".statusStartingTime"),
-  HISTORY_SERVICE_INFORMATION_EXTENSIONS(HISTORY_INSTANCE.text + ".serviceInformationExtensions");
+  HISTORY_SERVICE_INFORMATION_EXTENSIONS(HISTORY_INSTANCE.text + ".serviceInformationExtensions"),
 
+  // SIGNATURE
+  SIGNATURE(TSL.text + ".signature"),
+  KEY_INFO(SIGNATURE.text + ".keyInfo"),
+  X509_DATA(KEY_INFO + ".x509Data"),
+  X509_CERTIFICATE(X509_DATA + ".x509Certificate");
 
   private final String text;
 

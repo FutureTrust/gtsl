@@ -17,6 +17,11 @@
 
 package eu.futuretrust.gtsl.business.properties;
 
+import eu.futuretrust.gtsl.business.properties.exceptions.PropertiesException;
+import javax.annotation.PostConstruct;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -26,31 +31,51 @@ import org.springframework.context.annotation.PropertySource;
 @ConfigurationProperties(prefix = "contract")
 public class ContractProperties {
 
-    private String consortium;
-    private String rulesProperties;
-    private String tslStore;
+  private static final Logger LOGGER = LoggerFactory.getLogger(ContractProperties.class);
 
-    public String getConsortium() {
-      return consortium;
+  @PostConstruct
+  public void init() throws Exception {
+    if (!this.isValid()) {
+      String errorMessage = "Contract properties must be configured";
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(errorMessage);
+      }
+      throw new PropertiesException(errorMessage);
     }
+  }
 
-    public void setConsortium(String consortium) {
-      this.consortium = consortium;
-    }
+  public boolean isValid() {
+    return StringUtils.isNotBlank(consortium)
+        && StringUtils.isNotBlank(rulesProperties)
+        && StringUtils.isNotBlank(tslStore);
+  }
 
-    public String getRulesProperties() {
-      return rulesProperties;
-    }
+  private String consortium;
+  private String rulesProperties;
+  private String tslStore;
 
-    public void setRulesProperties(String rulesProperties) {
-      this.rulesProperties = rulesProperties;
-    }
+  public String getConsortium() {
+    return consortium;
+  }
 
-    public String getTslStore() {
-      return tslStore;
-    }
+  public void setConsortium(String consortium) {
+    this.consortium = consortium;
+  }
 
-    public void setTslStore(String tslStore) {
-      this.tslStore = tslStore;
-    }
+  public String getRulesProperties() {
+    return rulesProperties;
+  }
+
+  public void setRulesProperties(String rulesProperties) {
+    this.rulesProperties = rulesProperties;
+  }
+
+  public String getTslStore() {
+    return tslStore;
+  }
+
+  public void setTslStore(String tslStore) {
+    this.tslStore = tslStore;
+  }
+
 }

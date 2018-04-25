@@ -17,17 +17,16 @@
 
 package eu.futuretrust.gtsl.model.data.extension.qualification;
 
-import eu.futuretrust.gtsl.model.constraints.ValidAssert;
 import eu.futuretrust.gtsl.jaxb.additionaltypes.CertSubjectDNAttributeTypeJAXB;
 import eu.futuretrust.gtsl.jaxb.additionaltypes.ExtendedKeyUsageTypeJAXB;
 import eu.futuretrust.gtsl.jaxb.sie.CriteriaListTypeJAXB;
+import eu.futuretrust.gtsl.jaxb.xades.AnyTypeJAXB;
+import eu.futuretrust.gtsl.model.constraints.ValidAssert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.xml.bind.JAXBElement;
 import javax.xml.namespace.QName;
-
-import eu.futuretrust.gtsl.jaxb.xades.AnyTypeJAXB;
 import org.apache.commons.collections.CollectionUtils;
 
 /**

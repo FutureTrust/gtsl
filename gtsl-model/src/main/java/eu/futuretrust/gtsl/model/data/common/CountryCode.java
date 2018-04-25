@@ -21,7 +21,6 @@ import eu.futuretrust.gtsl.model.constraints.Case;
 import eu.futuretrust.gtsl.model.constraints.enums.CaseMode;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-
 import javax.validation.constraints.NotNull;
 
 /**

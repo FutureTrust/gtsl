@@ -19,7 +19,6 @@ package eu.futuretrust.gtsl.storage;
 
 import eu.futuretrust.gtsl.storage.exceptions.StorageException;
 import eu.futuretrust.gtsl.storage.helper.IpfsConstants;
-import java.math.BigInteger;
 import java.security.InvalidParameterException;
 import java.util.Optional;
 import java.util.Set;

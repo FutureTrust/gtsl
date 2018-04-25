@@ -27,6 +27,7 @@ import eu.futuretrust.gtsl.business.services.xml.JaxbService;
 import eu.futuretrust.gtsl.model.data.tsl.TrustStatusListType;
 import java.io.File;
 import java.io.IOException;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,15 +43,11 @@ public class LotlCacheServiceImpl implements LotlCacheService {
     this.jaxbService = jaxbService;
     this.lotlProperties = lotlProperties;
     this.fileCache = new FileCacheDataLoader();
-
-    fileCache.setCacheExpirationTime(lotlProperties.getCacheValidityWindow());
-    fileCache.addToBeLoaded(lotlProperties.getXmlUrl());
-    fileCache.setDataLoader(new NativeHTTPDataLoader());
-
-    if (lotlProperties.getFileCachePath() != null
-        && lotlProperties.getFileCachePath().length() > 0) {
-      fileCache.setFileCacheDirectory(
-          new File(lotlProperties.getFileCachePath()));
+    this.fileCache.setCacheExpirationTime(lotlProperties.getCacheValidityWindow());
+    this.fileCache.addToBeLoaded(lotlProperties.getXmlUrl());
+    this.fileCache.setDataLoader(new NativeHTTPDataLoader());
+    if (StringUtils.isNotBlank(lotlProperties.getFileCachePath())) {
+      this.fileCache.setFileCacheDirectory(new File(lotlProperties.getFileCachePath()));
     }
   }
 

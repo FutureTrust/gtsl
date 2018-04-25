@@ -19,11 +19,10 @@ package eu.futuretrust.gtsl.model.data.common;
 
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-
 import java.util.ArrayList;
+import java.util.List;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * <xsd:complexType name="AnyType" mixed="true">

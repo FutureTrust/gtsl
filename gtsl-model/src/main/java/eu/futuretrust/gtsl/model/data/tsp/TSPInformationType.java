@@ -24,7 +24,6 @@ import eu.futuretrust.gtsl.model.data.common.AddressType;
 import eu.futuretrust.gtsl.model.data.common.ExtensionsListType;
 import eu.futuretrust.gtsl.model.data.common.InternationalNamesType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIListType;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 

@@ -57,11 +57,11 @@ public class TslServiceImpl implements TslService {
 
   @Autowired
   public TslServiceImpl(TslLedgerService tslLedgerService,
-      StorageService storageService,
-      TslValidator tslValidator,
-      JaxbService jaxbService,
-      TslAdditionalInformationService tslAdditionalInformationService,
-      RulesPropertiesHandler rulesPropertiesHandler) {
+                        StorageService storageService,
+                        TslValidator tslValidator,
+                        JaxbService jaxbService,
+                        TslAdditionalInformationService tslAdditionalInformationService,
+                        RulesPropertiesHandler rulesPropertiesHandler) {
     this.tslLedgerService = tslLedgerService;
     this.storageService = storageService;
     this.tslValidator = tslValidator;
@@ -74,7 +74,7 @@ public class TslServiceImpl implements TslService {
   public ReportDTO create(TrustStatusListType tsl) throws Exception {
     DebugUtils.debug(LOGGER, this.getClass(), "create");
 
-    ReportDTO report = tslValidator.validate(tsl, null);
+    ReportDTO report = tslValidator.validate(tsl, false);
     if (report.isValid()) {
       byte[] tslXml = jaxbService.marshallTslToBytes(tsl);
       BigInteger version = tsl.getSchemeInformation().getTslSequenceNumber();
@@ -133,7 +133,7 @@ public class TslServiceImpl implements TslService {
     TrustStatusListType currentTsl = convert(data.get());
 
     // validate the TSL
-    ReportDTO report = tslValidator.validate(tsl, currentTsl);
+    ReportDTO report = tslValidator.validate(tsl, currentTsl, false);
     if (report.isValid()) {
       // update the TSL
       byte[] tslXml = jaxbService.marshallTslToBytes(tsl);
@@ -203,7 +203,7 @@ public class TslServiceImpl implements TslService {
             return convert(read(tslInfo));
           } catch (Exception e) {
             if (LOGGER.isErrorEnabled()) {
-              LOGGER.error(e.getMessage());
+              LOGGER.error("{}: {}", e.getClass(), e.getMessage());
             }
             return null;
           }
@@ -216,7 +216,7 @@ public class TslServiceImpl implements TslService {
   public Optional<ReportDTO> validate(String territoryCode) throws Exception {
     Optional<TrustStatusListType> tsl = this.read(territoryCode);
     if (tsl.isPresent()) {
-      return Optional.ofNullable(tslValidator.validate(tsl.get(), null));
+      return Optional.ofNullable(tslValidator.validate(tsl.get(), false));
     }
     return Optional.empty();
   }

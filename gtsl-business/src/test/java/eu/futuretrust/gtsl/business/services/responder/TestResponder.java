@@ -4,7 +4,6 @@ import eu.futuretrust.gtsl.business.services.helpers.ResourcesUtils;
 import eu.futuretrust.gtsl.jaxb.tsl.TSPServiceTypeJAXB;
 import eu.futuretrust.gtsl.jaxb.tsl.TrustStatusListTypeJAXB;
 import eu.futuretrust.gtsl.model.data.ts.TSPServiceType;
-import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.util.Arrays;
 import java.util.Optional;
@@ -13,7 +12,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)

@@ -17,6 +17,11 @@
 
 package eu.futuretrust.gtsl.business.properties;
 
+import eu.futuretrust.gtsl.business.properties.exceptions.PropertiesException;
+import javax.annotation.PostConstruct;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -25,6 +30,25 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:properties/ethereum.properties")
 @ConfigurationProperties(prefix = "ethereum")
 public class EthereumProperties {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(EthereumProperties.class);
+
+  @PostConstruct
+  public void init() throws Exception {
+    if (!this.isValid()) {
+      String errorMessage = "Ethereum properties must be configured";
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(errorMessage);
+      }
+      throw new PropertiesException(errorMessage);
+    }
+  }
+
+  public boolean isValid() {
+    return StringUtils.isNotBlank(endpoint)
+        && StringUtils.isNotBlank(keystorePath)
+        && StringUtils.isNotBlank(password);
+  }
 
   /**
    * Ethereum endpoint to load smart contracts

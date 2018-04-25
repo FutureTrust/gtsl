@@ -153,7 +153,7 @@ public class DraftServiceImpl implements DraftService {
   public Optional<ReportDTO> validate(String dbId) throws Exception {
     Optional<DraftVO> draft = this.read(dbId);
     if (draft.isPresent()) {
-      return Optional.ofNullable(tslValidator.validate(draft.get().getTsl(), null));
+      return Optional.ofNullable(tslValidator.validate(draft.get().getTsl(), true));
     } else {
       return Optional.empty();
     }
@@ -248,6 +248,9 @@ public class DraftServiceImpl implements DraftService {
 
     String territoryCode = TslUtils.extractTerritoryCode(tsl);
 
+    // remove the signature of the TSL
+    TslUtils.removeSignature(tsl);
+
     // transform tsl into xml
     byte[] tslXml = jaxbService.marshallTslToBytes(tsl);
 
@@ -268,7 +271,7 @@ public class DraftServiceImpl implements DraftService {
       LOGGER.info("Draft \"" + draft.getId() + "\" has been saved in the local database");
     }
 
-    return tslValidator.validate(tsl, null);
+    return tslValidator.validate(tsl, true);
   }
 
 }

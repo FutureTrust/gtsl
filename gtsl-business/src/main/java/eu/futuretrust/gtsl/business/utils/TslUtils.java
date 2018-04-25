@@ -9,13 +9,20 @@ public final class TslUtils {
   private TslUtils() {
   }
 
+  public static void removeSignature(TrustStatusListType tsl) {
+    if (tsl != null) {
+      tsl.setSignature(null);
+    }
+  }
+
   public static String extractTerritoryCode(TrustStatusListType tsl)
       throws InvalidParameterException {
     if (tsl == null
         || tsl.getSchemeInformation() == null
         || tsl.getSchemeInformation().getSchemeTerritory() == null
         || tsl.getSchemeInformation().getSchemeTerritory().getValue() == null) {
-      throw new InvalidParameterException("The Scheme Territory cannot be retrieved, a value is a null");
+      throw new InvalidParameterException(
+          "The Scheme Territory cannot be retrieved, a value is a null");
     }
     return tsl.getSchemeInformation().getSchemeTerritory().getValue();
   }

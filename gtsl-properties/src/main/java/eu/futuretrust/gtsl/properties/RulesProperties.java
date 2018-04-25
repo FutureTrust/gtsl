@@ -32,7 +32,6 @@ import eu.futuretrust.gtsl.properties.rules.ServiceStatusProperties;
 import eu.futuretrust.gtsl.properties.rules.StatusDetnProperties;
 import eu.futuretrust.gtsl.properties.rules.TslProperties;
 import eu.futuretrust.gtsl.properties.rules.TslTypeProperties;
-
 import java.util.List;
 import java.util.Map;
 import javax.validation.constraints.NotNull;

@@ -36,8 +36,8 @@ public class TrustStatusListValidatorImpl implements RulesValidator<TrustStatusL
 
   @Autowired
   public TrustStatusListValidatorImpl(
-      RulesValidator<TSLSchemeInformationType> schemeInformationValidator,
-      RulesValidator<TrustServiceProviderListType> trustServiceProvidersValidator) {
+          RulesValidator<TSLSchemeInformationType> schemeInformationValidator,
+          RulesValidator<TrustServiceProviderListType> trustServiceProvidersValidator) {
     this.schemeInformationValidator = schemeInformationValidator;
     this.trustServiceProvidersValidator = trustServiceProvidersValidator;
   }
@@ -45,6 +45,7 @@ public class TrustStatusListValidatorImpl implements RulesValidator<TrustStatusL
   @Override
   public void validate(ValidationContext validationContext, TrustStatusListType tsl) {
     // Check attributes of TSL element
+
     this.isTslTagCorrectValue(validationContext, tsl.getTslTag());
 
     // Run validation on Scheme Information
@@ -52,7 +53,6 @@ public class TrustStatusListValidatorImpl implements RulesValidator<TrustStatusL
 
     // Trust Service Providers element is optional
     trustServiceProvidersValidator.validate(validationContext, tsl.getTrustServiceProviderList());
-
   }
 
   private void isTslTagCorrectValue(ValidationContext validationObject, AnyURI tslTag) {

@@ -38,21 +38,22 @@ public class ApiAuthorizedServiceImpl implements ApiService {
       }
     } catch (UnauthorizedException e) {
       if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
+        LOGGER.error("{}: {}", e.getClass(), e.getMessage());
       }
       ResultDTO<T> result = new ResultDTO<>();
       result.setErrorMessage("You are not authorized to proceed this action: " + e.getMessage());
       return ResponseEntity.status(HttpStatus.FORBIDDEN).body(result);
     } catch (InvalidParameterException | CertificateException e) {
       if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
+        LOGGER.error("{}: {}", e.getClass(), e.getMessage());
       }
       ResultDTO<T> result = new ResultDTO<>();
       result.setErrorMessage("The provided input is invalid: " + e.getMessage());
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(result);
     } catch (Exception e) {
       if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
+        LOGGER.error("{}: {}", e.getClass(), e.getMessage());
+        e.printStackTrace();
       }
       ResultDTO<T> result = new ResultDTO<>();
       result.setErrorMessage("An error occurred on the server: " + e.getMessage());

@@ -116,6 +116,7 @@ public enum MessageCode {
       "serviceInformation.serviceDefinitionUriPresentForNational"),
   IS_SERVICE_DEFINITION_URI_LIST_NOT_EMPTY_FOR_NATIONAL_ROOT_CA_QC(
       "serviceInformation.serviceDefinitionUriListNotEmptyForNational"),
+  IS_SERVICE_DIGITAL_IDENTITY_CERTIFICATE_VALID("serviceInformation.certificateInvalid"),
   IS_SERVICE_DIGITAL_IDENTITY_CERTIFICATE_EXPIRED("serviceInformation.certificateExpired"),
   IS_SERVICE_DIGITAL_IDENTITY_CORRECT("serviceInformation.digitalIdentityCorrect"),
   IS_SERVICE_DIGITAL_IDENTITY_SUBJECT_NAME_MATCH("serviceInformation.subjectNameMatch"),
@@ -157,7 +158,26 @@ public enum MessageCode {
   IS_TSP_TRADE_NAME_CONTAIN_LANG_EN("tsp.tspTradeNameContainEn"),
   IS_TSP_TRADE_NAME_LANG_ALLOWED("tsp.tspTradeNameLangAllowed"),
   IS_TSP_TRADE_NAME_VAT_NUMBER_VALID("tsp.tspTradeNameVatNumberValid"),
-  IS_TSP_TRADE_NAME_CORRECT_VALUE("tsp.tspTradeNameCorrectValue");
+  IS_TSP_TRADE_NAME_CORRECT_VALUE("tsp.tspTradeNameCorrectValue"),
+
+  IS_SIGNING_CERTIFICATE_ISSUER_TLSO_OR_TSP("signature.signingCertificateIssuerNotTlsoOrTsp"),
+  IS_SIGNING_CERTIFICATE_COUNTRY_CODE_VALID("signature.signingCertificateCountryCodeInvalid"),
+  IS_SIGNING_CERTIFICATE_ORGANIZATION_VALID("signature.signingCertificateOrganizationInvalid"),
+  IS_SIGNING_CERTIFICATE_KEY_USAGE_VALID("signature.signingCertificateKeyUsageInvalid"),
+  IS_SIGNING_CERTIFICATE_EXTENDED_KEY_USAGE_PRESENT("signature" +
+      ".signingCertificateExtendedKeyUsageNotPresent"),
+  IS_SIGNING_CERTIFICATE_KEY_USAGE_CONSISTENT("signature.signingCertificateKeyUsageInconsistent"),
+  IS_SIGNING_CERTIFICATE_SKI_PRESENT("signature.signingCertificateSkiNotPresent"),
+  IS_SIGNING_CERTIFICATE_BASIC_CONSTRAINTS_EXTENSION_VALID("signature" +
+      ".signingCertificateBasicConstraintsExtensionInvalid"),
+  IS_SIGNING_CERTIFICATE_TLSO("signature.signingCertificateNotTlso"),
+  IS_SIGNING_CERTIFICATE_VALID("signature.signingCertificateInvalid"),
+  IS_SIGNING_CERTIFICATE_KEY_RESILIENT("signature.signingCertificateKeyNotResilient"),
+
+  HAS_SIGNATURE("signature.notPresent"),
+  HAS_SIGNATURE_KEYINFO_SINGLE_CERTIFICATE("signature.keyInfoMultipleCertificates"),
+  IS_SIGNATURE_INVALID("signature.invalid"),
+  IS_SIGNATURE_INDETERMINATE("signature.indeterminate");
 
   private final String text;
 

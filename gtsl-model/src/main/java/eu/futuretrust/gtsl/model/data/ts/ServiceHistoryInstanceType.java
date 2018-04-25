@@ -30,7 +30,6 @@ import eu.futuretrust.gtsl.model.utils.XmlGregorianCalendarUtils;
 import java.time.LocalDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 

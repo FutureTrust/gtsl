@@ -59,6 +59,7 @@ public class ServicesValidatorImpl implements RulesValidator<TSPServicesListType
 
   @Override
   public void validate(ValidationContext validationContext, TSPServicesListType tspServicesList) {
+
     int i = 0;
     List<Object> currentArgs = validationContext.getArgs();
     for (TSPServiceType service : tspServicesList.getValues()) {

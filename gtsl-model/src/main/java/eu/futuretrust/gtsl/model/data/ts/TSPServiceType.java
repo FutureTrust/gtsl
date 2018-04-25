@@ -19,11 +19,10 @@ package eu.futuretrust.gtsl.model.data.ts;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import eu.futuretrust.gtsl.jaxb.tsl.TSPServiceTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-import eu.futuretrust.gtsl.jaxb.tsl.TSPServiceTypeJAXB;
 import eu.futuretrust.gtsl.model.data.enums.ServiceType;
-
 import java.util.Set;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

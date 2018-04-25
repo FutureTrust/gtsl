@@ -131,5 +131,4 @@ public class JaxbServiceImpl implements JaxbService {
     JAXBElement<TSPServiceTypeJAXB> jaxbElement = new ObjectFactory().createTSPService(service);
     tslMarshaller.marshal(jaxbElement, new StreamResult(os));
   }
-  
 }

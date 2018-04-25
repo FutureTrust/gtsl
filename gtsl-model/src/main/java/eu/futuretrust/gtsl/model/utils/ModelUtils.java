@@ -17,6 +17,10 @@
 
 package eu.futuretrust.gtsl.model.utils;
 
+import eu.europa.esig.dss.DSSException;
+import eu.europa.esig.dss.DSSUtils;
+import eu.europa.esig.dss.DigestAlgorithm;
+import eu.europa.esig.dss.x509.CertificateToken;
 import eu.futuretrust.gtsl.jaxb.tsl.AnyTypeJAXB;
 import eu.futuretrust.gtsl.model.data.common.InternationalNamesType;
 import eu.futuretrust.gtsl.model.data.common.Lang;
@@ -25,10 +29,6 @@ import eu.futuretrust.gtsl.model.data.enums.MimeType;
 import eu.futuretrust.gtsl.model.data.extension.AdditionalServiceInformationType;
 import eu.futuretrust.gtsl.model.data.extension.ServiceInformationExtensionListType;
 import eu.futuretrust.gtsl.model.data.extension.ServiceInformationExtensionType;
-import eu.europa.esig.dss.DSSException;
-import eu.europa.esig.dss.DSSUtils;
-import eu.europa.esig.dss.DigestAlgorithm;
-import eu.europa.esig.dss.x509.CertificateToken;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,7 +41,6 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;

@@ -20,9 +20,8 @@ package eu.futuretrust.gtsl.model.data.tsl;
 import eu.futuretrust.gtsl.jaxb.tsl.PolicyOrLegalnoticeTypeJAXB;
 import eu.futuretrust.gtsl.model.data.common.MultiLangStringType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIType;
-import org.apache.commons.collections.CollectionUtils;
-
 import java.util.stream.Collectors;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Specified in TS 119 612 v2.1.1 clause 5.3.11 TSL policy/legal notice

@@ -17,15 +17,14 @@
 
 package eu.futuretrust.gtsl.model.data.extension;
 
-import eu.futuretrust.gtsl.model.constraints.payload.Impact;
-import eu.futuretrust.gtsl.model.constraints.payload.Severity;
 import eu.futuretrust.gtsl.jaxb.tsl.AdditionalServiceInformationTypeJAXB;
 import eu.futuretrust.gtsl.jaxb.tsl.AnyTypeJAXB;
+import eu.futuretrust.gtsl.model.constraints.payload.Impact;
+import eu.futuretrust.gtsl.model.constraints.payload.Severity;
 import eu.futuretrust.gtsl.model.data.common.AnyType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIType;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
 import org.apache.commons.collections.CollectionUtils;
 
 /**

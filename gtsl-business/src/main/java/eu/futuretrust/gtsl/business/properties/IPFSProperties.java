@@ -17,7 +17,12 @@
 
 package eu.futuretrust.gtsl.business.properties;
 
+import eu.futuretrust.gtsl.business.properties.exceptions.PropertiesException;
 import eu.futuretrust.gtsl.business.properties.helper.Cron;
+import javax.annotation.PostConstruct;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -26,6 +31,25 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:properties/ipfs.properties")
 @ConfigurationProperties(prefix="ipfs")
 public class IPFSProperties {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(IPFSProperties.class);
+
+  @PostConstruct
+  public void init() throws Exception {
+    if (!this.isValid()) {
+      String errorMessage = "IPFS properties must be configured";
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(errorMessage);
+      }
+      throw new PropertiesException(errorMessage);
+    }
+  }
+
+  public boolean isValid() {
+    return StringUtils.isNotBlank(endpoint)
+        && cronAll != null && StringUtils.isNotBlank(cronAll.getValue())
+        && cronCurrent != null && StringUtils.isNotBlank(cronCurrent.getValue());
+  }
 
   /**
    * IPFS endpoint for storing files

@@ -17,11 +17,11 @@
 
 package eu.futuretrust.gtsl.business.services.xml.impl;
 
+import eu.futuretrust.gtsl.business.dto.report.ReportDTO;
 import eu.futuretrust.gtsl.business.services.draft.DraftService;
 import eu.futuretrust.gtsl.business.services.xml.DraftImporter;
 import eu.futuretrust.gtsl.business.services.xml.JaxbService;
 import eu.futuretrust.gtsl.business.utils.DebugUtils;
-import eu.futuretrust.gtsl.business.dto.report.ReportDTO;
 import eu.futuretrust.gtsl.jaxb.tsl.TrustStatusListTypeJAXB;
 import eu.futuretrust.gtsl.model.data.tsl.TrustStatusListType;
 import java.security.InvalidParameterException;

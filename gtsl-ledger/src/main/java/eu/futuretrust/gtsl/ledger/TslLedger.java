@@ -73,8 +73,8 @@ public class TslLedger extends AbstractContract {
    * @param code is an unique code identifying the TSL
    * @param hash is the address to which the information of the TSL are stored
    * @throws InvalidParameterException whenever at least one of the params is invalid
-   * @throws UnauthorizedException whenever the TSL already exists or the user is not authorized to add
-   * this TSL
+   * @throws UnauthorizedException whenever the TSL already exists or the user is not authorized to
+   * add this TSL
    * @throws Exception all others exceptions including exceptions thrown due to an invalid operation
    * on the blockchain
    */
@@ -173,33 +173,36 @@ public class TslLedger extends AbstractContract {
    * on the blockchain
    */
   public Optional<Tsl> findByCountryCode(final String code) throws Exception {
-    InputValidator.validateTslCode(code);
-
-    // read in the smart-contract the current address for a given code
-    Tuple2<BigInteger, byte[]> tslTuple = contract
-        .getTsl(StringUtils.safeBytes(code, TSL_CODE_LENGTH)).send();
-    if (tslTuple == null) {
-      if (LOGGER.isWarnEnabled()) {
-        LOGGER.warn("Unable to find TSL with country code {} from Ethereum", code);
+    if (this.exists(code)) {
+      // read in the smart-contract the current address for a given code
+      Tuple2<BigInteger, byte[]> tslTuple = contract
+          .getTsl(StringUtils.safeBytes(code, TSL_CODE_LENGTH)).send();
+      if (tslTuple == null) {
+        if (LOGGER.isWarnEnabled()) {
+          LOGGER.warn("Unable to find TSL with country code {} from Ethereum", code);
+        }
+        return Optional.empty();
       }
+
+      BigInteger index = tslTuple.getValue1();
+      String address = StringUtils.safeString(tslTuple.getValue2());
+      Tsl tsl = new Tsl(index, code, address);
+      if (!tsl.isValid()) {
+        if (LOGGER.isWarnEnabled()) {
+          LOGGER.warn("Unable to find TSL with country code {} from Ethereum", code);
+        }
+        return Optional.empty();
+      }
+
+      if (LOGGER.isInfoEnabled()) {
+        LOGGER
+            .info("Tsl \"{}\" has been retrieved from Ethereum (index={}, address={})", code, index,
+                address);
+      }
+      return Optional.of(tsl);
+    } else {
       return Optional.empty();
     }
-
-    BigInteger index = tslTuple.getValue1();
-    String address = StringUtils.safeString(tslTuple.getValue2());
-    Tsl tsl = new Tsl(index, code, address);
-    if (!tsl.isValid()) {
-      if (LOGGER.isWarnEnabled()) {
-        LOGGER.warn("Unable to find TSL with country code {} from Ethereum", code);
-      }
-      return Optional.empty();
-    }
-
-    if (LOGGER.isInfoEnabled()) {
-      LOGGER.info("Tsl \"{}\" has been retrieved from Ethereum (index={}, address={})", code, index,
-          address);
-    }
-    return Optional.of(tsl);
   }
 
   /**

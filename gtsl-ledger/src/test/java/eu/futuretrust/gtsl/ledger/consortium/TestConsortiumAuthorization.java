@@ -19,7 +19,6 @@ package eu.futuretrust.gtsl.ledger.consortium;
 
 import eu.futuretrust.gtsl.ledger.exceptions.UnauthorizedException;
 import java.security.InvalidParameterException;
-import java.util.Optional;
 import org.junit.Assert;
 import org.junit.Test;
 

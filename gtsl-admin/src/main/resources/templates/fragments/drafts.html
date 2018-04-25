@@ -43,6 +43,15 @@
             </span>
           </div>
           <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <span data-original-title="Sign draft" data-placement="top" data-toggle="tooltip" title="">
+              <button class="btn btn-default" type="button" data-toggle="modal"
+                      th:attr="data-target=${'#modalSign-' + stat.index}">
+                <span class="glyphicon glyphicon-check"></span>
+              </button>
+            </span>
+          </div>
+          <!--
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
             <span data-original-title="Push into production" data-placement="top" data-toggle="tooltip" title="">
               <button class="btn btn-default" type="button" data-toggle="modal"
                       th:attr="data-target=${'#modalPush-' + stat.index}">
@@ -50,6 +59,7 @@
               </button>
             </span>
           </div>
+           -->
           <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
             <button class="btn btn-primary dropdown-toggle" type="button"
                     data-toggle="dropdown">
@@ -70,12 +80,21 @@
               </li>
               <li>
                 <a data-toggle="modal"
+                   th:attr="data-target=${'#modalSign-' + stat.index}" class="a-link-custom">
+                  <span class="glyphicon glyphicon-check"></span>
+                  <span>&ensp;Sign draft </span>
+                </a>
+              </li>
+              <!--
+              <li>
+                <a data-toggle="modal"
                    th:attr="data-target=${'#modalPush-' + stat.index}"
                    class="a-link-custom">
                   <span class="glyphicon glyphicon-share"></span>
                   <span>&ensp;Push into production</span>
                 </a>
               </li>
+              -->
               <li>
                 <a class="a-link-custom" th:href="${draft.tsl.urls.export}">
                   <span class="glyphicon glyphicon-download-alt"></span>
@@ -99,7 +118,10 @@
            th:with="draft=${draft},modalName=${'modalDelete-' + stat.index}"></div>
       <div th:include="modals/modal_push_draft :: modal"
            th:with="draft=${draft},modalName=${'modalPush-' + stat.index}"></div>
-
+      <div th:include="modals/modal_sign_draft :: modal"
+           th:with="draft=${draft},modalName=${'modalSign-' + stat.index}"></div>
+      <div th:include="modals/modal_sign_message :: modal"
+           th:with="draft=${draft},modalName=${'modalSignMessage-' + stat.index}"></div>
     </div>
   </div>
 

@@ -6,7 +6,7 @@
 
   <groupId>eu.futuretrust.gtsl</groupId>
   <artifactId>gtsl</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>0.2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <description>Global Trust List Commons Library</description>

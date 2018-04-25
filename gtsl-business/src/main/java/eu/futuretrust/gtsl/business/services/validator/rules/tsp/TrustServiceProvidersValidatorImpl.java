@@ -47,6 +47,7 @@ public class TrustServiceProvidersValidatorImpl implements
   @Override
   public void validate(ValidationContext validationContext,
       TrustServiceProviderListType trustServiceProviderList) {
+
     if (trustServiceProviderList != null) {
       int i = 0;
       for (TSPType tsp : trustServiceProviderList.getValues()) {

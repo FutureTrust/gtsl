@@ -22,7 +22,6 @@ import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact.Legal;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity.Error;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 

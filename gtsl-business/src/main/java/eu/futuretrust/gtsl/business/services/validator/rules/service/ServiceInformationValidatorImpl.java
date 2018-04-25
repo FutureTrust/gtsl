@@ -26,7 +26,6 @@ import eu.futuretrust.gtsl.business.validator.ViolationConstant;
 import eu.futuretrust.gtsl.business.vo.validator.ValidationContext;
 import eu.futuretrust.gtsl.business.vo.validator.Violation;
 import eu.futuretrust.gtsl.model.data.common.InternationalNamesType;
-import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIListType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIOptionalListType;
 import eu.futuretrust.gtsl.model.data.common.NonEmptyURIType;
 import eu.futuretrust.gtsl.model.data.digitalidentity.ServiceDigitalIdentityType;
@@ -59,6 +58,7 @@ public class ServiceInformationValidatorImpl implements RulesValidator<TSPServic
   @Override
   public void validate(ValidationContext validationContext,
       TSPServiceInformationType serviceInformation) {
+
     isServiceNameContainLangEn(validationContext, serviceInformation.getServiceName());
     isServiceNameLangAllowed(validationContext, serviceInformation.getServiceName());
 

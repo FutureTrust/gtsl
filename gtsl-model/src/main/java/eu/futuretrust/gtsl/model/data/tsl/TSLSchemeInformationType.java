@@ -21,18 +21,23 @@ import eu.futuretrust.gtsl.jaxb.tsl.NextUpdateTypeJAXB;
 import eu.futuretrust.gtsl.jaxb.tsl.TSLSchemeInformationTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-import eu.futuretrust.gtsl.model.data.common.*;
+import eu.futuretrust.gtsl.model.data.common.AddressType;
+import eu.futuretrust.gtsl.model.data.common.CountryCode;
+import eu.futuretrust.gtsl.model.data.common.ExtensionsListType;
+import eu.futuretrust.gtsl.model.data.common.InternationalNamesType;
+import eu.futuretrust.gtsl.model.data.common.NonEmptyMultiLangURIListType;
+import eu.futuretrust.gtsl.model.data.common.NonEmptyURIType;
+import eu.futuretrust.gtsl.model.data.common.URIListType;
 import eu.futuretrust.gtsl.model.utils.DateUtils;
 import eu.futuretrust.gtsl.model.utils.ModelUtils;
 import eu.futuretrust.gtsl.model.utils.XmlGregorianCalendarUtils;
-import org.apache.commons.collections.CollectionUtils;
-import org.springframework.format.annotation.DateTimeFormat;
-
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.math.BigInteger;
-import java.time.LocalDateTime;
+import org.apache.commons.collections.CollectionUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * Specified in TS 119 612 v2.1.1 clause 5.3 Scheme information

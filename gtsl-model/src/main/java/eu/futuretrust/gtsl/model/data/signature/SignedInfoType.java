@@ -18,7 +18,6 @@
 package eu.futuretrust.gtsl.model.data.signature;
 
 import eu.futuretrust.gtsl.jaxb.xmldsig.SignedInfoTypeJAXB;
-
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

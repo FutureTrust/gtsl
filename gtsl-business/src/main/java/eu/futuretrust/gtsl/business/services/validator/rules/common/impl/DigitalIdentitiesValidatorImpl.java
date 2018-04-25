@@ -19,8 +19,8 @@ package eu.futuretrust.gtsl.business.services.validator.rules.common.impl;
 
 import eu.europa.esig.dss.DSSUtils;
 import eu.europa.esig.dss.x509.CertificateToken;
-import eu.futuretrust.gtsl.business.services.validator.rules.common.CertificateValidator;
 import eu.futuretrust.gtsl.business.services.validator.rules.common.DigitalIdentitiesValidator;
+import eu.futuretrust.gtsl.business.services.validator.rules.signature.CertificateValidator;
 import eu.futuretrust.gtsl.business.validator.ViolationConstant;
 import eu.futuretrust.gtsl.business.vo.validator.ValidationContext;
 import eu.futuretrust.gtsl.business.vo.validator.Violation;
@@ -32,12 +32,11 @@ import eu.futuretrust.gtsl.model.data.digitalidentity.ServiceDigitalIdentityList
 import eu.futuretrust.gtsl.model.data.digitalidentity.ServiceDigitalIdentityType;
 import eu.futuretrust.gtsl.model.data.ts.CertificateType;
 import eu.futuretrust.gtsl.model.utils.ModelUtils;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.stream.Collectors;
 import javax.security.auth.x500.X500Principal;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ArrayUtils;
@@ -46,6 +45,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.security.x509.X500Name;
 
 @Service
 public class DigitalIdentitiesValidatorImpl implements DigitalIdentitiesValidator {
@@ -118,17 +118,25 @@ public class DigitalIdentitiesValidatorImpl implements DigitalIdentitiesValidato
                 if (cert.getToken() == null) {
                     cert.setTokenFromEncoded();
                 }
-                String organization = certificateValidator.getOrganization(cert.getToken());
-                InternationalNamesType listToCheck = new InternationalNamesType(new ArrayList<>());
-                validationContext.getAttributes().getTspAttributes().getTspName().getValues()
-                        .forEach(listToCheck.getValues()::add);
-                validationContext.getAttributes().getTspAttributes().getTspTradeName().getValues()
-                        .forEach(listToCheck.getValues()::add);
-                if (!certificateValidator.isMatch(listToCheck, organization)) {
+                try
+                {
+                  String organization = getOrganization(cert.getToken());
+                  InternationalNamesType listToCheck = new InternationalNamesType(new ArrayList<>());
+                  validationContext.getAttributes().getTspAttributes().getTspName().getValues()
+                          .forEach(listToCheck.getValues()::add);
+                  validationContext.getAttributes().getTspAttributes().getTspTradeName().getValues()
+                          .forEach(listToCheck.getValues()::add);
+                  if (! isOrganizationNameMatch(listToCheck, organization))
+                  {
                     validationContext.addViolation(new Violation(
                             ViolationConstant.IS_SERVICE_DIGITAL_IDENTITY_X509CERTIFICATE_ORGANIZATION_MATCH,
                             listToCheck.getValues().stream().map(MultiLangNormStringType::getValue)
                                     .collect(Collectors.joining(", "))));
+                  }
+                } catch (IOException e)
+                {
+                  validationContext.addViolation(new Violation(
+                          ViolationConstant.IS_SERVICE_DIGITAL_IDENTITY_X509CERTIFICATE_VALID));
                 }
             }
         }
@@ -254,5 +262,16 @@ public class DigitalIdentitiesValidatorImpl implements DigitalIdentitiesValidato
             return false;
         }
         return true;
+    }
+
+    private String getOrganization (final CertificateToken certificateToken) throws IOException
+    {
+      X500Name name = new X500Name(certificateToken.getSubjectX500Principal().getName());
+      return name.getOrganization();
+    }
+
+    private boolean isOrganizationNameMatch(final InternationalNamesType names, final String orgName) {
+        return (null != orgName && orgName.length() > 0) ? names.getValues().stream()
+                .anyMatch(n -> n.getValue().equalsIgnoreCase(orgName)) : false;
     }
 }

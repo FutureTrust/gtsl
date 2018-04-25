@@ -17,10 +17,10 @@
 
 package eu.futuretrust.gtsl.business.utils.validator;
 
+import eu.futuretrust.gtsl.business.dto.report.ConstraintViolationDTO;
 import eu.futuretrust.gtsl.business.services.message.MessageService;
 import eu.futuretrust.gtsl.business.validator.ViolationConstant;
 import eu.futuretrust.gtsl.business.vo.validator.Violation;
-import eu.futuretrust.gtsl.business.dto.report.ConstraintViolationDTO;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
 import java.util.ArrayList;

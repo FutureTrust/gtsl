@@ -17,16 +17,14 @@
 
 package eu.futuretrust.gtsl.model.data.digitalidentity;
 
+import eu.futuretrust.gtsl.jaxb.tsl.DigitalIdentityListTypeJAXB;
 import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
-import eu.futuretrust.gtsl.jaxb.tsl.DigitalIdentityListTypeJAXB;
 import eu.futuretrust.gtsl.model.data.abstracts.ListModel;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.constraints.NotEmpty;
-
 import org.apache.commons.collections.CollectionUtils;
 
 /**

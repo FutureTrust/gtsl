@@ -18,7 +18,6 @@
 package eu.futuretrust.gtsl.business.services.responder;
 
 import eu.futuretrust.gtsl.model.data.ts.TSPServiceType;
-import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.util.Optional;
 

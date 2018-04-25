@@ -22,12 +22,11 @@ import eu.futuretrust.gtsl.model.constraints.payload.Impact;
 import eu.futuretrust.gtsl.model.constraints.payload.Severity;
 import eu.futuretrust.gtsl.model.data.abstracts.ListModel;
 import eu.futuretrust.gtsl.model.data.ts.TSPServiceType;
-import org.apache.commons.collections.CollectionUtils;
-
-import javax.validation.constraints.NotEmpty;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.constraints.NotEmpty;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Specified in TS 119 612 v2.1.1 clause 5.4.6 TSP Services (list of services)
