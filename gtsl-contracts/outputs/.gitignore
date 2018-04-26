@@ -1,0 +1,5 @@
+# All
+*
+
+# Except this file
+!.gitignore

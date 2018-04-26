@@ -11,14 +11,17 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
+# Root directory
+ROOT_DIR=../..
+
 if [ "$1" = "admin" ]
 then
   # Admin module
-  APP=../gtsl-admin
+  APP="$ROOT_DIR"/gtsl-admin
 elif [ "$1" = "web" ]
 then
   # Web module
-  APP=../gtsl-web
+  APP="$ROOT_DIR"/gtsl-web
 else
   usage
   exit 1
@@ -26,6 +29,7 @@ fi
 
 # absolute path of the current script
 DIR="$( cd "$( dirname "$0" )" && pwd )"
+
 # absolute path of $APP
 APP="$(cd "$DIR" && cd "$APP" && pwd)"
 

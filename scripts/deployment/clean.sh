@@ -1,6 +1,10 @@
 #!/bin/bash
 
-SOLIDITY_PATH=../solidity
+# Root directory
+ROOT_DIR=../..
+
+# Solidity workspace
+SOLIDITY_PATH="$ROOT_DIR"/solidity
 
 # absolute path of the current script
 DIR="$( cd "$( dirname "$0" )" && pwd )"

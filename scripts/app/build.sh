@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Project
-PROJECT_PATH=../
+PROJECT_PATH=../..
 
 # absolute path of the current script
 DIR="$( cd "$( dirname "$0" )" && pwd )"

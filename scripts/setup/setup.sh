@@ -3,21 +3,25 @@
 # Docker Scripts
 DOCKER_SCRIPTS_PATH=./docker_scripts
 
+# Root directory
+ROOT_DIR=../..
+
 # Docker
-DOCKER_PATH=../docker
+DOCKER_PATH="$ROOT_DIR"/docker
 
 # Properties
-PROPERTIES_PATH=../properties
+PROPERTIES_PATH="$ROOT_DIR"/properties
 
 # Templates
-TEMPLATES_PATH=../templates
+TEMPLATES_PATH="$ROOT_DIR"/templates
 
 # Keystore
-KEYSTORE_PATH=../keystore
+KEYSTORE_PATH="$ROOT_DIR"/keystore
 
 # Resources
-ADMIN_RESOURCES=../gtsl-admin/src/main/resources
-WEB_RESOURCES=../gtsl-web/src/main/resources
+ADMIN_RESOURCES="$ROOT_DIR"/gtsl-admin/src/main/resources
+WEB_RESOURCES="$ROOT_DIR"/gtsl-web/src/main/resources
+CONTRACTS_RESOURCES="$ROOT_DIR"/gtsl-contracts/src/main/resources
 
 # Configuration file
 CFG_CONTRACT=contract.properties
@@ -209,26 +213,13 @@ cp -a "${PROPERTIES_PATH}" "${ADMIN_RESOURCES}"
 cp -a "${KEYSTORE_PATH}" "${WEB_RESOURCES}"
 cp -a "${PROPERTIES_PATH}" "${WEB_RESOURCES}"
 
+# Copy outputs into gtsl-contracts resources
+cp -a "${KEYSTORE_PATH}" "${CONTRACTS_RESOURCES}"
+cp "${PROPERTIES_PATH}"/contract.properties "${CONTRACTS_RESOURCES}"/contract.properties
+
 # Clean password
 rm -rf "${DOCKER_PATH}"/ethereum/src/password
 
 # Clean keystore
 rm -rf "${DOCKER_PATH}"/ethereum/data/keystore
-
-
-
-
-#echo ""
-#echo "========================================================================"
-#echo "=========================== Copy/Paste files ==========================="
-#echo "========================================================================"
-#echo ""
-
-#echo "WARN: Please copy/paste the keystore and the configuration file from the outputs folder into the GTSL project as described in the documentation"
-
-#echo ""
-#echo ""
-#echo ""
-#echo "--------------------------------- END --------------------------------"
-
 
