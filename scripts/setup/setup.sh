@@ -84,6 +84,7 @@ fi
 
 # Manage keystore
 rm -rf "${DOCKER_PATH}"/ethereum/data/keystore
+mkdir -p "${DOCKER_PATH}"/ethereum/data/keystore
 cp -a "${KEYSTORE_PATH}" "${DOCKER_PATH}"/ethereum/data/keystore
 
 # Manage password
