@@ -38,11 +38,9 @@
     <java.version>1.8</java.version>
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.25</slf4j.version>
-    <logback.version>1.2.3</logback.version>
     <spring-boot.version>1.5.8.RELEASE</spring-boot.version>
     <spring-oxm.version>4.3.12.RELEASE</spring-oxm.version>
     <spring-context.version>4.3.12.RELEASE</spring-context.version>
-    <spring-web.version>4.3.12.RELEASE</spring-web.version>
     <spring-beans.version>4.3.12.RELEASE</spring-beans.version>
     <spring-data.version>1.10.8.RELEASE</spring-data.version>
     <java-ipfs-api.version>v1.2.0</java-ipfs-api.version>
@@ -76,14 +74,6 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
-    <!--
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>${logback.version}</version>
-      <scope>test</scope>
-    </dependency>
-    -->
 
     <!-- Unit Tests dependencies -->
     <dependency>

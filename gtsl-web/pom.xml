@@ -146,6 +146,36 @@
             <nonFilteredFileExtension>pem</nonFilteredFileExtension>
           </nonFilteredFileExtensions>
         </configuration>
+        <executions>
+          <execution>
+            <id>copy-properties</id>
+            <phase>process-resources</phase>
+            <goals><goal>copy-resources</goal></goals>
+            <configuration>
+              <overwrite>true</overwrite>
+              <outputDirectory>${project.build.directory}/classes/properties/</outputDirectory >
+              <resources>
+                <resource>
+                  <directory>../properties</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-keystore</id>
+            <phase>process-resources</phase>
+            <goals><goal>copy-resources</goal></goals>
+            <configuration>
+              <overwrite>true</overwrite>
+              <outputDirectory>${project.build.directory}/classes/keystore/</outputDirectory >
+              <resources>
+                <resource>
+                  <directory>../keystore</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

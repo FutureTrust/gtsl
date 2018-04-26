@@ -20,13 +20,6 @@
       <version>${project.version}</version>
     </dependency>
 
-    <!-- Ethereum dependencies -->
-    <dependency>
-      <groupId>org.web3j</groupId>
-      <artifactId>core</artifactId>
-      <version>${web3j.version}</version>
-    </dependency>
-
     <!-- Commons dependencies -->
     <dependency>
       <groupId>commons-io</groupId>
