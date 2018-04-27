@@ -164,18 +164,22 @@ You are done.
 
 ## Signature configuration
 
-To be able to sign a Trusted List, you first have to make sure that you have configured the properties files: signature.properties and lotl.properties.
+To be able to sign a Trusted List, you first have to make sure that 
+you have configured the properties files: 
+**signature.properties** and **lotl.properties**.
 
-In signature.properties:
+### signature.properties:
 
-digestAlgorithm: the digest algorithm to be used in the signing process (recommended: SHA-256)
-nexuPort: port in use by the Nexu API
-nexuScheme: protocol scheme used by Nexu (http or https)
-In lotl.properties:
+- digestAlgorithm: the digest algorithm to be used in the signing process (recommended: SHA-256)
+- nexuPort: port in use by the Nexu API
+- nexuScheme: protocol scheme used by Nexu (http or https)
 
-keystorePath: absolute path to the keystore to be used as the List of the Lists keystore (make sure that you added your signing certificate in this keystore)
-keystorePassword: password of the keystore
-xmlUrl: URL pointing to the List of the Lists (should be https://ec.europa.eu/information_society/policy/esignature/trusted-list/tl-mp.xml)
-cacheValidityWindow: validity window for the LoTL cache, after which the cache must be renewed
-fileCachePath (optional) : local file used as a cache for the LoTL
-Note: Your certificate must contain the following extensions: SKI extension, Non repudiation.
+### lotl.properties:
+
+- keystorePath: absolute path to the keystore to be used as the List of the Lists keystore (make sure that you added your signing certificate in this keystore)
+- keystorePassword: password of the keystore
+- xmlUrl: URL pointing to the List of the Lists (should be https://ec.europa.eu/information_society/policy/esignature/trusted-list/tl-mp.xml)
+- cacheValidityWindow: validity window for the LoTL cache, after which the cache must be renewed
+- fileCachePath (optional) : local file used as a cache for the LoTL
+
+**Note**: Your certificate must contain the following extensions: SKI extension, Non repudiation.
