@@ -1,4 +1,4 @@
-package eu.futuretrust.gtsl.web.utils;
+package eu.futuretrust.gtsl.admin.utils;
 
 import eu.europa.esig.dss.x509.CertificateToken;
 import java.io.ByteArrayInputStream;

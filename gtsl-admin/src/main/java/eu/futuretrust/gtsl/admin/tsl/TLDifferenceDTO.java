@@ -1,4 +1,4 @@
-package eu.futuretrust.gtsl.web.dto.tsl;
+package eu.futuretrust.gtsl.admin.tsl;
 
 public class TLDifferenceDTO {
 

@@ -11,7 +11,7 @@
  * SANS GARANTIES OU CONDITIONS QUELLES QU’ELLES SOIENT, expresses ou implicites.
  * Consultez la Licence pour les autorisations et les restrictions linguistiques spécifiques relevant de la Licence.
  */
-package eu.futuretrust.gtsl.web.nexu;
+package eu.futuretrust.gtsl.admin.nexu;
 
 import java.util.List;
 

@@ -45,10 +45,10 @@ import eu.futuretrust.gtsl.business.vo.draft.DraftVO;
 import eu.futuretrust.gtsl.jaxb.tsl.TrustStatusListTypeJAXB;
 import eu.futuretrust.gtsl.ledger.exceptions.UnauthorizedException;
 import eu.futuretrust.gtsl.model.data.tsl.TrustStatusListType;
-import eu.futuretrust.gtsl.web.nexu.SignatureInformation;
-import eu.futuretrust.gtsl.web.nexu.SignatureRequest;
-import eu.futuretrust.gtsl.web.nexu.TokenId;
-import eu.futuretrust.gtsl.web.utils.SignatureUtils;
+import eu.futuretrust.gtsl.admin.nexu.SignatureInformation;
+import eu.futuretrust.gtsl.admin.nexu.SignatureRequest;
+import eu.futuretrust.gtsl.admin.nexu.TokenId;
+import eu.futuretrust.gtsl.admin.utils.SignatureUtils;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -134,7 +134,7 @@ public class XAdESSignatureServiceImpl implements XAdESSignatureService {
       final DigestAlgorithm digestAlgorithm) {
 
     SignatureRequest signatureRequest = new SignatureRequest();
-    eu.futuretrust.gtsl.web.nexu.ToBeSigned tbs = new eu.futuretrust.gtsl.web.nexu.ToBeSigned(
+    eu.futuretrust.gtsl.admin.nexu.ToBeSigned tbs = new eu.futuretrust.gtsl.admin.nexu.ToBeSigned(
         toBeSigned);
     signatureRequest.setToBeSigned(tbs);
     signatureRequest.setKeyId(keyId);

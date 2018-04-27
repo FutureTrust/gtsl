@@ -58,7 +58,7 @@ public class Deployment {
         }
       }
     } else {
-      System.out.println("usage: java -jar gtsl-ethereum.jar <quorum_in_percent> <tsl_identifier>");
+      System.out.println("usage: java -jar <jar-file> <quorum_in_percent> <tsl_identifier>");
     }
   }
 

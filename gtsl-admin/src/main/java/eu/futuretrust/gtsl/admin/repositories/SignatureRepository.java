@@ -1,4 +1,4 @@
-package eu.futuretrust.gtsl.web.repositories;
+package eu.futuretrust.gtsl.admin.repositories;
 
 import eu.futuretrust.gtsl.persistence.entities.SignatureEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;

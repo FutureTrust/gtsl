@@ -1,4 +1,4 @@
-package eu.futuretrust.gtsl.web.dto.tsl;
+package eu.futuretrust.gtsl.admin.tsl;
 
 import eu.futuretrust.gtsl.persistence.entities.SignatureEntity;
 import eu.futuretrust.gtsl.persistence.enums.SignatureStatus;

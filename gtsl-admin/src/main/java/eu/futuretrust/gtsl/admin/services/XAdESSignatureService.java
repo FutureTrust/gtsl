@@ -18,7 +18,7 @@
 package eu.futuretrust.gtsl.admin.services;
 
 import eu.futuretrust.gtsl.business.dto.report.ReportDTO;
-import eu.futuretrust.gtsl.web.nexu.SignatureInformation;
+import eu.futuretrust.gtsl.admin.nexu.SignatureInformation;
 import java.util.Map;
 
 public interface XAdESSignatureService {

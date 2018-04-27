@@ -1,7 +1,6 @@
-package eu.futuretrust.gtsl.web.nexu;
+package eu.futuretrust.gtsl.admin.nexu;
 
 import eu.europa.esig.dss.DigestAlgorithm;
-import eu.futuretrust.gtsl.web.nexu.ToBeSigned;
 
 public class SignatureRequest extends NexuRequest {
 

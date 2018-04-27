@@ -23,7 +23,7 @@ import eu.futuretrust.gtsl.business.dto.report.ReportDTO;
 import eu.futuretrust.gtsl.business.properties.SignatureProperties;
 import eu.futuretrust.gtsl.business.services.api.ApiService;
 import eu.futuretrust.gtsl.ledger.exceptions.UnauthorizedException;
-import eu.futuretrust.gtsl.web.nexu.SignatureInformation;
+import eu.futuretrust.gtsl.admin.nexu.SignatureInformation;
 import java.security.InvalidParameterException;
 import java.security.cert.CertificateException;
 import java.util.HashMap;

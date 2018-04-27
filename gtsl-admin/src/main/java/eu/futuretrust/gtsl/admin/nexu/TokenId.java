@@ -12,7 +12,7 @@
  * Consultez la Licence pour les autorisations et les restrictions linguistiques spécifiques relevant de la Licence.
  */
 
-package eu.futuretrust.gtsl.web.nexu;
+package eu.futuretrust.gtsl.admin.nexu;
 
 import java.util.UUID;
 

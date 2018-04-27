@@ -1,4 +1,4 @@
-package eu.futuretrust.gtsl.web.nexu;
+package eu.futuretrust.gtsl.admin.nexu;
 
 public class TLSignatureInformation {
 

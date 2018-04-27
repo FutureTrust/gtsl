@@ -1,8 +1,8 @@
-package eu.futuretrust.gtsl.web.nexu;
+package eu.futuretrust.gtsl.admin.nexu;
 
 import eu.europa.esig.dss.SignatureAlgorithm;
 import eu.europa.esig.dss.x509.CertificateToken;
-import eu.futuretrust.gtsl.web.utils.SignatureUtils;
+import eu.futuretrust.gtsl.admin.utils.SignatureUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
