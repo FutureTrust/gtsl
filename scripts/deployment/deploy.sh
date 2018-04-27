@@ -79,7 +79,8 @@ cd "${CONTRACTS_PATH}"
 mvn clean package -Dmaven.test.skip=true
 
 # Execute
-JAR="$( find "${CONTRACTS_PATH}"/target -name "*.jar" | head -n 1 )"
+
+JAR="$( find "${CONTRACTS_PATH}"/target -name "gtsl-*-jar-with-dependencies.jar" | head -n 1 )"
 RUN_CMD="java -jar ${JAR} $1 $2"
 echo ${RUN_CMD}
 ${RUN_CMD}
