@@ -1,0 +1,6 @@
+<div th:fragment="date(label, field)">
+  <label th:if="${#bools.isFalse(hideTitle)}" th:text="${label + ' (dd/MM/yyyy HH:mm)'}"></label>
+  <input class="form-control" type="text" placeholder="dd/MM/yyyy HH:mm"
+         th:field="*{__${field}__}" th:readonly="${readonly}" />
+  <hr th:if="${#bools.isFalse(hideTitle)}"/>
+</div>

@@ -1,0 +1,72 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="historyInformation"
+     th:if="${history != null}">
+
+  <!-- Type Identifier -->
+  <p th:if="${history.serviceTypeIdentifier != null && history.serviceTypeIdentifier.value != null}">
+    <strong>Type identifier</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${history.serviceTypeIdentifier.value}"
+       th:text="${history.serviceTypeIdentifier.value}"></a>
+  </p>
+
+  <!-- Service Name -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${history.serviceName != null && history.serviceName.values != null}">
+    <p class="sub-title">
+      <strong>Service name</strong>
+    </p>
+    <div th:if="${!history.serviceName.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="serviceName, stat : ${history.serviceName.values}"
+           th:onclick="'activeTab(' + ${#lists.size(history.serviceName.values)} + ',' + ${stat.index} + ', \'serviceNameLang\', \'serviceNameValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'serviceNameLang' + ${stat.index}"
+                                  th:text="${serviceName.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'serviceNameValue' + ${stat.index}"
+           th:each="serviceName, stat : ${history.serviceName.values}">
+        <span th:text="${serviceName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Previous status -->
+  <p class="margin-top-1em"
+     th:if="${history.serviceStatus != null && history.serviceStatus.value != null}">
+    <strong>Previous status</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${history.serviceStatus.value}"
+       th:text="${history.serviceStatus.value}"></a>
+  </p>
+
+  <!-- Previous Starting date & time -->
+  <p class="margin-top-1em"
+     th:if="${history.statusStartingTime != null}">
+    <strong>Previous starting date & time</strong>
+    <br>
+    <span th:text="${history.statusStartingTime}"></span>
+  </p>
+
+</div>

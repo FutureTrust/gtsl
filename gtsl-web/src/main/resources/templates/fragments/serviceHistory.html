@@ -1,0 +1,28 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="serviceHistory"
+    th:if="${history.values != null && !history.values.isEmpty()}">
+  <div
+      th:each="history, stat : ${history.values}">
+    <a class="a-link-custom"
+       th:href="@{'/tl/' + ${territoryCode} + '/' + ${indexTsp} + '/' + ${indexService} + '/' + ${stat.index}}">
+      <span th:text="${history.statusStartingTime}"></span> : <span
+        th:text="${#strings.replace(history.serviceStatus,'http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/','')}"></span>
+    </a>
+  </div>
+</div>

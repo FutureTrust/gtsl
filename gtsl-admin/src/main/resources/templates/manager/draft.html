@@ -1,0 +1,225 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head(title='GTSL - Manager')">&nbsp;</div>
+
+<body>
+
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div th:replace="fragments/menu :: menu">&nbsp;
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-12">
+        <div class="row">
+          <div>
+            <ul class="breadcrumb">
+              <li><a class="a-link-custom" href="https://ec.europa.eu/commission/index_en"
+                     target="_blank">European Commission</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/CEF+Digital+Home"
+                     target="_blank">CEF Digital</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eSignature"
+                     target="_blank">eSignature</a>
+              </li>
+              <li>
+                <a class="a-link-custom" href="">Trusted List Manager</a>
+              </li>
+              <li>
+                <a class="a-link-custom" href="/drafts">Drafts</a>
+              </li>
+              <li class="active">Edition</li>
+            </ul>
+          </div>
+
+          <div class="content">
+
+            <h1 class="title">
+              Draft Edition
+            </h1>
+
+            <div th:if="${tsl != null}">
+
+              <form th:action="${action}" th:object="${tsl}" method="POST">
+
+                <!-- Scheme Information -->
+                <h1 class="simple-toggle">
+                  <a data-toggle="collapse" href="#schemeInformation"
+                     class="panel-heading a-link-custom collapsed">
+                    <span>Scheme information</span>
+                    <i class="fa fa-angle-down fa-lg hack-icon"></i>
+                  </a>
+                </h1>
+                <div id="schemeInformation" class="collapse panel-collapse">
+                  <div class="panel-group accordion" id="parentDraft">
+
+                    <!-- Trusted list information -->
+                    <div class="panel panel-default">
+                      <div id="headingInformation">
+                        <h2 class="title">
+                          <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+                             data-parent="#parentDraft" href="#collapseInformation">
+                            <span>Trusted list information</span>
+                            <i class="fa fa-angle-down fa-lg hack-icon"></i>
+                          </a>
+                        </h2>
+                      </div>
+                      <div id="collapseInformation" class="panel-collapse collapse"
+                           aria-labelledby="headingInformation">
+                        <div class="panel-body">
+                          <!-- ID -->
+                          <th:block
+                              th:insert="fragments/edition_input :: input ('TSL identifier', 'text', 'id')">
+                            &nbsp;
+                          </th:block>
+                          <!-- TSL Tag -->
+                          <th:block
+                              th:insert="fragments/edition_input :: input ('TSL tag', 'text', 'tslTag')">
+                            &nbsp;
+                          </th:block>
+                          <div
+                              th:replace="fragments/edition_tslInformation :: tslInformation(${tsl.schemeInformation})"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Pointers to other TSL -->
+                    <div class="panel panel-default">
+                      <div id="headingPointers">
+                        <h2 class="title">
+                          <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+                             data-parent="#parentDraft" href="#collapsePointers">
+                            <span>Pointers to other TSL</span>
+                            <i class="fa fa-angle-down fa-lg hack-icon"></i>
+                          </a>
+                        </h2>
+                      </div>
+                      <div id="collapsePointers" class="panel-collapse collapse"
+                           aria-labelledby="headingPointers">
+                        <div class="panel-body">
+                          <th:block
+                              th:insert="fragments/edition_pointers :: pointers ('pointersToOtherTSL', 'Pointer to other TSL', 'schemeInformation.pointersToOtherTSL.values')"
+                              th:with="mimeTypes=${mimeTypes}">
+                            &nbsp;
+                          </th:block>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- Trust service providers -->
+                <h1 class="simple-toggle">
+                  <a data-toggle="collapse" href="#providers"
+                     class="panel-heading a-link-custom collapsed">
+                    <span>Trust service providers</span>
+                    <i class="fa fa-angle-down fa-lg hack-icon"></i>
+                  </a>
+                </h1>
+                <div id="providers" class="collapse panel-collapse">
+                  <div class="panel-group accordion" id="parentDraft">
+                    <th:block
+                        th:insert="fragments/edition_providers :: providers ('trustServiceProviderList', 'Trust service provider', 'trustServiceProviderList.values')">
+                      &nbsp;
+                    </th:block>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <div class="btn-float-group clearfix">
+                    <button type="submit"
+                            class="btn btn-primary btn-lg">
+                      Save the Trusted List
+                    </button>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div th:include="modals/modal_load :: modal ('modalLoading')"></div>
+
+<script th:inline="javascript">
+  let country = [[${country}]];
+  let mimeTypes = [[${mimeTypes}]];
+</script>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<div th:replace="fragments/assets :: assets">&nbsp;</div>
+
+<script th:inline="javascript">
+  $(document).ready(function () {
+    multiLang.add('Operator name', 'operator',
+        'schemeInformation.schemeOperatorName.values',
+        'schemeInformation.schemeOperatorName.values');
+    multiLang.add('Electronic address', 'electronicAddress',
+        'schemeInformation.schemeOperatorAddress.electronicAddress.values',
+        'schemeInformation.schemeOperatorAddress.electronicAddress.values');
+    multiLang.add('Scheme name', 'schemeName',
+        'schemeInformation.schemeName.values',
+        'schemeInformation.schemeName.values');
+    multiLang.add('Information URI', 'schemeInformationURI',
+        'schemeInformation.schemeInformationURI.values',
+        'schemeInformation.schemeInformationURI.values');
+    multiLang.add('Community rules', 'schemeTypeCommunityRules',
+        'schemeInformation.schemeTypeCommunityRules.values',
+        'schemeInformation.schemeTypeCommunityRules.values');
+
+    address.add('Postal address', 'postalAddress',
+        'schemeInformation.schemeOperatorAddress.postalAddresses.values',
+        'schemeInformation.schemeOperatorAddress.postalAddresses.values');
+
+    list.add('Distribution points', 'distributionPoints',
+        'schemeInformation.distributionPoints.values',
+        'schemeInformation.distributionPoints.values');
+
+    pointers.add('Pointer to other TSL', 'pointersToOtherTSL',
+        'schemeInformation.pointersToOtherTSL.values',
+        'schemeInformation.pointersToOtherTSL.values');
+
+    policyOrLegalNotice.add('policyOrLegalNotice',
+          'schemeInformation.policyOrLegalNotice',
+          'schemeInformation.policyOrLegalNotice');
+
+    providers.add('Trust service provider', 'trustServiceProviderList',
+            'trustServiceProviderList.values',
+            'trustServiceProviderList.values');
+
+  });
+</script>
+
+</body>
+</html>

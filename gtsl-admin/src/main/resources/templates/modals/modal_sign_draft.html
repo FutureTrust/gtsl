@@ -1,0 +1,72 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<!-- Modal for TSL signature -->
+<div th:fragment="modal">
+  <div class="modal fade" th:id="${modalName}" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content epm-shadow-1">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <!-- FLAG HEADER -->
+          <div class="flag-header">
+            <div class="icon">
+              <span th:include="fragments/flag :: flag"
+                    th:with="territoryCode=${draft.tsl.territoryCode}"></span>
+            </div>
+            <div class="content">
+              <h1 class="title">Sign a TSL draft</h1>
+              <div>Territory/organisation: <span th:text="${draft.tsl.territoryCode}"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>
+            You are about to sign the TSL draft for territory/organisation <strong
+                  th:text="${draft.tsl.territoryCode}"></strong>, with ID: <span
+                  th:text="${draft.dbId}"></span>.
+          </p>
+          <p>If the signing process is executed successfully, the draft will be automatically
+            published.</p>
+          <p>To continue, click on the "Sign" button. This will launch the
+            signing component, enabling you to sign the TSL draft with your smart card.</p>
+
+          <div>
+            <input type="hidden" name="draftId" th:value="${draft.dbId}">
+            <div class="btn-float-group clearfix">
+              <button type="submit"
+                      class="btn btn-primary btn-lg pull-right"
+                      th:onclick="'javascript:sign(\'' + ${draft.dbId} + '\')'">
+                Sign the draft
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="pull-right">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

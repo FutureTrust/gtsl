@@ -1,0 +1,221 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="digitalIdentity"
+     th:if="${digitalIdentity != null && digitalIdentity.values != null && !digitalIdentity.values.isEmpty()}">
+  <div
+      th:each="identity, stat : ${digitalIdentity.values}">
+    <!-- Subject name -->
+    <p th:if="${identity.subjectName != null && !#strings.isEmpty(identity.subjectName)}">
+      <strong>Subject name</strong>
+      <br>
+      <span th:text="${identity.subjectName}"></span>
+    </p>
+
+    <!-- X509SKI -->
+    <p th:if="${identity.x509ski != null && !#strings.isEmpty(identity.x509ski)}">
+      <strong>X509SKI</strong>
+      <br>
+      <span th:text="${identity.getX509skiAsString()}"></span>
+    </p>
+
+    <!-- Certificate list -->
+    <div
+        th:if="${identity.certificateList != null && !identity.certificateList.isEmpty()}">
+      <div
+          th:each="cert, stat : ${identity.certificateList}">
+        <div>
+          <label>Certificate</label>
+        </div>
+        <div class="m-left-20">
+          <!-- Certificate serial -->
+          <p th:if="${cert.certSerial != null && !#strings.isEmpty(cert.certSerial)}">
+            <strong>Certificate serial</strong>
+            <br>
+            <span th:text="${cert.certSerial}"></span>
+          </p>
+
+          <!-- Signature algorithm -->
+          <p th:if="${cert.certDigestAlgo != null && !#strings.isEmpty(cert.certDigestAlgo)}">
+            <strong>Signature algorithm</strong>
+            <br>
+            <span th:text="${cert.certDigestAlgo}"></span>
+          </p>
+
+          <!-- Issuer -->
+          <p th:if="${cert.certIssuer != null && !#strings.isEmpty(cert.certIssuer)}">
+            <strong>Issuer</strong>
+            <br>
+            <span th:text="${cert.certIssuer}"></span>
+          </p>
+
+          <!-- Subject -->
+          <p th:if="${cert.certSubject != null && !#strings.isEmpty(cert.certSubject)}">
+            <strong>Subject</strong>
+            <br>
+            <span th:text="${cert.certSubject}"></span>
+          </p>
+
+          <!-- Validity -->
+          <p th:if="${cert.certNotBefore != null && cert.certAfter != null}">
+            <strong>Validity</strong>
+            <br>
+            <span th:text="${cert.certNotBefore}"></span> - <span
+              th:text="${cert.certAfter}"></span>
+          </p>
+
+          <!-- x509SKI -->
+          <p th:if="${cert.certSkiB64 != null && !#strings.isEmpty(cert.certSkiB64)}">
+            <strong>X509SKI</strong>
+            <br>
+            <span th:text="${cert.certSkiB64}"></span>
+          </p>
+
+          <!-- Key usage -->
+          <p th:if="${cert.keyUsageList != null && !cert.keyUsageList.isEmpty()}">
+            <strong>Key usage</strong>
+            <br/>
+            <span th:each="keyUsage : ${cert.keyUsageList}" th:text="${keyUsage}"
+                  style="display: block"></span>
+          </p>
+        </div>
+
+        <!-- Modal Base64 -->
+        <button type="button" class="btn btn-action"
+                data-toggle="modal"
+                th:attr="data-target=${'#modalBase64-' + stat.index}">
+          Base 64-encoded
+        </button>
+        <div class="modal fade" th:id="${'modalBase64-' + stat.index}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content epm-shadow-1">
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- FLAG HEADER -->
+                <div class="flag-header">
+                  <div class="icon">
+                    <span th:include="fragments/flag :: flag"
+                          th:with="territoryCode=${territoryCode},alternative=${country}"></span>
+                  </div>
+                  <div class="content">
+                    <h1 class="title">Base 64-encoded</h1>
+                    <p th:text="${cert.certSubject}"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <p class="wrap-text" th:text="${cert.certB64}"></p>
+              </div>
+              <div class="modal-footer">
+                <div class="pull-right">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Modal CertInfo -->
+        <button type="button" class="btn btn-action"
+                data-toggle="modal"
+                th:attr="data-target=${'#modalCertInfo-' + stat.index}">
+          Certificate information
+        </button>
+        <div class="modal fade" th:id="${'modalCertInfo-' + stat.index}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content epm-shadow-1">
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <!-- FLAG HEADER -->
+                <div class="flag-header">
+                  <div class="icon">
+                    <span th:include="fragments/flag :: flag"
+                          th:with="territoryCode=${territoryCode},alternative=${country}"></span>
+                  </div>
+                  <div class="content">
+                    <h1 class="title">Certificate information</h1>
+                    <p th:text="${cert.certSubject}"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <pre style="word-wrap: break-word;" th:text="${cert.certificateInfo}"></pre>
+              </div>
+              <div class="modal-footer">
+                <div class="pull-right">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Modal ASN1 -->
+        <button type="button" class="btn btn-action"
+                data-toggle="modal"
+                th:attr="data-target=${'#modalASN1-' + stat.index}">
+          ASN1
+        </button>
+        <div class="modal fade" th:id="${'modalASN1-' + stat.index}" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content epm-shadow-1">
+              <div class="modal-header">
+                <!-- FLAG HEADER -->
+                <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="flag-header">
+                  <div class="icon">
+                    <span th:include="fragments/flag :: flag"
+                          th:with="territoryCode=${territoryCode},alternative=${country}"></span>
+                  </div>
+                  <div class="content">
+                    <h1 class="title">ASN1</h1>
+                    <p th:text="${cert.certSubject}"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <pre th:text="${cert.asASN1Tree()}"></pre>
+              </div>
+              <div class="modal-footer">
+                <div class="pull-right">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

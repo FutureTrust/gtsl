@@ -1,0 +1,129 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/head :: head">&nbsp;</div>
+
+<body>
+
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div th:replace="fragments/menu :: menu(tabTitle='Search trust services', tabRef='search')">&nbsp;
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <div class="col-sm-12">
+        <div class="row">
+
+          <!-- Breadcrumb -->
+          <div>
+            <ul class="breadcrumb">
+              <li><a class="a-link-custom" href="https://ec.europa.eu/commission/index_en"
+                     target="_blank">European Commission</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/CEF+Digital+Home"
+                     target="_blank">CEF Digital</a>
+              </li>
+              <li><a class="a-link-custom"
+                     href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eSignature"
+                     target="_blank">eSignature</a>
+              </li>
+              <li>
+                <a class="a-link-custom" href="">Trusted List Browser</a>
+              </li>
+              <li>
+                <a class="a-link-custom"
+                   th:href="@{'/tl/' + ${territoryCode}}"
+                   th:text="${country}"></a>
+              </li>
+              <li class="active"><span>Pointers to other TSL</span></li>
+            </ul>
+          </div>
+
+          <!-- Pointer header -->
+          <div class="flag-header">
+            <div class="icon">
+              <span th:include="fragments/flag :: flag"
+                    th:with="territoryCode=${territoryCode},alternative=${country}"></span>
+            </div>
+            <div class="content">
+              <h1 class="title">
+                <span th:text="${pointer.schemeTerritory.value}"></span> (<span
+                  th:text="${pointer.mimeType}"></span>)
+              </h1>
+            </div>
+          </div>
+
+          <!-- Digital identities -->
+          <div
+              th:if="${pointer.serviceDigitalIdentities != null && pointer.serviceDigitalIdentities.values != null && !pointer.serviceDigitalIdentities.values.isEmpty()}">
+            <h2 class="simple-toggle">
+              <a data-toggle="collapse" href="#identities"
+                 class="panel-heading">
+                <span>Digital identities</span>
+                <i class="fa fa-angle-down fa-lg hack-icon"></i>
+              </a>
+            </h2>
+            <div id="identities" class="collapse in panel-collapse">
+              <div class="panel-group" id="accordion2">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div th:include="fragments/pointersIdentities :: pointersIdentities"
+                         th:with="digitalIdentities=${pointer.serviceDigitalIdentities},territoryCode=${territoryCode},country=${country}"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="separator"/>
+          </div>
+
+
+          <!-- Detail -->
+          <div>
+            <h2 class="simple-toggle">
+              <a data-toggle="collapse" href="#detail"
+                 class="panel-heading collapsed">
+                <span>Detailed information</span>
+                <i class="fa fa-angle-down fa-lg hack-icon"></i>
+              </a>
+            </h2>
+            <div id="detail" class="collapse panel-collapse">
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                    <div th:include="fragments/pointerInformation :: pointerInformation"
+                         th:with="pointer=${pointer}"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:replace="fragments/footer :: footer">&nbsp;</div>
+<div th:replace="fragments/assets :: assets">&nbsp;</div>
+
+</body>
+</html>

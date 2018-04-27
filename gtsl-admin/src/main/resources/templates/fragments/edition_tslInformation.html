@@ -1,0 +1,96 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="tslInformation(schemeInformation)">
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Version identifier', 'number', 'schemeInformation.tslVersionIdentifier')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Territory', 'text', 'schemeInformation.schemeTerritory.value')"
+      th:with="readonly=true">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Sequence number', 'number', 'schemeInformation.tslSequenceNumber')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('TSL type', 'text', 'schemeInformation.tslType.value')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Status determination approach', 'text', 'schemeInformation.statusDeterminationApproach.value')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Historical period', 'number', 'schemeInformation.historicalInformationPeriod')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_date :: date ('Next update', 'schemeInformation.nextUpdate')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_list :: list ('distributionPoints', 'Distribution points', 'schemeInformation.distributionPoints.values')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_multilang :: multiLang ('operator', 'Operator name', 'schemeInformation.schemeOperatorName.values')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_multilang :: multiLang ('schemeName', 'Scheme name', 'schemeInformation.schemeName.values')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_multilang :: multiLang ('schemeInformationURI', 'Information URI', 'schemeInformation.schemeInformationURI.values')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_multilang :: multiLang ('schemeTypeCommunityRules', 'Community rules', 'schemeInformation.schemeTypeCommunityRules.values')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_policyOrLegalNotice :: policyOrLegalNotice('policyOrLegalNotice', 'Policy / Legal notice', ${schemeInformation.policyOrLegalNotice})">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_multilang :: multiLang ('electronicAddress', 'Electronic address', 'schemeInformation.schemeOperatorAddress.electronicAddress.values')">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_postalAddress :: postalAddress ('postalAddress', 'Postal address', 'schemeInformation.schemeOperatorAddress.postalAddresses.values')">
+    &nbsp;
+  </th:block>
+
+</div>

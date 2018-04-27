@@ -1,0 +1,211 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="serviceExtensions"
+     th:if="${serviceExtensions != null && serviceExtensions.values != null && !serviceExtensions.values.isEmpty()}">
+  <div
+      th:each="extension, statExt : ${serviceExtensions.values}">
+    <!-- Additional Service Information -->
+    <div th:if="${extension.additionalServiceInfo != null && extension.additionalServiceInfo.uri != null && extension.additionalServiceInfo.uri.value != null && !#strings.isEmpty(extension.additionalServiceInfo.uri.value)}">
+      <div>
+        <label>Additional service information</label>
+      </div>
+      <div class="m-left-20">
+        <!-- Critical -->
+        <span th:if="${extension.critical != null}">
+                              <label>Critical:</label>
+                              <span th:text="${extension.critical}"></span>
+                              <br>
+                            </span>
+        <!-- URI -->
+        <span
+            th:if="${extension.additionalServiceInfo.uri != null && extension.additionalServiceInfo.uri.value != null && !#strings.isEmpty(extension.additionalServiceInfo.uri.value)}">
+                              <label>URI:</label>
+                              <span
+                                  th:if="${extension.additionalServiceInfo.uri.lang != null && extension.additionalServiceInfo.uri.lang.value != null}"
+                                  th:text="${extension.additionalServiceInfo.uri.lang.value}"></span>
+                              <a target="_blank" class="a-link-custom"
+                                 th:text="${extension.additionalServiceInfo.uri.value}"
+                                 th:href="${extension.additionalServiceInfo.uri.value}"></a>
+                              <br>
+                            </span>
+        <!-- Information Value -->
+        <span
+            th:if="${extension.additionalServiceInfo.informationValue != null && !#strings.isEmpty(extension.additionalServiceInfo.informationValue)}">
+                              <label>Information value:</label>
+                              <span
+                                  th:text="${extension.additionalServiceInfo.informationValue}"></span>
+                              <br>
+                            </span>
+        <!-- Other Information -->
+        <!--
+        <span th:if="${extension.additionalServiceInfo.otherInformation != null}">
+          <label>Other information:</label>
+          <br>
+        </span>
+        -->
+      </div>
+    </div>
+
+    <!-- Expired Certificate Revocation Date -->
+    <div th:if="${extension.expiredCertsRevocationDate != null}">
+      <div>
+        <label>Expired certificate revocation date</label>
+      </div>
+      <div class="m-left-20">
+        <!-- Critical -->
+        <span th:if="${extension.critical != null}">
+                              <label>Critical:</label>
+                              <span th:text="${extension.critical}"></span>
+                              <br>
+                            </span>
+        <!-- Date -->
+        <span>
+                              <label>Date:</label>
+                              <span th:text="${extension.expiredCertsRevocationDate}"></span>
+                              <br>
+                            </span>
+      </div>
+    </div>
+
+    <!-- Taken Over By -->
+    <div th:if="${extension.takenOverBy != null && extension.takenOverBy.uri != null && extension.takenOverBy.uri.value != null && !#strings.isEmpty(extension.takenOverBy.uri.value)}">
+      <div>
+        <label>Taken over by</label>
+      </div>
+      <div class="m-left-20">
+        <!-- Critical -->
+        <span th:if="${extension.critical != null}">
+                              <label>Critical:</label>
+                              <span th:text="${extension.critical}"></span>
+                              <br>
+                            </span>
+        <!-- Territory -->
+        <span th:if="${extension.takenOverBy.territory != null && !#strings.isEmpty(extension.takenOverBy.territory)}">
+                              <label>Territory:</label>
+                              <span th:text="${extension.takenOverBy.territory}"></span>
+                              <br>
+                            </span>
+        <!-- URI -->
+        <span
+            th:if="${extension.takenOverBy.uri != null && extension.takenOverBy.uri.value != null && !#strings.isEmpty(extension.takenOverBy.uri.value)}">
+                              <label>URI:</label>
+                              <span
+                                th:if="${extension.takenOverBy.uri.lang != null && extension.takenOverBy.uri.lang.value != null}"
+                                th:text="${extension.takenOverBy.uri.lang.value}"></span>
+                              <a target="_blank" class="a-link-custom"
+                                 th:text="${extension.takenOverBy.uri.value}"
+                                 th:href="${extension.takenOverBy.uri.value}"></a>
+                              <br>
+                            </span>
+        <!-- Operator Name -->
+        <div class="multiple-toggle clearfix"
+             th:if="${extension.takenOverBy.operatorName != null && extension.takenOverBy.operatorName.values != null && !#lists.isEmpty(extension.takenOverBy.operatorName.values)}">
+          <p class="sub-title">
+            <strong>Operator name:</strong>
+          </p>
+          <div>
+            <div class="multiple-toggle-btn a-link-custom"
+                 th:each="operatorName, stat : ${extension.takenOverBy.operatorName.values}"
+                 th:onclick="'activeTab(' + ${#lists.size(extension.takenOverBy.operatorName.values)} + ',' + ${stat.index} + ', \'operatorLang' + ${statExt.index} + '-\',' + '\'operatorValue' + ${statExt.index} + '-\')'">
+                                  <span class="unselectable"
+                                        th:classappend="${stat.index == 0} ? 'current' : ''"
+                                        th:id="'operatorLang' + ${statExt.index} + '-' + ${stat.index}"
+                                        th:text="${operatorName.lang.value}"></span>
+            </div>
+            <div class="multiple-toggle-content"
+                 th:style="${stat.index != 0} ? 'display:none;' : ''"
+                 th:id="'operatorValue' + ${statExt.index} + '-' + ${stat.index}"
+                 th:each="operatorName, stat : ${extension.takenOverBy.operatorName.values}">
+              <span th:text="${operatorName.value}"></span>
+            </div>
+          </div>
+        </div>
+        <!-- TSP Name -->
+        <div class="multiple-toggle clearfix"
+             th:if="${extension.takenOverBy.tspName != null && extension.takenOverBy.tspName.values != null && !#lists.isEmpty(extension.takenOverBy.tspName.values)}">
+          <p class="sub-title">
+            <strong>Name:</strong>
+          </p>
+          <div>
+            <div class="multiple-toggle-btn a-link-custom"
+                 th:each="operatorName, stat : ${extension.takenOverBy.tspName.values}"
+                 th:onclick="'activeTab(' + ${#lists.size(extension.takenOverBy.tspName.values)} + ',' + ${stat.index} + ', \'tspNameLang' + ${statExt.index} + '-\',' + '\'tspNameValue' + ${statExt.index} + '-\')'">
+                                  <span class="unselectable"
+                                        th:classappend="${stat.index == 0} ? 'current' : ''"
+                                        th:id="'tspNameLang' + ${statExt.index} + '-' + ${stat.index}"
+                                        th:text="${operatorName.lang.value}"></span>
+            </div>
+            <div class="multiple-toggle-content"
+                 th:style="${stat.index != 0} ? 'display:none;' : ''"
+                 th:id="'tspNameValue' + ${statExt.index} + '-' + ${stat.index}"
+                 th:each="operatorName, stat : ${extension.takenOverBy.tspName.values}">
+              <span th:text="${operatorName.value}"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Qualification Extension -->
+    <div
+        th:if="${extension.qualificationsExtension != null && !extension.qualificationsExtension.isEmpty()}">
+      <div>
+        <label>Qualification extension</label>
+      </div>
+      <div class="m-left-20">
+        <!-- Critical -->
+        <div th:if="${extension.critical != null}">
+          <label>Critical:</label>
+          <span th:text="${extension.critical}"></span>
+        </div>
+
+        <br/>
+
+        <!-- Qualification element  -->
+        <div th:if="${!extension.qualificationsExtension.isEmpty()}"
+             th:each="qElement, statElement : ${extension.qualificationsExtension}">
+          <label>Qualification element</label>
+          <br>
+          <div class="m-left-20">
+            <!-- Qualifiers -->
+            <div
+                th:if="${qElement.qualificationList != null && !qElement.qualificationList.isEmpty()}">
+              <div>
+                <label>Qualifiers</label>
+              </div>
+              <div th:each="qualifier : ${qElement.qualificationList}"
+                   class="col-lg-12">
+                <a class="a-link-custom" target="_blank"
+                   th:href="${qualifier}"
+                   th:text="${qualifier}"></a>
+              </div>
+            </div>
+            <!-- Criteria -->
+            <br th:if="${qElement.criteria != null}"/>
+            <div th:include="fragments/criteria :: criteria"
+                 th:with="criteria=${qElement.criteria}"></div>
+          </div>
+
+          <br th:if="${statElement.index != (statElement.size - 1)}">
+        </div>
+      </div>
+    </div>
+
+    <hr th:if="${statExt.index != (statExt.size - 1)}">
+  </div>
+</div>

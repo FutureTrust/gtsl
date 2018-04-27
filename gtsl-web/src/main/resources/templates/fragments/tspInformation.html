@@ -1,0 +1,158 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="tspInformation"
+     th:if="${tspInformation != null}">
+  <!-- TSP Name -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tspInformation.tspName != null && tspInformation.tspName.values != null}">
+    <p class="sub-title">
+      <strong>Name</strong>
+    </p>
+    <div th:if="${!tspInformation.tspName.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="tspName, stat : ${tspInformation.tspName.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tspInformation.tspName.values)} + ',' + ${stat.index} + ', \'tspNameLang\', \'tspNameValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'tspNameLang' + ${stat.index}"
+                                  th:text="${tspName.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'tspNameValue' + ${stat.index}"
+           th:each="tspName, stat : ${tspInformation.tspName.values}">
+        <span th:text="${tspName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TSP Trade Name -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tspInformation.tspTradeName != null && tspInformation.tspTradeName.values != null}">
+    <p class="sub-title">
+      <strong>Trade name</strong>
+    </p>
+    <div th:if="${!tspInformation.tspTradeName.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="tspTradeName, stat : ${tspInformation.tspTradeName.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tspInformation.tspTradeName.values)} + ',' + ${stat.index} + ', \'tspTradeNameLang\', \'tspTradeNameValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'tspTradeNameLang' + ${stat.index}"
+                                  th:text="${tspTradeName.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'tspTradeNameValue' + ${stat.index}"
+           th:each="tspTradeName, stat : ${tspInformation.tspTradeName.values}">
+        <span th:text="${tspTradeName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Electronic Address -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tspInformation.tspAddress != null && tspInformation.tspAddress.electronicAddress != null && tspInformation.tspAddress.electronicAddress.values != null}">
+    <p class="sub-title">
+      <strong>Electronic address</strong>
+    </p>
+    <div
+        th:if="${!tspInformation.tspAddress.electronicAddress.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="electronicAddress, stat : ${tspInformation.tspAddress.electronicAddress.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tspInformation.tspAddress.electronicAddress.values)} + ',' + ${stat.index} + ', \'electronicAddressLang\', \'electronicAddressValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'electronicAddressLang' + ${stat.index}"
+                                  th:text="${electronicAddress.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'electronicAddressValue' + ${stat.index}"
+           th:each="electronicAddress, stat : ${tspInformation.tspAddress.electronicAddress.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${electronicAddress.value}"
+           th:text="${electronicAddress.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Postal Address -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tspInformation.tspAddress != null && tspInformation.tspAddress.postalAddresses != null && tspInformation.tspAddress.postalAddresses.values != null}">
+    <p class="sub-title">
+      <strong>Postal address</strong>
+    </p>
+    <div
+        th:if="${!tspInformation.tspAddress.postalAddresses.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="postalAddress, stat : ${tspInformation.tspAddress.postalAddresses.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tspInformation.tspAddress.postalAddresses.values)} + ',' + ${stat.index} + ', \'postalAddressLang\', \'postalAddressValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'postalAddressLang' + ${stat.index}"
+                                  th:text="${postalAddress.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'postalAddressValue' + ${stat.index}"
+           th:each="postalAddress, stat : ${tspInformation.tspAddress.postalAddresses.values}">
+        <span th:text="${postalAddress.streetAddress.value}"></span>
+        <br>
+        <span
+            th:if="${postalAddress.postalCode != null && postalAddress.postalCode.value != null}"
+            th:text="${postalAddress.postalCode.value + ' - '}"></span>
+        <span th:text="${postalAddress.locality.value}"></span>
+        <span
+            th:if="${postalAddress.stateOrProvince != null && postalAddress.stateOrProvince.value != null}">
+                              <br>
+                              <span th:text="${postalAddress.stateOrProvince.value}"></span>
+                            </span>
+        <br>
+        <span th:text="${postalAddress.countryName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Information URI -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${tspInformation.tspInformationURI != null && tspInformation.tspInformationURI.values != null}">
+    <p class="sub-title">
+      <strong>Information URI</strong>
+    </p>
+    <div
+        th:if="${!tspInformation.tspInformationURI.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="tspInformationURI, stat : ${tspInformation.tspInformationURI.values}"
+           th:onclick="'activeTab(' + ${#lists.size(tspInformation.tspInformationURI.values)} + ',' + ${stat.index} + ', \'tspInformationURILang\', \'tspInformationURIValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'tspInformationURILang' + ${stat.index}"
+                                  th:text="${tspInformationURI.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'tspInformationURIValue' + ${stat.index}"
+           th:each="tspInformationURI, stat : ${tspInformation.tspInformationURI.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${tspInformationURI.value}"
+           th:text="${tspInformationURI.value}"></a>
+      </div>
+    </div>
+  </div>
+</div>

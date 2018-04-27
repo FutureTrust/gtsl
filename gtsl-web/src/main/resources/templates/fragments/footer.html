@@ -1,0 +1,91 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="footer" th:remove="tag">
+
+  <footer class="container-fluid">
+    <div class="row">
+      <div class="container">
+        <div class="row">
+
+          <!-- service -->
+          <div class="col-sm-9">
+            <h1 class="title ">Service and Information</h1>
+            <div class="row">
+              <div class="col-sm-3 service">
+                <ul>
+                  <li><a target="_blank" class="a-link-custom "
+                         href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eSignature">eSignature</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-3 service">
+                <ul>
+                  <li>
+                    <a data-toggle="modal" data-target="#aboutModal"
+                       class="a-link-custom ">About</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal fade" id="aboutModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="flag-header">
+            <div class="content">
+              <h1>About</h1>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>
+            The Member States of the European Union and European Economic Area publish trusted lists
+            of qualified trust service providers in accordance with the
+            <a target="_blank" class="a-link-custom"
+               href="http://eur-lex.europa.eu/legal-content/EN/TXT/?uri=uriserv%3AOJ.L_.2014.257.01.0073.01.ENG">eIDAS
+              Regulation</a>
+            . The European Commission publishes a list of these trusted lists, the List of Trusted
+            Lists (LOTL). The European Commission, through the
+            <a target="_blank" class="a-link-custom"
+               href="https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/CEF+Digital+Home">CEF
+              Digital program</a> , provides the Trusted List Browser tool for anyone to browse the
+            national trusted lists and the LOTL
+          </p>
+        </div>
+        <div class="modal-footer">
+          <div class="pull-right">
+            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div th:replace="fragments/footernote :: footernote">&nbsp;</div>
+</div>

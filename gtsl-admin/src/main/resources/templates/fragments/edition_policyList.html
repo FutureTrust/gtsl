@@ -1,0 +1,66 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="policyList(fieldName, label, field)">
+  <div class="form-group accordion" th:id="${'parent-' + fieldName}">
+    <th:block th:each="policy,stat : *{__${field}__}">
+      <div th:classappend="${'data-'+fieldName}"
+           th:attr="data-index=${stat.index}">
+
+        <div class="panel panel-default">
+          <div th:id="${'heading-' + fieldName + '-' + stat.index}">
+            <h5 class="title">
+              <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+                 th:attr="data-parent=${'#parent-' + fieldName}"
+                 th:href="${'#collapse-' + fieldName + '-' + stat.index}">
+                <span th:text="${label}"></span>
+                <i class="fa fa-angle-down fa-lg hack-icon"></i>
+              </a>
+            </h5>
+          </div>
+
+          <div th:id="${'collapse-' + fieldName + '-' + stat.index}" class="panel-collapse collapse"
+               th:attr="aria-labelledby=${'heading-' + fieldName + '-' + stat.index}">
+            <div class="panel-body">
+
+              <th:block
+                  th:insert="fragments/edition_policyBitList :: policyBitList (fieldName=${fieldName + '-' + stat.index + '-policyBitList'}, label='Policy bit', field=${field + '[' + stat.index + '].policyBitList'})">
+                &nbsp;
+              </th:block>
+
+              <button type="button" class="btn btn-default btn-xs"
+                      th:name="${'remove-' + fieldName}">
+                <span class="glyphicon glyphicon-minus"></span>
+                <span th:text="${'&ensp;' + label}"></span>
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </th:block>
+
+    <button type="button" class="btn btn-primary btn-xs"
+            th:name="${'add-' + fieldName}">
+      <span class="glyphicon glyphicon-plus"></span>
+      <span th:text="${'&ensp;' + label}"></span>
+    </button>
+  </div>
+
+  <hr/>
+</div>

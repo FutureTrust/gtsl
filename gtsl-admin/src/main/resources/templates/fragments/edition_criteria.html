@@ -1,0 +1,114 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="criteria(fieldName, label, field)">
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Asserts', 'text', ${field + '.asserts'})">
+    &nbsp;
+  </th:block>
+
+  <th:block
+      th:insert="fragments/edition_input :: input ('Description', 'text', ${field + '.description'})">
+    &nbsp;
+  </th:block>
+
+<!-- Key usage list -->
+  <div th:id="${'heading-' + fieldName + '-keyUsage'}">
+    <h5 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-keyUsage'}"
+         th:href="${'#collapse-' + fieldName + '-keyUsage'}">
+        <span>Key usage list</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h5>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-keyUsage'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-keyUsage'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_keyUsage :: keyUsage (fieldName=${fieldName + '-keyUsage'}, label='Key usage', field=${field + '.keyUsage'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+<!-- Policies list -->
+  <div th:id="${'heading-' + fieldName + '-policyList'}">
+    <h5 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-policyList'}"
+         th:href="${'#collapse-' + fieldName + '-policyList'}">
+        <span>Policies list</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h5>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-policyList'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-policyList'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_policyList :: policyList (fieldName=${fieldName + '-policyList'}, label='Policy', field=${field + '.policyList'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+<!-- Criteria list -->
+  <div th:id="${'heading-' + fieldName + '-criteriaList'}">
+    <h5 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-criteriaList'}"
+         th:href="${'#collapse-' + fieldName + '-criteriaList'}">
+        <span>Criteria list</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h5>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-criteriaList'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-criteriaList'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_criteriaList :: criteriaList (fieldName=${fieldName + '-criteriaList'}, label='Criteria', field=${field + '.criteriaList'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+<!-- Other criteria -->
+  <div th:id="${'heading-' + fieldName + '-otherCriteria'}">
+    <h5 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-otherCriteria'}"
+         th:href="${'#collapse-' + fieldName + '-otherCriteria'}">
+        <span>Other criteria</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h5>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-otherCriteria'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-otherCriteria'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_otherCriteria :: otherCriteria (fieldName=${fieldName + '-otherCriteria'}, label='Other criteria', field=${field + '.otherList'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+</div>

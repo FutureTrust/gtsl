@@ -1,0 +1,496 @@
+{
+  "mimeType": {
+    "PDF": "application/pdf",
+    "XML": "application/vnd.etsi.tsl+xml"
+  },
+  "countries": {
+    "EU": {
+      "name": "European Union",
+      "lang": [
+        "en",
+        "bg",
+        "es",
+        "cs",
+        "da",
+        "de",
+        "et",
+        "el",
+        "fr",
+        "it",
+        "lv",
+        "lt",
+        "hu",
+        "mt",
+        "nl",
+        "pl",
+        "pt",
+        "ro",
+        "sk",
+        "sl",
+        "fi",
+        "sv",
+        "hr"
+      ]
+    },
+    "AT": {
+      "name": "Austria",
+      "lang": [
+        "en",
+        "de"
+      ]
+    },
+    "BE": {
+      "name": "Belgium",
+      "lang": [
+        "en",
+        "fr",
+        "de",
+        "nl"
+      ]
+    },
+    "BG": {
+      "name": "Bulgaria",
+      "lang": [
+        "en",
+        "bg"
+      ]
+    },
+    "CY": {
+      "name": "Cyprus",
+      "lang": [
+        "en",
+        "el",
+        "tr"
+      ]
+    },
+    "CZ": {
+      "name": "Czech Republic",
+      "lang": [
+        "en",
+        "cs"
+      ]
+    },
+    "DE": {
+      "name": "Germany",
+      "lang": [
+        "en",
+        "de"
+      ]
+    },
+    "DK": {
+      "name": "Denmark",
+      "lang": [
+        "en",
+        "da"
+      ]
+    },
+    "EE": {
+      "name": "Estonia",
+      "lang": [
+        "en",
+        "et"
+      ]
+    },
+    "EL": {
+      "name": "Greece",
+      "lang": [
+        "en",
+        "el"
+      ]
+    },
+    "ES": {
+      "name": "Spain",
+      "lang": [
+        "en",
+        "es"
+      ]
+    },
+    "FI": {
+      "name": "Finland",
+      "lang": [
+        "en",
+        "fi",
+        "sv"
+      ]
+    },
+    "FR": {
+      "name": "France",
+      "lang": [
+        "en",
+        "fr"
+      ]
+    },
+    "HR": {
+      "name": "Croatia",
+      "lang": [
+        "en",
+        "hr"
+      ]
+    },
+    "HU": {
+      "name": "Hungary",
+      "lang": [
+        "en",
+        "hu"
+      ]
+    },
+    "IE": {
+      "name": "Ireland",
+      "lang": [
+        "ga",
+        "en"
+      ]
+    },
+    "IS": {
+      "name": "Iceland",
+      "lang": [
+        "en",
+        "is"
+      ]
+    },
+    "IT": {
+      "name": "Italy",
+      "lang": [
+        "en",
+        "it"
+      ]
+    },
+    "LI": {
+      "name": "Liechtenstein",
+      "lang": [
+        "en",
+        "de"
+      ]
+    },
+    "LT": {
+      "name": "Lithuania",
+      "lang": [
+        "en",
+        "lt"
+      ]
+    },
+    "LU": {
+      "name": "Luxembourg",
+      "lang": [
+        "en",
+        "fr",
+        "de",
+        "lb"
+      ]
+    },
+    "LV": {
+      "name": "Latvia",
+      "lang": [
+        "en",
+        "lv"
+      ]
+    },
+    "MT": {
+      "name": "Malta",
+      "lang": [
+        "en",
+        "mt",
+        "en"
+      ]
+    },
+    "NL": {
+      "name": "Netherlands",
+      "lang": [
+        "en",
+        "nl"
+      ]
+    },
+    "NO": {
+      "name": "Norway",
+      "lang": [
+        "en",
+        "no",
+        "nb",
+        "nn"
+      ]
+    },
+    "PL": {
+      "name": "Poland",
+      "lang": [
+        "en",
+        "pl"
+      ]
+    },
+    "PT": {
+      "name": "Portugal",
+      "lang": [
+        "en",
+        "pt"
+      ]
+    },
+    "RO": {
+      "name": "Romania",
+      "lang": [
+        "en",
+        "ro"
+      ]
+    },
+    "SE": {
+      "name": "Sweden",
+      "lang": [
+        "en",
+        "sv"
+      ]
+    },
+    "SI": {
+      "name": "Slovenia",
+      "lang": [
+        "en",
+        "sl"
+      ]
+    },
+    "SK": {
+      "name": "Slovakia",
+      "lang": [
+        "en",
+        "sk"
+      ]
+    },
+    "UK": {
+      "name": "United Kingdom",
+      "lang": [
+        "en"
+      ]
+    }
+  },
+  "constant": {
+    "version": 5,
+    "historicalPeriod": 65535,
+    "lotlTerritory": "EU",
+    "englishSchemeName": "Trusted list including information related to the qualified trust service providers which are supervised by the issuing Member State, together with information related to the qualified trust services provided by them, in accordance with the relevant provisions laid down in Regulation (EU) No 910/2014 of the European Parliament and of the Council of 23 July 2014 on electronic identification and trust services for electronic transactions in the internal market and repealing Directive 1999/93/EC.",
+    "englishLegalNotice": "The applicable legal framework for the present trusted list is Regulation (EU) No 910/2014 of the European Parliament and of the Council of 23 July 2014 on electronic identification and trust services for electronic transactions in the internal market and repealing Directive 1999/93/EC."
+  },
+  "lotl": {
+    "xml": "https://ec.europa.eu/information_society/policy/esignature/trusted-list/tl-mp.xml",
+    "pdf": "https://ec.europa.eu/information_society/policy/esignature/trusted-list/tl-hr.pdf",
+    "sha2": "https://ec.europa.eu/information_society/policy/esignature/trusted-list/tl-mp.sha2"
+  },
+  "schemeRules": {
+    "euListofthelists": "http://uri.etsi.org/TrstSvc/TrustedList/schemerules/EUlistofthelists",
+    "euCommon": "http://uri.etsi.org/TrstSvc/TrustedList/schemerules/EUcommon",
+    "cc": "http://uri.etsi.org/TrstSvc/TrustedList/schemerules/{0}"
+  },
+  "servicePreviousStatus": {
+    "undersupervision": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/undersupervision",
+    "supervisionincessation": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/supervisionincessation",
+    "supervisionceased": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/supervisionceased",
+    "supervisionrevoked": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/supervisionrevoked",
+    "accredited": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/accredited",
+    "accreditationceased": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/accreditationceased",
+    "accreditationrevoked": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/accreditationrevoked"
+  },
+  "serviceStatus": {
+    "granted": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/granted",
+    "withdrawn": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/withdrawn",
+    "setbynationallaw": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/setbynationallaw",
+    "deprecatedbynationallaw": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/deprecatedbynationallaw",
+    "recognisedatnationallevel": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/recognisedatnationallevel",
+    "deprecatedatnationallevel": "http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/deprecatedatnationallevel"
+  },
+  "qualifiedServiceType": {
+    "caQC": "http://uri.etsi.org/TrstSvc/Svctype/CA/QC",
+    "ocspQC": "http://uri.etsi.org/TrstSvc/Svctype/Certstatus/OCSP/QC",
+    "crlQC": "http://uri.etsi.org/TrstSvc/Svctype/Certstatus/CRL/QC",
+    "tsaQTST": "http://uri.etsi.org/TrstSvc/Svctype/TSA/QTST",
+    "edsQ": "http://uri.etsi.org/TrstSvc/Svctype/EDS/Q",
+    "edsRemQ": "http://uri.etsi.org/TrstSvc/Svctype/EDS/REM/Q",
+    "psesQ": "http://uri.etsi.org/TrstSvc/Svctype/PSES/Q",
+    "qesValidationQ": "http://uri.etsi.org/TrstSvc/Svctype/QESValidation/Q",
+    "remoteQSCDManagementQ": "http://uri.etsi.org/TrstSvc/Svctype/RemoteQSCDManagement/Q"
+  },
+  "nonQualifiedServiceType": {
+    "caPKC": "http://uri.etsi.org/TrstSvc/Svctype/CA/PKC",
+    "ocsp": "http://uri.etsi.org/TrstSvc/Svctype/Certstatus/OCSP",
+    "crl": "http://uri.etsi.org/TrstSvc/Svctype/Certstatus/CRL",
+    "tsa": "http://uri.etsi.org/TrstSvc/Svctype/TSA",
+    "tsaTSSQC": "http://uri.etsi.org/TrstSvc/Svctype/TSA/TSS-QC",
+    "tsaTSSAdes": "http://uri.etsi.org/TrstSvc/Svctype/TSA/TSS-AdESQCandQES",
+    "eds": "http://uri.etsi.org/TrstSvc/Svctype/EDS",
+    "edsRem": "http://uri.etsi.org/TrstSvc/Svctype/EDS/REM",
+    "pses": "http://uri.etsi.org/TrstSvc/Svctype/PSES",
+    "adesValidation": "http://uri.etsi.org/TrstSvc/Svctype/AdESValidation",
+    "adesGeneration": "http://uri.etsi.org/TrstSvc/Svctype/AdESGeneration"
+  },
+  "nationalServiceType": {
+    "ra": "http://uri.etsi.org/TrstSvc/Svctype/RA",
+    "raNotHavingPKIid": "http://uri.etsi.org/TrstSvc/Svctype/RA/nothavingPKIid",
+    "aca": "http://uri.etsi.org/TrstSvc/Svctype/ACA",
+    "signaturePolicyAuthority": "http://uri.etsi.org/TrstSvc/Svctype/SignaturePolicyAuthority",
+    "archiv": "http://uri.etsi.org/TrstSvc/Svctype/Archiv",
+    "archivNotHavingPKIid": "http://uri.etsi.org/TrstSvc/Svctype/Archiv/nothavingPKIid",
+    "idv": "http://uri.etsi.org/TrstSvc/Svctype/IdV",
+    "idvNotHavingPKIid": "http://uri.etsi.org/TrstSvc/Svctype/IdV/nothavingPKIid",
+    "kEscrow": "http://uri.etsi.org/TrstSvc/Svctype/KEscrow",
+    "kEscrowNotHavingPKIid": "http://uri.etsi.org/TrstSvc/Svctype/KEscrow/nothavingPKIid",
+    "ppwd": "http://uri.etsi.org/TrstSvc/Svctype/PPwd",
+    "ppwdNotHavingPKIid": "http://uri.etsi.org/TrstSvc/Svctype/PPwd/nothavingPKIid",
+    "tlIssuer": "http://uri.etsi.org/TrstSvd/Svctype/TLIssuer",
+    "nationalRootCAQC": "http://uri.etsi.org/TrstSvc/Svctype/NationalRootCA-QC",
+    "unspecified": "http://uri.etsi.org/TrstSvc/Svctype/unspecified"
+  },
+  "statusDetn": {
+    "euAppropriate": "http://uri.etsi.org/TrstSvc/TrustedList/StatusDetn/EUappropriate",
+    "euListofthelists": "http://uri.etsi.org/TrstSvc/TrustedList/StatusDetn/EUlistofthelists",
+    "ccDetermination": "http://uri.etsi.org/TrstSvc/TrustedList/StatusDetn/{0}determination"
+  },
+  "qualifier": {
+    "qcWithSSCD": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCWithSSCD",
+    "qcNoSSCD": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCNoSSCD",
+    "qcSSCDStatusAsInCert": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCSSCDStatusAsInCert",
+    "qcForLegalPerson": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCForLegalPerson",
+    "qcStatement": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCStatement",
+    "qcWithQSCD": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCWithQSCD",
+    "qcNoQSCD": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCNoQSCD",
+    "qcQSCDStatusAsInCert": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCQSCDStatusAsInCert",
+    "qcQSCDManagedOnBehalf": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCQSCDManagedOnBehalf",
+    "qcForESig": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCForESig",
+    "qcForESeal": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCForESeal",
+    "qcForWSA": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/QCForWSA",
+    "notQualified": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/NotQualified"
+  },
+  "additionalQualifier": {
+    "foreSignatures": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/ForeSignatures",
+    "foreSeals": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/ForeSeals",
+    "forWebSiteAuthentication": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/ForWebSiteAuthentication",
+    "rootCAQC": "http://uri.etsi.org/TrstSvc/TrustedList/SvcInfoExt/RootCA-QC"
+  },
+  "tsl": {
+    "documentVersion": "http://uri.etsi.org/19612/v2.1.1",
+    "tag": "http://uri.etsi.org/19612/TSLTag",
+    "xmlNamespace": "http://uri.etsi.org/02231/v2#",
+    "tdpContainer": "http://uri.etsi.org/19612/TDPContainer"
+  },
+  "tslType": {
+    "euGeneric": "http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUgeneric",
+    "euListofthelists": "http://uri.etsi.org/TrstSvc/TrustedList/TSLType/EUlistofthelists",
+    "ccList": "http://uri.etsi.org/TrstSvc/TrustedList/TSLType/{0}list",
+    "ccListofthelists": "http://uri.etsi.org/TrstSvc/TrustedList/TSLType/{0}listofthelists"
+  },
+  "searchTypes": [
+    {
+      "name": "Qualified certificate for electronic signature",
+      "identifier": "QCertESig",
+      "qualified": true
+    },
+    {
+      "name": "Qualified certificate for electronic seal",
+      "identifier": "QCertESeal",
+      "qualified": true
+    },
+    {
+      "name": "Qualified certificate for website authentication",
+      "identifier": "QWAC",
+      "qualified": true
+    },
+    {
+      "name": "Qualified Root Certification Authority",
+      "identifier": "QRootCA",
+      "qualified": true
+    },
+    {
+      "name": "Qualified validation service for qualified electronic signature",
+      "identifier": "QValQESig",
+      "qualified": true
+    },
+    {
+      "name": "Qualified preservation service for qualified electronic signature",
+      "identifier": "QPresQESig",
+      "qualified": true
+    },
+    {
+      "name": "Qualified validation service for qualified electronic seal",
+      "identifier": "QValQESeal",
+      "qualified": true
+    },
+    {
+      "name": "Qualified preservation service for qualified electronic seal",
+      "identifier": "QPresQESeal",
+      "qualified": true
+    },
+    {
+      "name": "Qualified time stamp",
+      "identifier": "QTimestamp",
+      "qualified": true
+    },
+    {
+      "name": "Qualified electronic registrered delivery service",
+      "identifier": "QeRDS",
+      "qualified": true
+    },
+    {
+      "name": "Qualified service for remote signature/seal creation device management",
+      "identifier": "QSCDManagement",
+      "qualified": true
+    },
+    {
+      "name": "Certificate for electronic signature",
+      "identifier": "CertESig",
+      "qualified": false
+    },
+    {
+      "name": "Certificate for electronic seal",
+      "identifier": "CertESeal",
+      "qualified": false
+    },
+    {
+      "name": "Certificate for website authentication",
+      "identifier": "WAC",
+      "qualified": false
+    },
+    {
+      "name": "Validation service for electronic signature",
+      "identifier": "ValESig",
+      "qualified": false
+    },
+    {
+      "name": "Generation service for electronic signature",
+      "identifier": "GenESig",
+      "qualified": false
+    },
+    {
+      "name": "Preservation service for electronic signature",
+      "identifier": "PresESig",
+      "qualified": false
+    },
+    {
+      "name": "Validation service for electronic seal",
+      "identifier": "ValESeal",
+      "qualified": false
+    },
+    {
+      "name": "Generation service for electronic seal",
+      "identifier": "GenESeal",
+      "qualified": false
+    },
+    {
+      "name": "Preservation service for electronic seal",
+      "identifier": "PresESeal",
+      "qualified": false
+    },
+    {
+      "name": "Time stamp service",
+      "identifier": "Timestamp",
+      "qualified": false
+    },
+    {
+      "name": "Electronic registrered delivery service",
+      "identifier": "eRDS",
+      "qualified": false
+    },
+    {
+      "name": "Non-regulatory, nationally defined trust service",
+      "identifier": "NonRegulatory",
+      "qualified": false
+    },
+    {
+      "name": "Undefined type",
+      "identifier": "CertUndefined",
+      "qualified": false
+    }
+  ]
+}

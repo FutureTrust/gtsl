@@ -1,0 +1,97 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="pointerInformation"
+     th:if="${pointer != null}">
+
+  <!-- TSL Type -->
+  <p th:if="${pointer.tslType != null && pointer.tslType.value != null}">
+    <strong>TSL type</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${pointer.tslType.value}"
+       th:text="${pointer.tslType.value}"></a>
+  </p>
+
+  <!-- TSL Location -->
+  <p th:if="${pointer.tslLocation != null && pointer.tslLocation.value != null}">
+    <strong>TSL location</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${pointer.tslLocation.value}"
+       th:text="${pointer.tslLocation.value}"></a>
+  </p>
+
+  <!-- Scheme Operator Name -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${pointer.schemeOperatorName != null && pointer.schemeOperatorName.values != null}">
+    <p class="sub-title">
+      <strong>Operator name</strong>
+    </p>
+    <div th:if="${!pointer.schemeOperatorName.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="operatorName, stat : ${pointer.schemeOperatorName.values}"
+           th:onclick="'activeTab(' + ${#lists.size(pointer.schemeOperatorName.values)} + ',' + ${stat.index} + ', \'operatorLang\', \'operatorValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'operatorLang' + ${stat.index}"
+                                  th:text="${operatorName.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'operatorValue' + ${stat.index}"
+           th:each="operatorName, stat : ${pointer.schemeOperatorName.values}">
+        <span th:text="${operatorName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Community Rules -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${pointer.schemeRules != null && pointer.schemeRules.values != null}">
+    <p class="sub-title">
+      <strong>Community rules</strong>
+    </p>
+    <div
+        th:if="${!pointer.schemeRules.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="communityRules, stat : ${pointer.schemeRules.values}"
+           th:onclick="'activeTab(' + ${#lists.size(pointer.schemeRules.values)} + ',' + ${stat.index} + ', \'communityRulesLang\', \'communityRulesValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'communityRulesLang' + ${stat.index}"
+                                  th:text="${communityRules.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'communityRulesValue' + ${stat.index}"
+           th:each="communityRules, stat : ${pointer.schemeRules.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${communityRules.value}"
+           th:text="${communityRules.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mime Type -->
+  <p class="margin-top-1em" th:if="${pointer.mimeType != null}">
+    <strong>Mime type</strong>
+    <br>
+    <span th:text="${pointer.mimeType}"></span>
+  </p>
+
+</div>

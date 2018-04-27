@@ -1,0 +1,42 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="pointersIdentities"
+     th:if="${pointer.serviceDigitalIdentities != null && pointer.serviceDigitalIdentities.values != null && !pointer.serviceDigitalIdentities.values.isEmpty()}">
+
+  <!-- Digital Identities -->
+  <div class="multiple-toggle clearfix">
+    <div class="multiple-toggle-btn a-link-custom"
+         th:each="digitalId, stat : ${pointer.serviceDigitalIdentities.values}"
+         th:onclick="'activeTab(' + ${#lists.size(pointer.serviceDigitalIdentities.values)} + ',' + ${stat.index} + ', \'digitalIdNumber\', \'digitalIdValue\')'">
+      <span class="unselectable"
+            th:with="result=${stat.index + 1}"
+            th:classappend="${stat.index == 0} ? 'current' : ''"
+            th:id="'digitalIdNumber' + ${stat.index}"
+            th:text="${result}"></span>
+
+    </div>
+    <div class="multiple-toggle-content"
+         th:style="${stat.index != 0} ? 'display:none;' : ''"
+         th:id="'digitalIdValue' + ${stat.index}"
+         th:each="digitalId, stat : ${pointer.serviceDigitalIdentities.values}">
+      <div th:include="fragments/digitalIdentity :: digitalIdentity"
+           th:with="digitalIdentity=${digitalId},territoryCode=${territoryCode},country=${country}"></div>
+    </div>
+  </div>
+
+</div>

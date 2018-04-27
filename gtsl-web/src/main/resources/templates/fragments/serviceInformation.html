@@ -1,0 +1,141 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="serviceInformation"
+     th:if="${serviceInformation != null}">
+  <!-- Type Identifier -->
+  <p th:if="${serviceInformation.serviceTypeIdentifier != null && serviceInformation.serviceTypeIdentifier.value != null}">
+    <strong>Type identifier</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${serviceInformation.serviceTypeIdentifier.value}"
+       th:text="${serviceInformation.serviceTypeIdentifier.value}"></a>
+  </p>
+
+  <!-- Service Name -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${serviceInformation.serviceName != null && serviceInformation.serviceName.values != null}">
+    <p class="sub-title">
+      <strong>Service name</strong>
+    </p>
+    <div th:if="${!serviceInformation.serviceName.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="serviceName, stat : ${serviceInformation.serviceName.values}"
+           th:onclick="'activeTab(' + ${#lists.size(serviceInformation.serviceName.values)} + ',' + ${stat.index} + ', \'serviceNameLang\', \'serviceNameValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'serviceNameLang' + ${stat.index}"
+                                  th:text="${serviceName.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'serviceNameValue' + ${stat.index}"
+           th:each="serviceName, stat : ${serviceInformation.serviceName.values}">
+        <span th:text="${serviceName.value}"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Current status -->
+  <p class="margin-top-1em"
+     th:if="${serviceInformation.serviceStatus != null && serviceInformation.serviceStatus.value != null}">
+    <strong>Current status</strong>
+    <br>
+    <a class="a-link-custom" target="_blank"
+       th:href="${serviceInformation.serviceStatus.value}"
+       th:text="${serviceInformation.serviceStatus.value}"></a>
+  </p>
+
+  <!-- Starting date & time -->
+  <p class="margin-top-1em"
+     th:if="${serviceInformation.statusStartingTime != null}">
+    <strong>Starting date & time</strong>
+    <br>
+    <span th:text="${serviceInformation.statusStartingTime}"></span>
+  </p>
+
+  <!-- Scheme Service Definition URI -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${serviceInformation.schemeServiceDefinitionURI != null && serviceInformation.schemeServiceDefinitionURI.values != null}">
+    <p class="sub-title">
+      <strong>Scheme service definition URI</strong>
+    </p>
+    <div
+        th:if="${!serviceInformation.schemeServiceDefinitionURI.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="schemeServiceDefinitionURI, stat : ${serviceInformation.schemeServiceDefinitionURI.values}"
+           th:onclick="'activeTab(' + ${#lists.size(serviceInformation.schemeServiceDefinitionURI.values)} + ',' + ${stat.index} + ', \'schemeServiceDefinitionURILang\', \'schemeServiceDefinitionURIValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'schemeServiceDefinitionURILang' + ${stat.index}"
+                                  th:text="${schemeServiceDefinitionURI.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'schemeServiceDefinitionURIValue' + ${stat.index}"
+           th:each="schemeServiceDefinitionURI, stat : ${serviceInformation.schemeServiceDefinitionURI.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${schemeServiceDefinitionURI.value}"
+           th:text="${schemeServiceDefinitionURI.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Service Supply Points -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${serviceInformation.serviceSupplyPoints != null && serviceInformation.serviceSupplyPoints.values != null}">
+    <p class="sub-title">
+      <strong>Supply points</strong>
+    </p>
+    <div
+        th:if="${!serviceInformation.serviceSupplyPoints.values.isEmpty()}">
+      <div
+          th:each="point, stat : ${serviceInformation.serviceSupplyPoints.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${point.value}"
+           th:text="${point.value}"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TSP Service Definition URI -->
+  <div class="margin-top-1em multiple-toggle clearfix"
+       th:if="${serviceInformation.tspServiceDefinitionURI != null && serviceInformation.tspServiceDefinitionURI.values != null}">
+    <p class="sub-title">
+      <strong>TSP service definition URI</strong>
+    </p>
+    <div
+        th:if="${!serviceInformation.tspServiceDefinitionURI.values.isEmpty()}">
+      <div class="multiple-toggle-btn a-link-custom"
+           th:each="tspServiceDefinitionURI, stat : ${serviceInformation.tspServiceDefinitionURI.values}"
+           th:onclick="'activeTab(' + ${#lists.size(serviceInformation.tspServiceDefinitionURI.values)} + ',' + ${stat.index} + ', \'tspServiceDefinitionURILang\', \'tspServiceDefinitionURIValue\')'">
+                            <span class="unselectable"
+                                  th:classappend="${stat.index == 0} ? 'current' : ''"
+                                  th:id="'tspServiceDefinitionURILang' + ${stat.index}"
+                                  th:text="${tspServiceDefinitionURI.lang.value}"></span>
+      </div>
+      <div class="multiple-toggle-content"
+           th:style="${stat.index != 0} ? 'display:none;' : ''"
+           th:id="'tspServiceDefinitionURIValue' + ${stat.index}"
+           th:each="tspServiceDefinitionURI, stat : ${serviceInformation.tspServiceDefinitionURI.values}">
+        <a class="a-link-custom" target="_blank"
+           th:href="${tspServiceDefinitionURI.value}"
+           th:text="${tspServiceDefinitionURI.value}"></a>
+      </div>
+    </div>
+  </div>
+</div>

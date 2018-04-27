@@ -1,0 +1,67 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="tslTspList"
+     th:if="${tspList != null && !tspList.isEmpty()}">
+
+  <!-- Active TSP -->
+  <div>
+    <h3 class="simple-toggle">
+      <a data-toggle="collapse" href="#activeTsp"
+         class="panel-heading">
+        <span>Currently active trust service providers</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h3>
+    <div id="activeTsp" class="collapse in panel-collapse">
+      <div class="panel-body">
+        <div class="row list hack-list">
+          <div class="col-sm-6 list-item"
+               th:each="tsp, stat : ${tspList}"
+               th:if="${#bools.isTrue(tsp.active)}">
+            <div th:include="fragments/tslTsp :: tsp"
+                 th:with="tsp=${tsp},territoryCode=${territoryCode}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inactive TSP -->
+  <div th:if="${#bools.isFalse(allTspAreActive)}">
+    <h3 class="simple-toggle">
+      <a data-toggle="collapse" href="#inactiveTsp"
+         class="panel-heading collapsed">
+        <span>Trust service providers without currently active trust services</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h3>
+    <div id="inactiveTsp" class="collapse panel-collapse">
+      <div class="panel-body">
+        <div class="row list hack-list">
+          <div class="col-sm-6 list-item"
+               th:each="tsp, stat : ${tspList}"
+               th:if="${#bools.isFalse(tsp.active)}">
+            <div th:include="fragments/tslTsp :: tsp"
+                 th:with="tsp=${tsp},territoryCode=${territoryCode}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

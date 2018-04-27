@@ -1,0 +1,73 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="tspServices"
+     th:if="${tsp != null && tsp.tspServices != null && tsp.tspServices.values != null && !tsp.tspServices.values.isEmpty() && tsp.serviceTypes != null && !tsp.serviceTypes.isEmpty()}">
+
+  <div th:each="type : ${tsp.serviceTypes}">
+    <h3 class="simple-toggle">
+      <a data-toggle="collapse"
+         th:href="@{'#' + ${type.identifier}}"
+         class="panel-heading collapsed">
+        <button class="btn btn-default label"
+                th:classappend="${type.qualified} ? 'q-trust' : 'nonq-trust'"
+                data-toggle="tooltip"
+                data-placement="top"
+                th:attr="data-original-title=${type.name}"
+                th:text="${type.identifier}"></button>
+        <span th:text="${type.name}"></span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h3>
+
+    <div th:id="${type.identifier}" class="collapse panel-collapse">
+      <div class="panel-body">
+        <div class="row list hack-list">
+          <div class="col-sm-6 list-item"
+               th:each="service, stat : ${tsp.tspServices.values}">
+            <div class="inner"
+                 th:if="${#lists.contains(service.serviceTypes, type)}">
+              <div class="truncate-service">
+                <a class="a-link-custom"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   th:attr="data-original-title=${service.serviceInformation.serviceName.values[0].value}"
+                   th:href="@{'/tl/' + ${territoryCode} + '/' + ${index} + '/' + ${stat.index}}"
+                   th:classappend="${service.serviceInformation.serviceStatus.value != 'http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/granted' && service.serviceInformation.serviceStatus.value != 'http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/setbynationallaw' && service.serviceInformation.serviceStatus.value != 'http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/recognisedatnationallevel'} ? 'like-disabled'"
+                   th:text="${{service.serviceInformation.serviceName.values[0].value}}"></a>
+                <span>
+                  <button class="btn btn-default label"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          th:classappend="${type.qualified} ? 'q-trust' : 'nonq-trust'"
+                          th:attr="data-original-title=${#strings.replace(#strings.substringAfter(service.serviceInformation.serviceTypeIdentifier.value, 'http://uri.etsi.org/TrstSvc/Svctype/'), 'Certstatus/', '')}"
+                          th:text="${#strings.replace(#strings.substringAfter(service.serviceInformation.serviceTypeIdentifier.value, 'http://uri.etsi.org/TrstSvc/Svctype/'), 'Certstatus/', '')}">
+                  </button>
+                  <button type="button" class="btn btn-default label"
+                          th:classappend="${service.serviceInformation.serviceStatus.value == 'http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/granted'} ? 'granted-status' : 'current-status'"
+                          th:text="${#strings.capitalize(#strings.substringAfter(service.serviceInformation.serviceStatus.value, 'http://uri.etsi.org/TrstSvc/TrustedList/Svcstatus/'))}"></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

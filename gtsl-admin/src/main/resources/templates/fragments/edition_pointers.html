@@ -1,0 +1,102 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="pointers(fieldName, label, field)">
+  <div class="form-group accordion" th:id="${'parent-' + fieldName}">
+    <th:block th:each="pointer,stat : *{__${field}__}">
+      <div th:classappend="${'data-'+fieldName}"
+           th:attr="data-index=${stat.index}">
+
+        <div class="panel panel-default">
+          <div th:id="${'heading-' + fieldName + '-' + stat.index}">
+            <h3 class="title">
+              <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+                 th:attr="data-parent=${'#parent-' + fieldName}"
+                 th:href="${'#collapse-' + fieldName + '-' + stat.index}">
+                <span th:text="${label}"></span>
+                <i class="fa fa-angle-down fa-lg hack-icon"></i>
+              </a>
+            </h3>
+          </div>
+
+          <div th:id="${'collapse-' + fieldName + '-' + stat.index}" class="panel-collapse collapse"
+               th:attr="aria-labelledby=${'heading-' + fieldName + '-' + stat.index}">
+            <div class="panel-body">
+
+              <label>Mime type</label>
+              <select class="form-control"
+                      th:field="*{__${field}__[__${stat.index}__].mimeType}">
+                <option th:each="mime : ${mimeTypes}"
+                        th:value="${mime}"
+                        th:text="${mime}">
+                </option>
+              </select>
+              <hr/>
+
+              <th:block
+                  th:insert="fragments/edition_input :: input ('Country code', 'text', ${field + '[' + stat.index + '].schemeTerritory.value'})">
+                &nbsp;
+              </th:block>
+
+              <th:block
+                  th:insert="fragments/edition_input :: input ('TSL location', 'text', ${field + '[' + stat.index + '].tslLocation.value'})">
+                &nbsp;
+              </th:block>
+
+              <th:block
+                  th:insert="fragments/edition_input :: input ('TSL type', 'text', ${field + '[' + stat.index + '].tslType.value'})">
+                &nbsp;
+              </th:block>
+
+              <th:block
+                  th:insert="fragments/edition_multilang :: multiLang (fieldName=${fieldName + '-' + stat.index + '-operator'}, label='Operator name', field=${field + '[' + stat.index + '].schemeOperatorName.values'})">
+                &nbsp;
+              </th:block>
+
+              <th:block
+                  th:insert="fragments/edition_multilang :: multiLang (fieldName=${fieldName + '-' + stat.index + '-schemeRules'}, label='Community rules', field=${field + '[' + stat.index + '].schemeRules.values'})">
+                &nbsp;
+              </th:block>
+
+              <!-- optional -->
+              <th:block
+                  th:insert="fragments/edition_serviceDigitalId :: serviceDigitalId (${fieldName + '-' + stat.index + '-serviceDigitalId'}, 'Service digital identities', ${field + '[' + stat.index + '].serviceDigitalIdentities.values'})">
+                &nbsp;
+              </th:block>
+
+              <button type="button" class="btn btn-default btn-xs"
+                      th:name="${'remove-'+fieldName}">
+                <span class="glyphicon glyphicon-minus"></span>
+                <span th:text="${'&ensp;' + label}"></span>
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </th:block>
+
+    <button type="button" class="btn btn-primary btn-xs"
+            th:name="${'add-'+fieldName}">
+      <span class="glyphicon glyphicon-plus"></span>
+      <span th:text="${'&ensp;' + label}"></span>
+    </button>
+  </div>
+
+  <hr/>
+</div>

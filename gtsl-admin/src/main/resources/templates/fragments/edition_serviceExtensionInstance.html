@@ -1,0 +1,96 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<div th:fragment="serviceExtensionInstance(fieldName, label, field)">
+
+  <th:block
+      th:insert="fragments/edition_input2 :: input ('Critical', 'checkbox', ${field + '.critical'})">
+    &nbsp;
+  </th:block>
+
+  <!-- choice: -->
+  <!-- expiredCertsRevocationInfo -->
+  <!-- Qualifications -->
+  <!-- TakenOverBy -->
+  <!-- additionalServiceInformation -->
+
+  <th:block
+      th:insert="fragments/edition_date :: date ('Expired Certs Revocation Date', ${field + '.expiredCertsRevocationDate'})">
+    &nbsp;
+  </th:block>
+
+  <div th:id="${'heading-' + fieldName + '-takenOverBy'}">
+    <h4 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-takenOverBy'}"
+         th:href="${'#collapse-' + fieldName + '-takenOverBy'}">
+        <span>Taken Over By</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h4>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-takenOverBy'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-takenOverBy'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_takenOverBy :: takenOverBy (fieldName=${fieldName  + '-takenOverBy'}, label='Taken Over By', field=${field + '.takenOverBy'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+  <div th:id="${'heading-' + fieldName + '-additionalServiceInfo'}">
+    <h4 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-additionalServiceInfo'}"
+         th:href="${'#collapse-' + fieldName + '-additionalServiceInfo'}">
+        <span>Additional Service Information</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h4>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-additionalServiceInfo'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-additionalServiceInfo'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_additionalServiceInfo :: additionalServiceInfo (fieldName=${fieldName  + '-additionalServiceInfo'}, label='Additional Service Information', field=${field + '.additionalServiceInfo'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+  <div th:id="${'heading-' + fieldName + '-qualificationsExtension'}">
+    <h4 class="title">
+      <a class="panel-heading a-link-custom collapsed" data-toggle="collapse"
+         th:attr="data-parent=${'#parent-' + fieldName + '-qualificationsExtension'}"
+         th:href="${'#collapse-' + fieldName + '-qualificationsExtension'}">
+        <span>Qualifications Extension</span>
+        <i class="fa fa-angle-down fa-lg hack-icon"></i>
+      </a>
+    </h4>
+  </div>
+  <div th:id="${'collapse-' + fieldName + '-qualificationsExtension'}" class="panel-collapse collapse"
+       th:attr="aria-labelledby=${'heading-' + fieldName + '-qualificationsExtension'}">
+    <div class="panel-body">
+      <th:block
+          th:insert="fragments/edition_qualificationsExtension :: qualificationsExtension (fieldName=${fieldName  + '-qualificationsExtension'}, label='Qualification Element', field=${field + '.qualificationsExtension'})">
+        &nbsp;
+      </th:block>
+    </div>
+  </div>
+
+</div>

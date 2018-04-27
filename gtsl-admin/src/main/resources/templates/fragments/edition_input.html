@@ -1,0 +1,6 @@
+<div th:fragment="input(label, type, field)">
+  <label th:if="${#bools.isFalse(hideTitle)}" th:text="${label}"></label>
+  <input class="form-control" th:type="${type}"
+         th:field="*{__${field}__}" th:readonly="${readonly}" />
+  <hr th:if="${#bools.isFalse(hideTitle)}"/>
+</div>

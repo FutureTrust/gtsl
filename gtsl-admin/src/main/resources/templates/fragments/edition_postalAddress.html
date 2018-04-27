@@ -1,0 +1,69 @@
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<th:block th:fragment="postalAddress(fieldName, label, field)">
+  <div class="postal-address form-group">
+    <h4 th:text="${label}"></h4>
+    <th:block th:each="address,stat : *{__${field}__}">
+      <div class="address well"
+           th:classappend="${'data-'+fieldName}"
+           th:attr="data-index=${stat.index}">
+
+        <label>Language</label>
+        <select class="form-control"
+                th:field="*{__${field}__[__${stat.index}__].lang.value}">
+          <option th:each="lang : ${country.lang}"
+                  th:value="${lang}"
+                  th:text="${lang}">
+          </option>
+        </select>
+
+        <label>Street address</label>
+        <input class="form-control"
+               th:field="*{__${field}__[__${stat.index}__].streetAddress.value}"/>
+
+        <label>Locality</label>
+        <input class="form-control" th:field="*{__${field}__[__${stat.index}__].locality.value}"/>
+
+        <label>State or Province</label>
+        <input class="form-control"
+               th:field="*{__${field}__[__${stat.index}__].stateOrProvince.value}"/>
+
+        <label>Postal code</label>
+        <input class="form-control" th:field="*{__${field}__[__${stat.index}__].postalCode.value}"/>
+
+        <label>Country code</label>
+        <input class="form-control"
+               th:field="*{__${field}__[__${stat.index}__].countryName.value}"/>
+
+        <button type="button" class="btn btn-default btn-xs"
+                th:name="${'remove-'+fieldName}">
+          <span class="glyphicon glyphicon-minus"></span>
+          <span th:text="${'&ensp;' + label}"></span>
+        </button>
+      </div>
+    </th:block>
+
+    <button type="button" class="btn btn-primary btn-xs"
+            th:name="${'add-'+fieldName}">
+      <span class="glyphicon glyphicon-plus"></span>
+      <span th:text="${'&ensp;' + label}"></span>
+    </button>
+  </div>
+
+  <hr/>
+</th:block>

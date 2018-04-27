@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2017 European Commission.
+  ~
+  ~ Licensed under the EUPL, Version 1.1 or – as soon they will be approved by the European
+  ~ Commission - subsequent versions of the EUPL (the "Licence").
+  ~ You may not use this work except in compliance with the Licence.
+  ~ You may obtain a copy of the Licence at:
+  ~
+  ~ https://joinup.ec.europa.eu/software/page/eupl5
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software distributed under the Licence
+  ~ is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+  ~ or implied.
+  ~ See the Licence for the specific language governing permissions and limitations under the
+  ~ Licence.
+  -->
+
+<jxb:bindings version="1.0" xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd">
+
+  <jxb:bindings schemaLocation="ts_119612v020101_sie_xsd.xsd" node="/xs:schema">
+    <jxb:schemaBindings>
+      <jxb:package name="eu.futuretrust.gtsl.jaxb.sie"/>
+      <jxb:nameXmlTransform>
+        <jxb:typeName suffix="JAXB"/>
+      </jxb:nameXmlTransform>
+    </jxb:schemaBindings>
+  </jxb:bindings>
+
+  <jxb:bindings schemaLocation="XAdES.xsd" node="/xs:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="eu.futuretrust.gtsl.jaxb.xades"/>
+            <jxb:nameXmlTransform>
+                <jxb:elementName prefix="xades" />
+                <jxb:typeName suffix="JAXB"/>
+            </jxb:nameXmlTransform>
+        </jxb:schemaBindings>
+  </jxb:bindings>
+
+  <jxb:bindings schemaLocation="http://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd"
+                node="/xs:schema">
+    <jxb:schemaBindings>
+        <jxb:package name="eu.futuretrust.gtsl.jaxb.xmldsig"/>
+        <jxb:nameXmlTransform>
+            <jxb:elementName prefix="ds"/>
+            <jxb:typeName suffix="JAXB"/>
+        </jxb:nameXmlTransform>
+    </jxb:schemaBindings>
+    </jxb:bindings>
+
+  <jxb:bindings schemaLocation="ts_119612v020101_additionaltypes_xsd.xsd" node="/xs:schema">
+    <jxb:schemaBindings>
+      <jxb:package name="eu.futuretrust.gtsl.jaxb.additionaltypes"/>
+      <jxb:nameXmlTransform>
+        <jxb:typeName suffix="JAXB"/>
+      </jxb:nameXmlTransform>
+    </jxb:schemaBindings>
+    <jxb:bindings schemaLocation="http://uri.etsi.org/19612/v1.2.1/tsl.xsd" node="/xs:schema">
+      <jxb:schemaBindings>
+        <jxb:package name="eu.futuretrust.gtsl.jaxb.tsl"/>
+        <jxb:nameXmlTransform>
+          <jxb:typeName suffix="JAXB"/>
+        </jxb:nameXmlTransform>
+      </jxb:schemaBindings>
+    </jxb:bindings>
+  </jxb:bindings>
+
+</jxb:bindings>

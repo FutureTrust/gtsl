@@ -1,0 +1,203 @@
+/** NOW-CUSTOM **/
+.a-link-custom {
+    display: inline-block;
+    word-break: break-all;
+}
+
+.a-link-custom:hover {
+    color: #015e9e !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+}
+
+.tsp-li {
+    border-bottom: 1px solid #ececec !important;
+    padding: 0.5em 0 !important;
+}
+
+.unselectable {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version*/
+}
+
+.wrap-text {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.remove-top-border {
+    border: none !important;
+}
+
+.margin-top-1em {
+    margin-top: 1em;
+}
+
+.truncate-tsp {
+    display: inline-block;
+    max-width: 80%;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.truncate-service {
+    display: inline-block;
+    max-width: 80%;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.truncate-tsp>*, .truncate-service>* {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.realign {
+    margin-top: -20px !important;
+}
+
+/** ICON Service Type override custom design **/
+.q-trust {
+    background-color: #ffd417 !important;
+    cursor: default !important;
+}
+
+.nonq-trust {
+    background-color: #E0E0E0R !important;
+    cursor: default !important;
+}
+
+.nonq-trust:hover, .q-trust:hover {
+    background-color: #333333 !important;
+    color: #FFF !important;
+}
+
+.current-status {
+    background-color: #333333 !important;
+    color: white;
+}
+
+.granted-status {
+    background-color: #008000 !important;
+    color: white;
+}
+
+.failed-status {
+    background-color: #c01900 !important;
+    color: white;
+}
+
+.warning-status {
+    background-color: #c06900 !important;
+    color: white;
+}
+
+.info-status {
+    background-color: #c0c000 !important;
+    color: white;
+}
+
+.like-disabled {
+    opacity: 0.4;
+}
+
+.type-selected {
+    border: 1px solid black;
+    margin-left:5px;
+}
+
+/** Trick for dynamic panel to bypass some CSS attributes **/
+.hack-parent {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.hack-label {
+    display: inline;
+    font-size: 1.111em;
+    margin-bottom: 0;
+}
+
+.hack-list {
+    padding-top: 0 !important;
+}
+
+.hack-icon {
+    color: #015e9e !important;
+    cursor: pointer !important;
+    height: 24px !important;
+    font-size: 200% !important;
+    float: right;
+    width: 24px !important;
+    position: relative;
+}
+
+.hack-link {
+    display: inline !important;
+}
+
+.m-left-20 {
+    margin-left: 20px;
+}
+
+.pad-bottom-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+.pad-bottom-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pad-left-10 {
+    padding-left: 10px;
+}
+
+.search-summary-label {
+    font-size:80%;
+    padding-right: 0px!important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.font-85 {
+    font-size:85%;
+}
+
+.align-top {
+    vertical-align:top;
+}
+
+
+
+/** OVERRIDE **/
+input[type=file]:focus, input[type=checkbox]:focus, input[type=radio]:focus {
+    outline: none !important;
+    outline-offset: 0px !important;
+}
+
+
+.svg-flag-icon-OV {
+    display: inline-block!important; 
+    width: 1.5em!important;
+    height: 1.125em!important;
+    border: 1px solid #ccc;
+}
+
+.panel-heading.collapsed .fa-angle-down {
+    transform:rotateX(0deg);
+}
+.panel-heading .fa-angle-down {
+    transition:transform .5s;
+    transform:rotateX(180deg);
+}
