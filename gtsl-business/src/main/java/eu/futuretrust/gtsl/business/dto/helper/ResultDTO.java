@@ -17,9 +17,19 @@
 
 package eu.futuretrust.gtsl.business.dto.helper;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "result")
+@XmlAccessorType(XmlAccessType.NONE)
 public class ResultDTO<T> {
 
+  @XmlElement
   private T content;
+
+  @XmlElement
   private String errorMessage;
 
   public ResultDTO() {}
