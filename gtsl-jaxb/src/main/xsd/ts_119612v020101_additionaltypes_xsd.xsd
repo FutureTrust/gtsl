@@ -10,7 +10,7 @@ then that text shall prevail as the authoritative source
   xmlns:xades="http://uri.etsi.org/01903/v1.3.2#" xmlns:tsl="http://uri.etsi.org/02231/v2#"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xsd:import namespace="http://uri.etsi.org/02231/v2#" schemaLocation="http://uri.etsi.org/19612/v1.2.1/tsl.xsd"/>
+	<xsd:import namespace="http://uri.etsi.org/02231/v2#" schemaLocation="https://uri.etsi.org/19612/v1.2.1/tsl.xsd"/>
 	<xsd:import namespace="http://uri.etsi.org/01903/v1.3.2#" schemaLocation="XAdES.xsd"/>
 	<!-- -->
 	<!-- -->

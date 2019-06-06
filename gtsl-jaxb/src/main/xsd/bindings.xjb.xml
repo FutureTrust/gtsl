@@ -57,7 +57,7 @@
         <jxb:typeName suffix="JAXB"/>
       </jxb:nameXmlTransform>
     </jxb:schemaBindings>
-    <jxb:bindings schemaLocation="http://uri.etsi.org/19612/v1.2.1/tsl.xsd" node="/xs:schema">
+    <jxb:bindings schemaLocation="https://uri.etsi.org/19612/v1.2.1/tsl.xsd" node="/xs:schema">
       <jxb:schemaBindings>
         <jxb:package name="eu.futuretrust.gtsl.jaxb.tsl"/>
         <jxb:nameXmlTransform>
