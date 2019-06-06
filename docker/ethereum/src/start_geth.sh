@@ -4,7 +4,7 @@ GEN_ARGS=
 
 echo "Running ethereum node with CHAIN_TYPE=$CHAIN_TYPE"
 
-if [ "$CHAIN_TYPE" == "private" ]; then
+if [[ "$CHAIN_TYPE" == "private" ]]; then
   # empty datadir -> geth init
   DATA_DIR=${DATA_DIR:-"/root/.ethereum"}
   echo "DATA_DIR '$DATA_DIR' non existant or empty. Initializing DATA_DIR..."
@@ -13,16 +13,16 @@ if [ "$CHAIN_TYPE" == "private" ]; then
   KEYSTORE="$(ls -A ${DATA_DIR}/keystore)"
   COUNT_KEYSTORE="$(ls -A ${DATA_DIR}/keystore | wc -l  )"
   echo "You have ${COUNT_KEYSTORE} account(s)"
-  if [ "$COUNT_KEYSTORE" -ge 2 ]; then
+  if [[ "$COUNT_KEYSTORE" -ge 2 ]]; then
     echo "Keystore: "
     echo "${KEYSTORE}"
   else
-    if [ "$ACCOUNT_NEW" == "true" ]; then
+    if [[ "$ACCOUNT_NEW" == "true" ]]; then
       echo "Generating new account(s)..."
       PASSWORD="/opt/password"
-      if [ -s ${PASSWORD} ]; then
+      if [[ -s ${PASSWORD} ]]; then
           geth --datadir "$DATA_DIR" --password "$PASSWORD" account new
-          if [ "$COUNT_KEYSTORE" -eq 0 ]; then
+          if [[ "$COUNT_KEYSTORE" -eq 0 ]]; then
             geth --datadir "$DATA_DIR" --password "$PASSWORD" account new
           fi
       else
@@ -49,7 +49,7 @@ if [ "$CHAIN_TYPE" == "private" ]; then
   echo "Accounts:"
   for f in "${DATA_DIR}"/keystore/* ; do
     ACCOUNT=$(echo ${f} | awk -F'--' 'NR==1{print $3}')
-    echo "$ACCOUNT"
+    echo "account: $ACCOUNT"
     GEN_ALLOC=${GEN_ALLOC}'"'${ACCOUNT}'": { "balance": "0x2000000000000000000000000000000000000000000000000000000000000000" }, '
   done
   GEN_ALLOC=$(echo ${GEN_ALLOC} | sed 's/.$//')

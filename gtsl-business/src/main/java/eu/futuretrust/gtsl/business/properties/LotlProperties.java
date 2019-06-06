@@ -19,6 +19,8 @@ package eu.futuretrust.gtsl.business.properties;
 
 import eu.futuretrust.gtsl.business.properties.exceptions.PropertiesException;
 import javax.annotation.PostConstruct;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,33 +35,37 @@ public class LotlProperties {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(LotlProperties.class);
 
-  @PostConstruct
-  public void init() throws Exception {
-    if (!this.isValid()) {
-      String errorMessage = "Lotl properties must be configured";
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(errorMessage);
-      }
-      throw new PropertiesException(errorMessage);
-    }
-  }
+//  @PostConstruct
+//  public void init() throws Exception {
+//    if (!this.isValid()) {
+//      String errorMessage = "Lotl properties must be configured";
+//      if (LOGGER.isErrorEnabled()) {
+//        LOGGER.error(errorMessage);
+//      }
+//      throw new PropertiesException(errorMessage);
+//    }
+//  }
 
+  @NotEmpty
   private String keystorePassword;
+  @NotEmpty
   private String keystorePath;
+  @NotEmpty
   private String keystoreType;
+  @NotEmpty
   private String xmlUrl;
+  @Min(1)
   private Long cacheValidityWindow;
   private String fileCachePath;
 
-  public boolean isValid() {
-    return StringUtils.isNotBlank(keystorePassword)
-        && StringUtils.isNotBlank(keystorePath)
-        && StringUtils.isNotBlank(keystorePassword)
-        && StringUtils.isNotBlank(keystoreType)
-        && StringUtils.isNotBlank(xmlUrl)
-        && cacheValidityWindow != null
-        && cacheValidityWindow.compareTo(0L) > 0;
-  }
+//  public boolean isValid() {
+//    return StringUtils.isNotBlank(keystorePassword)
+//        && StringUtils.isNotBlank(keystorePath)
+//        && StringUtils.isNotBlank(keystoreType)
+//        && StringUtils.isNotBlank(xmlUrl)
+//        && cacheValidityWindow != null
+//        && cacheValidityWindow.compareTo(0L) > 0;
+//  }
 
   public String getKeystorePassword() {
     return keystorePassword;

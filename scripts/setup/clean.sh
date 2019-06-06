@@ -14,3 +14,6 @@ DOCKER_SCRIPTS_PATH="$(cd "$DIR" && cd "$DOCKER_SCRIPTS_PATH" && pwd)"
 
 # Remove the volume created for the database
 docker volume rm mongodata
+
+# Remove the network created for the containers
+docker network rm docker_back-network

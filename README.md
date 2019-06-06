@@ -65,6 +65,7 @@ Properties files has been generated in the folder properties
 by the _setup_ script.
 You have to configure yourself the following files: 
 lotl.properties, mail.properties, signature.properties.
+See [Signature configuration](#signature-configuration)
 
 ## Deploy the smart-contracts
 
