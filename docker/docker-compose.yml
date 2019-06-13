@@ -31,6 +31,7 @@ services:
     environment:
       - NET_ID=794613 # unique identifier of the network
       - ACCOUNT_NEW=true # try to generate a new account if not existing
+      - MAX_PEERS=50 # maximum peers which can be connected to the node
     command: --rpc --rpcaddr=0.0.0.0 --rpcapi=db,eth,net,web3,personal --rpccorsdomain "*"
 
   mongo:

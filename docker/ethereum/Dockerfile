@@ -4,8 +4,9 @@ FROM ethereum/client-go:v1.6.5
 ENV GEN_NONCE="0xeddeadbabeeddead" \
     DATA_DIR="/root/.ethereum" \
     CHAIN_TYPE="private" \
-    NET_ID=1981 \
-    ACCOUNT_NEW="false"
+    NET_ID=794613 \
+    ACCOUNT_NEW="true" \
+    MAX_PEERS=50
 
 # Working directory
 WORKDIR /opt
