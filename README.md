@@ -31,15 +31,17 @@ First of all, clone the repository of the project on your machine
 (preferably in your HOME).
 
 ## Choose a Network ID
-In the docker/docker-compose.yml file, set a value for NET_ID (e.g. NET_ID=794613) and use this value for all nodes you will set up.
+In the docker/docker-compose.yml file, set a value for NET_ID (e.g. NET_ID=794613) 
+and use this value for all nodes you will set up.
 
 ## Choose a Maximum Peers value
-In the docker/docker-compose.yml file, set a value for MAX_PEERS (e.g. MAX_PEERS=50) to specify the maximum peers which can be connected to the node.
+In the docker/docker-compose.yml file, set a value for MAX_PEERS (e.g. MAX_PEERS=50) 
+to specify the maximum peers which can be connected to the node.
 
 ## Set up the environment
 
 **If you are using docker-machine** 
-(which should be the case on Windows (<10) and Mac OS), 
+(which should be the case on Windows (< 10) and Mac OS), 
 pass in as arguments the machine name 
 (if you are using Docker Toolbox the machine name should be default). 
 The endpoints will be reached through the docker-machine.
@@ -50,7 +52,7 @@ The endpoints will be reached on localhost.
 The following command will set up the project.
 
 ```sh
-./scripts/setup/setup.sh [docker-machine-name]
+$ ./scripts/setup/setup.sh [docker-machine-name]
 ```
 
 You have to wait for the containers to be ready. 
@@ -65,35 +67,34 @@ you can type `docker logs -f ethereum-node`, and
 you should see *Generating DAG in progress*. 
 If it is not the case, please check you followed all the previous steps.
 
-## Connect to the First Node
+## Connect to the node
 
 Connect to the docker container with the following command.
 ```sh
-docker exec -it ethereum-node sh
+$ docker exec -it ethereum-node sh
 ```
 
-Copy the genesis.json file on your computer, you will need it later.
+Copy the **genesis.json** file on your computer, you will need it later.
 ```sh
-cat /opt/genesis.json
+$ cat /opt/genesis.json
 ```
 
 Then, connect to the Ethereum console with the following command.
 ```sh
-geth attach
+$ geth attach
 ```
 
-Copy the enode value of your node on your computer, you will need it later.
+Copy the **enode** value of your node on your computer, you will need it later.
 ```sh
-admin.nodeInfo
-```
-```sh
+$ admin.nodeInfo
 enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9274a936fde08e873e81b729920319272791764c2b7548b0d9c5ad230@[::]:30303
 ```
-In the enode value, replace @[::]:30303 with the actual combination of @<ip>:<port> of your machine (e.g. @10.0.0.0:30303
+In the **enode** value, replace **@[::]:30303** with the actual combination of 
+@<ip>:<port> of your machine (e.g. **@10.0.0.0:30303**).
 
 **Tips**: To exit a console, use the following command.
 ```sh
-exit
+$ exit
 ```
 
 ## Deploy the smart-contracts
@@ -112,19 +113,72 @@ required in order to accept a proposal in the voting system.
 of the first member of the consortium.
 
 ```sh
-./scripts/deployment/deploy.sh <quorum> <tlIdentifier>
+$ ./scripts/deployment/deploy.sh <quorum> <tlIdentifier>
 ```
 
 For instance, for development purpose you can use the following :
 
 ```sh
-./scripts/deployment/deploy.sh 20 EU
+$ ./scripts/deployment/deploy.sh 20 EU
 ```
 
 **FYI**: 3 smart-contracts are deployed, 
 1 for the User Management, 
 1 for the Tsl Store and 
 1 for the Rules Properties.
+
+Then, copy the properties/contract.properties file that have just been generated, 
+you will need it later.
+
+## Set up another environment
+
+Copy the previously saved **genesis.json** 
+(see Section [Connect to the node](#connect-to-the-node)
+into the folder **docker/ethereum/src/**.
+
+Then, follow the instructions 
+in Section [Set up the environment](#set-up-the-environment).
+
+## Connect to another node
+
+Connect to the docker container with the following command.
+```sh
+$ docker exec -it ethereum-node sh
+```
+
+Then, connect to the Ethereum console with the following command.
+```sh
+$ geth attach
+```
+
+Check your connectivity.
+```sh
+$ net.listening 
+true
+```
+Add the **enode** value of **all other nodes** you want to connect with.
+```sh
+$ admin.addPeer("enode://f4642fa65af50cfdea8fa7414a5def7bb7991478b768e296f5e4a54e8b995de102e0ceae2e826f293c481b5325f89be6d207b003382e18a8ecba66fbaf6416c0@33.4.2.1:30303")
+```
+
+Check the peer has been added.
+```sh
+$ admin.peers
+```
+
+The node should appear (it may take a few seconds to connect).
+
+If it does not appear check the following problems https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network#common-problems-with-connectivity.
+
+Copy the **enode** value of your node on your computer, for potential future nodes.
+
+```sh
+$ admin.nodeInfo
+enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9274a936fde08e873e81b729920319272791764c2b7548b0d9c5ad230@[::]:30303
+```
+In the **enode** value, replace **@[::]:30303** with the actual combination of 
+**@<ip>:<port>** of your machine (e.g. **@10.0.0.0:30303**).
+
 
 ## Properties configuration
 
@@ -139,7 +193,7 @@ See Section [Signature configuration](#signature-configuration).
 You have to build the application by using the following command.
 
 ```sh
-./scripts/app/build.sh
+$ ./scripts/app/build.sh
 ```
 
 The application is now built.
@@ -149,7 +203,7 @@ The application is now built.
 You have to use Nexu as an interface to be able to sign the Trusted Lists.
 
 ```sh
-./scripts/app/nexu.sh
+$ ./scripts/app/nexu.sh
 ```
 
 Nexu should be running.
@@ -165,7 +219,7 @@ follow the instructions below for **gtsl-web**.
 ### gtsl-admin
 
 ```sh
-./scripts/app/start.sh admin
+$ ./scripts/app/start.sh admin
 ```
 
 The Spring Boot application should be running 
@@ -179,7 +233,7 @@ To be able to sign a Trusted List, see Section [Signature configuration](#signat
 ### gtsl-web
 
 ```sh
-./scripts/app/start.sh web
+$ ./scripts/app/start.sh web
 ```
 
 The Spring Boot application should be running 
