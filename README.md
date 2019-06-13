@@ -30,6 +30,12 @@ If you are using docker-machine (via Docker Toolbox):
 First of all, clone the repository of the project on your machine 
 (preferably in your HOME).
 
+## Choose a Network ID
+In the docker/docker-compose.yml file, set a value for NET_ID (e.g. NET_ID=794613) and use this value for all nodes you will set up.
+
+## Choose a Maximum Peers value
+In the docker/docker-compose.yml file, set a value for MAX_PEERS (e.g. MAX_PEERS=50) to specify the maximum peers which can be connected to the node.
+
 ## Set up the environment
 
 **If you are using docker-machine** 
@@ -58,6 +64,37 @@ the keystore which was generated previously.
 you can type `docker logs -f ethereum-node`, and 
 you should see *Generating DAG in progress*. 
 If it is not the case, please check you followed all the previous steps.
+
+## Connect to the First Node
+
+Connect to the docker container with the following command.
+```sh
+docker exec -it ethereum-node sh
+```
+
+Copy the genesis.json file on your computer, you will need it later.
+```sh
+cat /opt/genesis.json
+```
+
+Then, connect to the Ethereum console with the following command.
+```sh
+geth attach
+```
+
+Copy the enode value of your node on your computer, you will need it later.
+```sh
+admin.nodeInfo
+```
+```sh
+enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9274a936fde08e873e81b729920319272791764c2b7548b0d9c5ad230@[::]:30303
+```
+In the enode value, replace @[::]:30303 with the actual combination of @<ip>:<port> of your machine (e.g. @10.0.0.0:30303
+
+**Tips**: To exit a console, use the following command.
+```sh
+exit
+```
 
 ## Deploy the smart-contracts
 
