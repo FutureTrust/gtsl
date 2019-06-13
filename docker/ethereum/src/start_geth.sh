@@ -60,7 +60,7 @@ if [[ "$CHAIN_TYPE" == "private" ]]; then
 
   geth --datadir "$DATA_DIR" init /opt/genesis.json
 
-  GEN_ARGS="--datadir $DATA_DIR --nodiscover  --identity miner --fast --cache=1024 --verbosity=3 --maxpeers=0 --mine --minerthreads=4"
+  GEN_ARGS="--datadir $DATA_DIR --nodiscover  --identity miner --fast --cache=1024 --verbosity=3 --maxpeers=50 --mine --minerthreads=4"
   [[ ! -z ${NET_ID} ]] && GEN_ARGS="$GEN_ARGS --networkid=$NET_ID"
 fi
 
