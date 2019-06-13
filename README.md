@@ -59,14 +59,6 @@ you can type `docker logs -f ethereum-node`, and
 you should see *Generating DAG in progress*. 
 If it is not the case, please check you followed all the previous steps.
 
-## Properties configuration
-
-Properties files has been generated in the folder properties 
-by the _setup_ script.
-You have to configure yourself the following files: 
-lotl.properties, mail.properties, signature.properties.
-See [Signature configuration](#signature-configuration)
-
 ## Deploy the smart-contracts
 
 > Before deploying the smart-contracts, you should know that 
@@ -96,6 +88,14 @@ For instance, for development purpose you can use the following :
 1 for the User Management, 
 1 for the Tsl Store and 
 1 for the Rules Properties.
+
+## Properties configuration
+
+Properties files has been generated in the folder properties 
+by the _setup_ script.
+You have to configure yourself the following files: 
+lotl.properties, mail.properties, signature.properties.
+See Section [Signature configuration](#signature-configuration).
 
 ## Build the application
 
@@ -135,9 +135,9 @@ The Spring Boot application should be running
 on [http://localhost:8181/](http://localhost:8181/).
 
 If the app asks you to configure the rules properties, 
-see Section **Rules configuration**.
+see Section [Rules configuration](#rules-configuration).
 
-To be able to sign a Trusted List, see Section **Signature configuration**.
+To be able to sign a Trusted List, see Section [Signature configuration](#signature-configuration).
 
 ### gtsl-web
 
@@ -149,7 +149,7 @@ The Spring Boot application should be running
 on [http://localhost:8091/](http://localhost:8091/).
 
 If the app asks you to configure the rules properties, 
-see Section **Rules configuration**.
+see Section [Rules configuration](#rules-configuration).
 
 ## Rules configuration
 
