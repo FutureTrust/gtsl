@@ -31,11 +31,11 @@ First of all, clone the repository of the project on your machine
 (preferably in your HOME).
 
 ## Choose a Network ID
-In the docker/docker-compose.yml file, set a value for NET_ID (e.g. NET_ID=794613) 
+In the **docker/docker-compose.yml** file, set a value for **NET_ID** (e.g. NET_ID=794613) 
 and use this value for all nodes you will set up.
 
 ## Choose a Maximum Peers value
-In the docker/docker-compose.yml file, set a value for MAX_PEERS (e.g. MAX_PEERS=50) 
+In the **docker/docker-compose.yml** file, set a value for **MAX_PEERS** (e.g. MAX_PEERS=50) 
 to specify the maximum peers which can be connected to the node.
 
 ## Set up the environment
