@@ -212,14 +212,6 @@ otherwise you should see values like currentBlock, highestBlock, etc.
 
 ## Properties configuration
 
-Properties files has been generated in the folder properties 
-by the _setup_ script.
-You have to configure yourself the following files: 
-lotl.properties, mail.properties, signature.properties.
-See Section [Signature configuration](#signature-configuration).
-
-## Properties configuration
-
 Properties files have been generated in the folder **properties** by the _setup_ script.
 
 You have to configure yourself the following files: 
