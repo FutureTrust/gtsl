@@ -90,7 +90,7 @@ $ admin.nodeInfo
 enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9274a936fde08e873e81b729920319272791764c2b7548b0d9c5ad230@[::]:30303
 ```
 In the **enode** value, replace **@[::]:30303** with the actual combination of 
-@<ip>:<port> of your machine (e.g. **@10.0.0.0:30303**).
+**@ip:port** of your machine (e.g. **@10.0.0.0:30303**).
 
 **Tips**: To exit a console, use the following command.
 ```sh
@@ -177,7 +177,7 @@ $ admin.nodeInfo
 enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9274a936fde08e873e81b729920319272791764c2b7548b0d9c5ad230@[::]:30303
 ```
 In the **enode** value, replace **@[::]:30303** with the actual combination of 
-**@<ip>:<port>** of your machine (e.g. **@10.0.0.0:30303**).
+**@ip:port** of your machine (e.g. **@10.0.0.0:30303**).
 
 **Troubleshooting**: if you want to ensure, at any time, that
 your peers are well synchronized, check the last block number by using
