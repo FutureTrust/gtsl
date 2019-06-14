@@ -179,6 +179,24 @@ enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9
 In the **enode** value, replace **@[::]:30303** with the actual combination of 
 **@<ip>:<port>** of your machine (e.g. **@10.0.0.0:30303**).
 
+**Troubleshooting**: if you want to ensure, at any time, that
+your peers are well synchronized, check the last block number by using
+the following command in the Ethereum console.
+```sh
+$ eth.blockNumber
+46355
+```
+All your nodes MUST have the same value. If one node is not sync, 
+restart the container to allow the peer to retry to sync.
+
+**Troubleshooting**: you can check if your node is syncing, by by using
+the following command in the Ethereum console.
+```sh
+$ web3.eth.syncing
+false
+```
+If the value is *false*, it means that your node is up-to-date, 
+otherwise you should see values like currentBlock, highestBlock, etc.
 
 ## Properties configuration
 
