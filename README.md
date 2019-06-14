@@ -6,6 +6,8 @@ that is part of the Future Trust project.
 
 ## Prerequisites
 
+### Dependencies
+
 Tool | Version
 --- | ---
 Java | 1.8
@@ -13,6 +15,16 @@ Git | latest
 Maven | latest
 Docker | latest
 Docker-compose | latest
+
+### Ports
+
+You have to ensure that the following ports are available:
+
+Usage | Protocol | Port
+--- | --- | ---
+Ethereum | TCP | 30303
+Ethereum | UDP | 30303
+IPFS | TCP | 4001
 
 ## Warning
 
@@ -90,7 +102,7 @@ $ admin.nodeInfo
 enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9274a936fde08e873e81b729920319272791764c2b7548b0d9c5ad230@[::]:30303
 ```
 In the **enode** value, replace **@[::]:30303** with the actual combination of 
-@<ip>:<port> of your machine (e.g. **@10.0.0.0:30303**).
+**@ip:port** of your machine (e.g. **@10.0.0.0:30303**).
 
 **Tips**: To exit a console, use the following command.
 ```sh
@@ -177,8 +189,26 @@ $ admin.nodeInfo
 enode://723d96ad2fbc141cad0543e2a022648775effa963af12e05484436cbe8396248044177a9274a936fde08e873e81b729920319272791764c2b7548b0d9c5ad230@[::]:30303
 ```
 In the **enode** value, replace **@[::]:30303** with the actual combination of 
-**@<ip>:<port>** of your machine (e.g. **@10.0.0.0:30303**).
+**@ip:port** of your machine (e.g. **@10.0.0.0:30303**).
 
+**Troubleshooting**: if you want to ensure, at any time, that
+your peers are well synchronized, check the last block number by using
+the following command in the Ethereum console.
+```sh
+$ eth.blockNumber
+46355
+```
+All your nodes MUST have the same value. If one node is not sync, 
+restart the container to allow the peer to retry to sync.
+
+**Troubleshooting**: you can check if your node is syncing, by using
+the following command in the Ethereum console.
+```sh
+$ web3.eth.syncing
+false
+```
+If the value is *false*, it means that your node is up-to-date, 
+otherwise you should see values like currentBlock, highestBlock, etc.
 
 ## Properties configuration
 
@@ -275,3 +305,19 @@ you have configured the properties files:
 - fileCachePath (optional) : local file used as a cache for the LoTL
 
 **Note**: Your certificate must contain the following extensions: SKI extension, Non repudiation.
+
+# Sources
+
+## Ethereum
+
+https://github.com/ethereum/go-ethereum/wiki/Private-network
+
+https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network
+
+http://www.ethdocs.org/en/latest/network/test-networks.html#id3
+
+## IPFS
+
+https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b
+
+https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks
