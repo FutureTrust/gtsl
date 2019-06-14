@@ -6,6 +6,8 @@ that is part of the Future Trust project.
 
 ## Prerequisites
 
+### Dependencies
+
 Tool | Version
 --- | ---
 Java | 1.8
@@ -13,6 +15,16 @@ Git | latest
 Maven | latest
 Docker | latest
 Docker-compose | latest
+
+### Ports
+
+You have to ensure that the following ports are available:
+
+Usage | Protocol | Port
+--- | --- | ---
+Ethereum | TCP | 30303
+Ethereum | UDP | 30303
+IPFS | TCP | 4001
 
 ## Warning
 
