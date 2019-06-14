@@ -189,7 +189,7 @@ $ eth.blockNumber
 All your nodes MUST have the same value. If one node is not sync, 
 restart the container to allow the peer to retry to sync.
 
-**Troubleshooting**: you can check if your node is syncing, by by using
+**Troubleshooting**: you can check if your node is syncing, by using
 the following command in the Ethereum console.
 ```sh
 $ web3.eth.syncing
