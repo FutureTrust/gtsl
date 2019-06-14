@@ -299,10 +299,13 @@ you have configured the properties files:
 ## Ethereum
 
 https://github.com/ethereum/go-ethereum/wiki/Private-network
+
 https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network
+
 http://www.ethdocs.org/en/latest/network/test-networks.html#id3
 
 ## IPFS
 
 https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b
+
 https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks
