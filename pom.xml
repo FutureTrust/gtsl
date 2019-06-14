@@ -43,7 +43,7 @@
     <spring-context.version>4.3.12.RELEASE</spring-context.version>
     <spring-beans.version>4.3.12.RELEASE</spring-beans.version>
     <spring-data.version>1.10.8.RELEASE</spring-data.version>
-    <java-ipfs-api.version>v1.2.0</java-ipfs-api.version>
+    <java-ipfs-api.version>v1.2.3</java-ipfs-api.version>
     <web3j.version>3.3.1</web3j.version>
     <mongo-java-driver.version>3.5.0</mongo-java-driver.version>
     <jackson.version>2.9.2</jackson.version>

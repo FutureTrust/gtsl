@@ -35,7 +35,7 @@
     <!-- IPFS dependencies -->
     <dependency>
       <groupId>com.github.ipfs</groupId>
-      <artifactId>java-ipfs-api</artifactId>
+      <artifactId>java-ipfs-http-client</artifactId>
       <version>${java-ipfs-api.version}</version>
     </dependency>
 

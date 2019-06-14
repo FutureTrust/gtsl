@@ -3,7 +3,7 @@ version: '3'
 services:
 
 #  ipfs:
-#    image: ipfs/go-ipfs:v0.4.13
+#    image: ipfs/go-ipfs:v0.4.21
 #    restart: always
 #    container_name: ipfs-node
 #    volumes:
@@ -19,11 +19,11 @@ services:
     build: ipfs
     restart: always
     container_name: ipfs-node
-    entrypoint: /opt/start_ipfs.sh
     volumes:
       - .//ipfs/data:/data:rw
     ports:
       - "8080:8080"
+      - "8081:8081"
       - "4001:4001"
       - "5001:5001"
     networks:
