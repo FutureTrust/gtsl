@@ -218,6 +218,16 @@ You have to configure yourself the following files:
 lotl.properties, mail.properties, signature.properties.
 See Section [Signature configuration](#signature-configuration).
 
+## Properties configuration
+
+Properties files have been generated in the folder **properties** by the _setup_ script.
+
+You have to configure yourself the following files: 
+**lotl.properties**, **mail.properties**, **signature.properties**, 
+see Section [Signature configuration](#signature-configuration)..
+
+In this folder, replace the **contract.properties** file by the one you have previously saved.
+
 ## Build the application
 
 You have to build the application by using the following command.
