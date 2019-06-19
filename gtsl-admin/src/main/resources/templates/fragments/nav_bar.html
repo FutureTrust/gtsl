@@ -17,11 +17,11 @@
 
 <div th:fragment="nav" class="sidebar-nav">
   <ul class="nav nav-tab-custom nav-stacked">
-    <li th:class="${homePage} ? 'active'"><a href="">Home</a></li>
-    <li th:class="${users} ? 'active'"><a href="/users">Members</a></li>
-    <li th:class="${proposals} ? 'active'"><a href="/proposals">Proposals</a></li>
-    <li th:class="${drafts} ? 'active'"><a href="/drafts">Drafts</a></li>
-    <li th:class="${propertiesPage} ? 'active'"><a href="/properties">Properties</a></li>
-    <li th:class="${configuration} ? 'active'"><a href="/configuration">Configuration</a></li>
+    <li th:class="${homePage} ? 'active'"><a th:href="@{/}">Home</a></li>
+    <li th:class="${users} ? 'active'"><a th:href="@{/users}">Members</a></li>
+    <li th:class="${proposals} ? 'active'"><a th:href="@{/proposals}">Proposals</a></li>
+    <li th:class="${drafts} ? 'active'"><a th:href="@{/drafts}">Drafts</a></li>
+    <li th:class="${propertiesPage} ? 'active'"><a th:href="@{/properties}">Properties</a></li>
+    <li th:class="${configuration} ? 'active'"><a th:href="@{/configuration}">Configuration</a></li>
   </ul>
 </div>

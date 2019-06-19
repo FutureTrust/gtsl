@@ -44,10 +44,10 @@
                    target="_blank">eSignature</a>
             </li>
             <li>
-              <a class="a-link-custom" href="">Trusted List Manager</a>
+              <a class="a-link-custom" th:href="@{/}">Trusted List Manager</a>
             </li>
             <li>
-              <a class="a-link-custom" href="/drafts">Drafts</a>
+              <a class="a-link-custom" th:href="@{/drafts}">Drafts</a>
             </li>
             <li class="active">Report</li>
           </ul>
@@ -69,7 +69,7 @@
 
     <div class="row text-center">
       <div class="btn-float-group clearfix">
-        <a href="/drafts" class="btn btn-primary btn-lg">
+        <a th:href="@{/drafts}" class="btn btn-primary btn-lg">
           Back to drafts
         </a>
       </div>
@@ -118,7 +118,7 @@
       <div class="col-sm-12">
         <div class="text-center">
           <div class="btn-float-group clearfix">
-            <a href="/drafts" class="btn btn-primary btn-lg">
+            <a th:href="@{/drafts}" class="btn btn-primary btn-lg">
               Back to drafts
             </a>
           </div>

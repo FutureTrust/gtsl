@@ -45,7 +45,7 @@
                      target="_blank">eSignature</a>
               </li>
               <li>
-                <a class="a-link-custom" href="">Trusted List Manager</a>
+                <a class="a-link-custom" th:href="@{/}">Trusted List Manager</a>
               </li>
               <li class="active">Error</li>
             </ul>
@@ -67,7 +67,7 @@
               <p th:if="${message == null || #strings.isEmpty(message)}">No message available.</p>
             </div>
 
-            <a href="" class="btn btn-primary btn-lg">Back to home</a>
+            <a th:href="@{/}" class="btn btn-primary btn-lg">Back to home</a>
           </div>
         </div>
       </div>
