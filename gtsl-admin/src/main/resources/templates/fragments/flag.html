@@ -19,6 +19,6 @@
   <img class="svg-flag-icon"
        th:classappend="${addClass != null ? addClass : ''}"
        width="640" height="480"
-       th:src="@{${'svg/flags/' + #strings.toLowerCase(territoryCode) + '.svg#flag_' + #strings.toLowerCase(territoryCode)}}"
+       th:src="@{${'/svg/flags/' + #strings.toLowerCase(territoryCode) + '.svg#flag_' + #strings.toLowerCase(territoryCode)}}"
        th:alt="${alternative}"/>
 </span>
