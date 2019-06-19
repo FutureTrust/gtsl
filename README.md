@@ -74,7 +74,7 @@ $ go get -u github.com/Kubuxu/go-ipfs-swarm-key-gen/ipfs-swarm-key-gen
 
 Run the swarm key generator to create the swarm file:
 ```sh
-./go/bin/ipfs-swarm-key-gen > swarm.key
+$ ./go/bin/ipfs-swarm-key-gen > swarm.key
 ```
 
 Copy the generated swarm.key file to **docker/ipfs/src/swarm.key**. 
@@ -92,10 +92,9 @@ add one line per node with the IP address of the node along with the PeerID of t
 /ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
 ```
 
-**NOTE:** you can retrieve the PeerID of a node by connecting to the IPFS container 
-and run the following command.
+**NOTE:** you can retrieve the PeerID of a node by running the following command.
 ```sh
-ipfs config show | grep "PeerID"
+$ docker exec ipfs-node ipfs config show | grep "PeerID"
 ```
 
 Below, an example of a *peers.cfg* file.
@@ -109,12 +108,15 @@ Below, an example of a *peers.cfg* file.
 
 In this *peers.cfg* file, you can see that we added 4 nodes we want to bootstrap.
 
-**NOTE:** you can also add a new peer manually by connecting to the IPFS container
-and run the following command.
+**NOTE:** you can also add a new peer manually by running the following command.
 ```sh
-ipfs bootstrap add /ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
+$ docker exec ipfs-node ipfs bootstrap add /ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
 ```
 
+**NOTE:** you can know all available peers in the swarm by running the following command.
+```sh
+$ docker exec ipfs-node ipfs swarm peers
+```
 
 ## Set up the environment
 
