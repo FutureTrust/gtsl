@@ -113,6 +113,10 @@ In this *peers.cfg* file, you can see that we added 4 nodes we want to bootstrap
 $ docker exec ipfs-node ipfs bootstrap add /ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
 ```
 
+**NOTE:** you can know all available peers in the swarm by running the following command.
+```sh
+$ docker exec ipfs-node ipfs swarm peers
+```
 
 ## Set up the environment
 
