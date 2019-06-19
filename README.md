@@ -323,7 +323,7 @@ $ ./scripts/app/start.sh admin
 ```
 
 The Spring Boot application should be running 
-on [http://localhost:8181/](http://localhost:8181/).
+on [http://localhost:8181/gtsl-admin](http://localhost:8181/gtsl-admin).
 
 If the app asks you to configure the rules properties, 
 see Section [Rules configuration](#rules-configuration).
@@ -337,7 +337,7 @@ $ ./scripts/app/start.sh web
 ```
 
 The Spring Boot application should be running 
-on [http://localhost:8091/](http://localhost:8091/).
+on [http://localhost:8091/gtsl-web](http://localhost:8091/gtsl-web).
 
 If the app asks you to configure the rules properties, 
 see Section [Rules configuration](#rules-configuration).
