@@ -44,7 +44,9 @@ echo "========================================================================"
 echo ""
 
 JAR="$( find "${APP}"/target -name "*.jar" | head -n 1 )"
-RUN_CMD="java -jar ${JAR}"
+CONTEXT_PATH=gtsl-"$1"
+RUN_CMD="java -jar ${JAR} --server.context-path=/${CONTEXT_PATH}"
+
 echo ${RUN_CMD}
 ${RUN_CMD}
 
