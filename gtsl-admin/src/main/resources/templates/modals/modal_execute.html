@@ -46,7 +46,7 @@
           <p>To be executed, the proposal must be finished, it means that the voting deadline must be
             exceeded.</p>
 
-          <form method="POST" action="/proposals/execute">
+          <form method="POST" th:action="@{/proposals/execute}">
             <input type="hidden" name="proposalId" th:value="${proposal.index}">
             <div class="btn-float-group clearfix">
               <button type="submit"

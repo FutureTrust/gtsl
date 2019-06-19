@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="btn-float-group clearfix">
-                <form method="POST" enctype="multipart/form-data" action="/properties/import">
+                <form method="POST" enctype="multipart/form-data" th:action="@{/properties/import}">
                   <input type="file" name="fileToUpload"/>
                   <div class="btn-float-group clearfix">
                     <button type="submit" class="btn btn-primary btn-lg pull-right">

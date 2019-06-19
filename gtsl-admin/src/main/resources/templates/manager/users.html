@@ -87,7 +87,7 @@
                             form
                             below.</p>
                           <form id="formAddMember" class="form-default" method="POST"
-                                action="/users/add">
+                                th:action="@{/users/add}">
                             <div class="form-group">
                               <label>Address (Ethereum public key) :</label>
                               <input type="text" name="memberAddress" class="form-control"/>
@@ -186,7 +186,8 @@
                                 duration (in hours) for the vote.</p>
                               <form th:id="${'formRemoveMember-' + member.index}"
                                     class="form-default"
-                                    method="POST" action="/users/remove">
+                                    method="POST"
+                                    th:action="@{/users/remove}">
                                 <input type="hidden" name="memberAddress"
                                        th:value="${member.address}"/>
                                 <input type="hidden" name="tslIdentifier"

@@ -62,7 +62,7 @@
 
             <div th:if="${tsl != null}">
 
-              <form th:action="${action}" th:object="${tsl}" method="POST">
+              <form th:action="@{${action}}" th:object="${tsl}" method="POST">
 
                 <!-- Scheme Information -->
                 <h1 class="simple-toggle">
