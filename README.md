@@ -50,6 +50,72 @@ and use this value for all nodes you will set up.
 In the **docker/docker-compose.yml** file, set a value for **MAX_PEERS** (e.g. MAX_PEERS=50) 
 to specify the maximum peers which can be connected to the node.
 
+## Prepare the environment
+
+Before setting up the environment, you have to prepare your IPFS network.
+
+To do so, you have to generate a swarm key which will be shared by all your IPFS nodes 
+and create a peers configuration to bootstrap other nodes.
+
+### Generate a swarm key
+
+> You can use the provided *swarm.key* into *docker/ipfs/src/*, 
+but we encourage you to generate your own swarm key.
+
+The swarm key generator is executed on the bootstrap node only (the first node). 
+To install the swarm key generator we use go get. 
+If you have not installed go yet, do so 
+(see [https://golang.org/doc/install](https://golang.org/doc/install)).
+
+Run the following command to install the swarm key generator:
+```sh
+$ go get -u github.com/Kubuxu/go-ipfs-swarm-key-gen/ipfs-swarm-key-gen
+```
+
+Run the swarm key generator to create the swarm file:
+```sh
+./go/bin/ipfs-swarm-key-gen > swarm.key
+```
+
+Copy the generated swarm.key file to **docker/ipfs/src/swarm.key**. 
+Save this file, you will need it for other environments.
+
+### Configure the peers
+
+You can bootstrap nodes by editing the **docker/ipfs/src/peers.cfg** file.
+
+If you do not want to bootstrap other nodes, just leave this file empty.
+
+If you want to bootstrap nodes that are running, 
+add one line per node with the IP address of the node along with the PeerID of the node.
+```
+/ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
+```
+
+**NOTE:** you can retrieve the PeerID of a node by connecting to the IPFS container 
+and run the following command.
+```sh
+ipfs config show | grep "PeerID"
+```
+
+Below, an example of a *peers.cfg* file.
+
+```
+/ip4/10.0.0.1/tcp/4001/ipfs/QmbhAPVsvFc1NHXy9jZ1tn3k2L92mBoEvgpcpa917xGZCT
+/ip4/10.0.0.2/tcp/4001/ipfs/QmUmT5pFL7C5QoNC4uakyZSvravdH4bUs5hZuZG9arvLvD
+/ip4/10.0.0.3/tcp/4001/ipfs/QmTgV67ybtE1WutxAAeR5eHkcoeAUHJ3f2rZ323ucBcn9m
+/ip4/10.0.0.4/tcp/4001/ipfs/QmfM5LWmidbNFhshGMSMwFhn2x5TFE2UzHYQNjAN9bsxE4
+```
+
+In this *peers.cfg* file, you can see that we added 4 nodes we want to bootstrap.
+
+**NOTE:** you can also add a new peer manually by connecting to the IPFS container
+and run the following command.
+```sh
+ipfs bootstrap add /ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
+```
+
+
 ## Set up the environment
 
 **If you are using docker-machine** 
@@ -312,14 +378,14 @@ you have configured the properties files:
 
 ## Ethereum
 
-https://github.com/ethereum/go-ethereum/wiki/Private-network
+[https://github.com/ethereum/go-ethereum/wiki/Private-network](https://github.com/ethereum/go-ethereum/wiki/Private-network)
 
-https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network
+[https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network](https://github.com/ethereum/go-ethereum/wiki/Connecting-to-the-network)
 
-http://www.ethdocs.org/en/latest/network/test-networks.html#id3
+[http://www.ethdocs.org/en/latest/network/test-networks.html#id3](http://www.ethdocs.org/en/latest/network/test-networks.html#id3)
 
 ## IPFS
 
-https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b
+[https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b](https://medium.com/@s_van_laar/deploy-a-private-ipfs-network-on-ubuntu-in-5-steps-5aad95f7261b)
 
-https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks
+[https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks](https://github.com/ipfs/go-ipfs/blob/master/docs/experimental-features.md#private-networks)
