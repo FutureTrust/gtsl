@@ -64,7 +64,7 @@
             </div>
 
             <div th:if="${#bools.isTrue(isAuthorized)}">
-              <a class="btn btn-primary btn-lg" th:href="${url}">
+              <a class="btn btn-primary btn-lg" th:href="@{${url}}">
                 Go to Rules Properties manager
               </a>
             </div>

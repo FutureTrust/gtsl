@@ -65,7 +65,7 @@
                               data-target="#modalImportProperties">
                         Import properties
                       </button>
-                      <a th:if="${export != null && !#strings.isEmpty(export)}" class="btn btn-default btn-lg" th:href="${export}">Export properties</a>
+                      <a th:if="${export != null && !#strings.isEmpty(export)}" class="btn btn-default btn-lg" th:href="@{${export}}">Export properties</a>
                     </div>
                   </div>
                 </div>

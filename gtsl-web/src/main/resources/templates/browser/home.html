@@ -64,7 +64,7 @@
                   </div>
                   <div class="content">
                     <h2 class="title">
-                      <a class="a-link-custom" th:href="${tsl.urls.view}"
+                      <a class="a-link-custom" th:href="@{${tsl.urls.view}}"
                          th:text="${tsl.countryName}"></a>
                     </h2>
                     <p>Issue date
@@ -78,19 +78,19 @@
                     </button>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="a-link-custom" th:href="${tsl.urls.view}">
+                        <a class="a-link-custom" th:href="@{${tsl.urls.view}}">
                           <span class="glyphicon glyphicon-list-alt"></span>
                           <span>&ensp;View detail</span>
                         </a>
                       </li>
                       <li>
-                        <a class="a-link-custom" th:href="${tsl.urls.export}">
+                        <a class="a-link-custom" th:href="@{${tsl.urls.export}}">
                           <span class="glyphicon glyphicon-download-alt"></span>
                           <span>&ensp;Download XML</span>
                         </a>
                       </li>
                       <li>
-                        <a class="a-link-custom" th:href="${tsl.urls.versions}">
+                        <a class="a-link-custom" th:href="@{${tsl.urls.versions}}">
                           <span class="glyphicon glyphicon-tags"></span>
                           <span>&ensp;Show versions</span>
                         </a>

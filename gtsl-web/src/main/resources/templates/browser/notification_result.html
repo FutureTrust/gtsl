@@ -61,7 +61,7 @@
             <div class="alert alert-success text-center" role="alert">
               You successfully subscribed to <strong th:text="${country}"></strong> trusted list
               with your email
-              <a class="alert-link" th:text="${email}" th:href="${'mailto:' + email}"></a>.
+              <a class="alert-link" th:text="${email}" th:href="@{${'mailto:' + email}}"></a>.
             </div>
           </div>
 
