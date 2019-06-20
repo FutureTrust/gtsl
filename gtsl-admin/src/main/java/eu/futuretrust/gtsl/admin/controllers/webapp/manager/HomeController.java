@@ -90,9 +90,13 @@ public class HomeController {
   private Map<String, String> createMapUrls(Model model, RedirectAttributes redirectAttributes,
       TrustStatusListType tsl) {
     Map<String, String> urls = new HashMap<>();
-    urls.put("export", MvcUriComponentsBuilder
+    String exportUrl = MvcUriComponentsBuilder
         .fromMethodName(ApiTslImporterController.class, "exportXml",
-            tsl.getSchemeInformation().getSchemeTerritory().getValue()).build().toString());
+            tsl.getSchemeInformation().getSchemeTerritory().getValue()).build().toString();
+    System.out.println("------------------------------------------------------------\n"
+        + "exportUrl=" + exportUrl + "\n"
+        + "------------------------------------------------------------\n" );
+    urls.put("export", exportUrl);
     return urls;
   }
 
