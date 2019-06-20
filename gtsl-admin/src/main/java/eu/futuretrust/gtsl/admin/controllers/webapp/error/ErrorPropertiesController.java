@@ -58,7 +58,7 @@ public class ErrorPropertiesController {
           .fromMethodName(RulesPropertiesController.class, "properties", model,
               redirectAttributes)
           .build()
-          .toString());
+          .getPath());
       return "error/error_properties";
     }, redirectAttributes);
   }

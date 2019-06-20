@@ -59,7 +59,7 @@ public class RulesPropertiesController {
         model.addAttribute("export", MvcUriComponentsBuilder
             .fromMethodName(ApiRulesPropertiesImporterController.class, "exportJson")
             .build()
-            .toString());
+            .getPath());
       }
       return "manager/properties";
     }, redirectAttributes);

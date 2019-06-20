@@ -107,7 +107,7 @@ public class DraftsController {
       tsl.getSchemeInformation().setSchemeTerritory(new CountryCode(countryCode));
       String action = MvcUriComponentsBuilder
           .fromMethodName(DraftsController.class, "createDraft",
-              tsl, model, redirectAttributes).build().toString();
+              tsl, model, redirectAttributes).build().getPath();
 
       return fillDraft(model, country, tsl, action);
     }, redirectAttributes);
@@ -124,7 +124,7 @@ public class DraftsController {
       draft.getTsl().getSchemeInformation().setSchemeTerritory(new CountryCode(countryCode));
       String action = MvcUriComponentsBuilder
           .fromMethodName(DraftsController.class, "updateDraft",
-              draft.getDbId(), draft.getTsl(), model, redirectAttributes).build().toString();
+              draft.getDbId(), draft.getTsl(), model, redirectAttributes).build().getPath();
 
       return fillDraft(model, country, draft.getTsl(), action);
     }, redirectAttributes);
@@ -249,19 +249,19 @@ public class DraftsController {
     Map<String, String> urls = new HashMap<>();
     urls.put("edit", MvcUriComponentsBuilder
         .fromMethodName(DraftsController.class, "editDraft",
-            draftVO.getDbId(), model, redirectAttributes).build().toString());
+            draftVO.getDbId(), model, redirectAttributes).build().getPath());
     urls.put("export", MvcUriComponentsBuilder
         .fromMethodName(ApiDraftImporterController.class, "exportXml",
-            draftVO.getDbId()).build().toString());
+            draftVO.getDbId()).build().getPath());
     urls.put("delete", MvcUriComponentsBuilder
         .fromMethodName(DraftsController.class, "deleteDraft",
-            draftVO.getDbId(), redirectAttributes).build().toString());
+            draftVO.getDbId(), redirectAttributes).build().getPath());
     urls.put("push", MvcUriComponentsBuilder
         .fromMethodName(DraftsController.class, "pushDraft",
-            draftVO.getDbId(), model, redirectAttributes).build().toString());
+            draftVO.getDbId(), model, redirectAttributes).build().getPath());
     urls.put("validate", MvcUriComponentsBuilder
         .fromMethodName(DraftsController.class, "validateDraft",
-            draftVO.getDbId(), model, redirectAttributes).build().toString());
+            draftVO.getDbId(), model, redirectAttributes).build().getPath());
     return urls;
   }
 

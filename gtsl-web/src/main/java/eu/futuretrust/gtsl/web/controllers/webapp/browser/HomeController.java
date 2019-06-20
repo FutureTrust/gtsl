@@ -101,18 +101,18 @@ public class HomeController {
             tsl.getSchemeInformation().getSchemeTerritory().getValue(), model,
             redirectAttributes)
         .build()
-        .toString());
+        .getPath());
     urls.put("export", MvcUriComponentsBuilder
         .fromMethodName(ApiTslImporterController.class, "exportXml",
             tsl.getSchemeInformation().getSchemeTerritory().getValue())
         .build()
-        .toString());
+        .getPath());
     urls.put("versions", MvcUriComponentsBuilder
         .fromMethodName(VersionController.class, "getVersions",
             tsl.getSchemeInformation().getSchemeTerritory().getValue(), model,
             redirectAttributes)
         .build()
-        .toString());
+        .getPath());
     return urls;
   }
 

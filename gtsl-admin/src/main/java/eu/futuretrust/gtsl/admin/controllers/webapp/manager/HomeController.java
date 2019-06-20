@@ -92,7 +92,7 @@ public class HomeController {
     Map<String, String> urls = new HashMap<>();
     String exportUrl = MvcUriComponentsBuilder
         .fromMethodName(ApiTslImporterController.class, "exportXml",
-            tsl.getSchemeInformation().getSchemeTerritory().getValue()).build().toString();
+            tsl.getSchemeInformation().getSchemeTerritory().getValue()).build().getPath();
     System.out.println("------------------------------------------------------------\n"
         + "exportUrl=" + exportUrl + "\n"
         + "------------------------------------------------------------\n" );

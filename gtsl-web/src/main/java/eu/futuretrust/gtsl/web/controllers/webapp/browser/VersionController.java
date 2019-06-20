@@ -103,7 +103,7 @@ public class VersionController {
             tsl.getSchemeInformation().getSchemeTerritory().getValue(),
             tsl.getSchemeInformation().getTslSequenceNumber())
         .build()
-        .toString());
+        .getPath());
     return urls;
   }
 

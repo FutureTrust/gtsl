@@ -28,7 +28,7 @@
         <div class="content row">
           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <h2 class="title">
-              <a class="a-link-custom" th:href="@{${draft.tsl.urls.edit}}"
+              <a class="a-link-custom" th:href="${draft.tsl.urls.edit}"
                  th:text="${draft.tsl.countryName}"></a>
             </h2>
             <p th:if="${draft.tsl.issueDate != null}">Issue date
@@ -37,7 +37,7 @@
           </div>
           <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
             <span data-original-title="Edit" data-placement="top" data-toggle="tooltip" title="">
-              <a class="btn btn-default" th:href="@{${draft.tsl.urls.edit}}">
+              <a class="btn btn-default" th:href="${draft.tsl.urls.edit}">
                 <span class="glyphicon glyphicon-pencil"></span>
               </a>
             </span>
@@ -67,13 +67,13 @@
             </button>
             <ul class="dropdown-menu custom-dropdown-menu">
               <li>
-                <a class="a-link-custom" th:href="@{${draft.tsl.urls.edit}}">
+                <a class="a-link-custom" th:href="${draft.tsl.urls.edit}">
                   <span class="glyphicon glyphicon-pencil"></span>
                   <span>&ensp;Edit</span>
                 </a>
               </li>
               <li>
-                <a class="a-link-custom" th:href="@{${draft.tsl.urls.validate}}">
+                <a class="a-link-custom" th:href="${draft.tsl.urls.validate}">
                   <span class="glyphicon glyphicon-ok"></span>
                   <span>&ensp;Show report</span>
                 </a>
@@ -96,7 +96,7 @@
               </li>
               -->
               <li>
-                <a class="a-link-custom" th:href="@{${draft.tsl.urls.export}}">
+                <a class="a-link-custom" th:href="${draft.tsl.urls.export}">
                   <span class="glyphicon glyphicon-download-alt"></span>
                   <span>&ensp;Download XML</span>
                 </a>
