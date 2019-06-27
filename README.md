@@ -278,6 +278,23 @@ false
 If the value is *false*, it means that your node is up-to-date, 
 otherwise you should see values like currentBlock, highestBlock, etc.
 
+**Troubleshooting**: If for any reason, your nodes have been disconnected 
+from one to another, it is probably because the connection was interrupted 
+between the two nodes and so on the nodes do not know each other anymore. 
+To fix the problem, add the node (like previously done) by using the 
+*admin.addPeer* command.
+
+> **NOTE:**  You can know that peers have been disconnected by checking 
+the last block number on both nodes with the command *eth.blockNumber* 
+and cross-check with the *admin.peers* command.
+
+```sh
+$ admin.addPeer("enode://f4642fa65af50cfdea8fa7414a5def7bb7991478b768e296f5e4a54e8b995de102e0ceae2e826f293c481b5325f89be6d207b003382e18a8ecba66fbaf6416c0@33.4.2.1:30303")
+```
+
+Then, you should investigate the problem to understand why the nodes have been 
+disconnected.
+
 ## Properties configuration
 
 Properties files have been generated in the folder **properties** by the _setup_ script.
