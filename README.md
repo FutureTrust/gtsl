@@ -59,7 +59,7 @@ and create a peers configuration to bootstrap other nodes.
 
 ### Generate a swarm key
 
-> You can use the provided *swarm.key* into *docker/ipfs/src/*, 
+> **NOTE:** You can use the provided *swarm.key* into *docker/ipfs/src/*, 
 but we encourage you to generate your own swarm key.
 
 The swarm key generator is executed on the bootstrap node only (the first node). 
@@ -179,7 +179,7 @@ $ exit
 
 ## Deploy the smart-contracts
 
-> Before deploying the smart-contracts, you should know that 
+> **NOTE:** Before deploying the smart-contracts, you should know that 
 you can use existing smart-contracts. 
 To do so, configure the file contract.properties in the folder properties.
 If you use existing smart-contracts, skip the step.
