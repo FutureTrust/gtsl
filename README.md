@@ -92,7 +92,7 @@ add one line per node with the IP address of the node along with the PeerID of t
 /ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
 ```
 
-**NOTE:** you can retrieve the PeerID of a node by running the following command.
+> **NOTE:** you can retrieve the PeerID of a node by running the following command.
 ```sh
 $ docker exec ipfs-node ipfs config show | grep "PeerID"
 ```
@@ -108,12 +108,12 @@ Below, an example of a *peers.cfg* file.
 
 In this *peers.cfg* file, you can see that we added 4 nodes we want to bootstrap.
 
-**NOTE:** you can also add a new peer manually by running the following command.
+> **NOTE:** you can also add a new peer manually by running the following command.
 ```sh
 $ docker exec ipfs-node ipfs bootstrap add /ip4/<ip-address>/tcp/4001/ipfs/<PeerID>
 ```
 
-**NOTE:** you can know all available peers in the swarm by running the following command.
+> **NOTE:**  you can know all available peers in the swarm by running the following command.
 ```sh
 $ docker exec ipfs-node ipfs swarm peers
 ```
@@ -138,7 +138,7 @@ $ ./scripts/setup/setup.sh [docker-machine-name]
 You have to wait for the containers to be ready. 
 This can take up to 10 minutes.
 
-**Note**: If you already did the configuration above and 
+> **NOTE:** If you already did the configuration above and 
 you run the starting script again, the script will use 
 the keystore which was generated previously.
 
@@ -391,7 +391,7 @@ you have configured the properties files:
 - cacheValidityWindow: validity window for the LoTL cache, after which the cache must be renewed
 - fileCachePath (optional) : local file used as a cache for the LoTL
 
-**Note**: Your certificate must contain the following extensions: SKI extension, Non repudiation.
+> **NOTE:** Your certificate must contain the following extensions: SKI extension, Non repudiation.
 
 # Sources
 
