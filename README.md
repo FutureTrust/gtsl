@@ -202,7 +202,7 @@ For instance, for development purpose you can use the following :
 $ ./scripts/deployment/deploy.sh 20 EU
 ```
 
-**FYI**: 3 smart-contracts are deployed, 
+> **NOTE:** 3 smart-contracts are deployed, 
 1 for the User Management, 
 1 for the Tsl Store and 
 1 for the Rules Properties.
